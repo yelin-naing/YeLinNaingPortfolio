@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Ye Lin Naing (Leo) — data analyst based in Newcastle upon Tyne. First Class Honours in Computing. SQL, Python, Excel, Apache Spark and Azure. Open to data analyst roles.">
+<meta name="author" content="Ye Lin Naing">
+<meta name="theme-color" content="#12171C">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect x='6' y='6' width='88' height='88' rx='20' fill='%23000000'/%3E%3Crect x='23' y='56' width='15' height='26' rx='3' fill='%23FFFFFF'/%3E%3Crect x='43' y='40' width='15' height='42' rx='3' fill='%23FFFFFF'/%3E%3Crect x='63' y='22' width='15' height='60' rx='3' fill='%23FFFFFF'/%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:title" content="YeLinN. Portfolio">
+<meta property="og:description" content="First Class Honours Computing graduate working with SQL, Python and Excel. Open to data analyst roles in the UK.">
+<meta property="og:image" content="./profile.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="YeLinN. Portfolio">
+<meta name="twitter:description" content="First Class Honours Computing graduate working with SQL, Python and Excel. Open to data analyst roles in the UK.">
+<title>YeLinN. Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+Myanmar:wght@500&family=Noto+Sans+Thai:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="preloading">
+
+<!-- PRELOADER: hello, in the languages around this page -->
+<div id="preloader" role="status" aria-live="polite" aria-label="Loading">
+  <p class="pre-word" id="preWord">မင်္ဂလာပါ</p>
+  <p class="pre-lang" id="preLang">Burmese</p>
+  <span class="pre-bar"><span class="pre-fill" id="preFill"></span></span>
+  <p class="pre-skip" id="preSkip">Tap to skip</p>
+</div>
+
+<script src="js/preloader.js"></script>
+
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<header class="site">
+  <div class="nav-inner">
+    <a class="logo mono" href="#top">YeLinN.</a>
+
+    <nav class="nav-links" id="navLinks" aria-label="Sections">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#certificates">Certificates</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#try">Try it</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="nav-right">
+      <span class="status-pill"><span class="dot"></span>Available now</span>
+      <button class="nav-toggle" id="navToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap" id="top">
+
+  <!-- ABOUT -->
+  <section id="about" class="lead">
+    <p class="eyebrow reveal">-- about</p>
+    <div class="about-grid">
+      <div class="avatar reveal">
+        <img src="./profile.jpg" alt="Photo of Ye Lin Naing (Leo)" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="avatar-fallback">LN</div>
+      </div>
+      <div>
+        <h2 class="section-title reveal" id="heroName" aria-label="Hello...I'm Ye Lin Naing (Leo)"><span id="heroTypedText" aria-hidden="true">Hello...I'm Ye Lin Naing (Leo)</span></h2>
+        <h3 class="section-title reveal">First Class Honours in Computing @ Northumbria</h3>
+        <p class="about-text reveal">I'm originally from Myanmar (Burma) and now based in Newcastle upon Tyne, United Kingdom.I like working with data — cleaning it, querying it, finding patterns & insights, and turning it into something people can actually use to make a decision. SQL, Python and Excel are my main tools, and I've used Apache Spark and Azure on larger projects.</p>
+        <p class="about-text reveal">I graduated from Northumbria University in July 2026 and I'm now applying for data analyst roles while building real projects to back it up. I'm open to relocating within the UK or Southeast Asia for the right role.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUERY -->
+  <section class="hero">
+    <div class="filetab mono">// query.sql</div>
+    <div class="code-box mono" id="codebox">
+      <div class="code-line"><span class="line-no">1</span><span class="line-content" id="l1"></span></div>
+      <div class="code-line"><span class="line-no">2</span><span class="line-content" id="l2"></span></div>
+      <div class="code-line"><span class="line-no">3</span><span class="line-content" id="l3"></span></div>
+      <div class="code-line"><span class="line-no">4</span><span class="line-content" id="l4"></span></div>
+      <div class="code-line"><span class="line-no">5</span><span class="line-content" id="l5"></span></div>
+    </div>
+
+    <p class="result-meta mono" id="resultMeta">-- 1 row returned</p>
+
+    <div class="selection-wrap" id="selectionWrap">
+      <div class="results" id="results">
+        <table>
+          <thead>
+            <tr><th>Name</th><th>Role</th><th>Location</th><th>Status</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-label="Name"><strong>Ye Lin Naing (Leo)</strong></td>
+              <td data-label="Role">Data Analyst</td>
+              <td data-label="Location">England, United Kingdom</td>
+              <td data-label="Status">Open to work</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <p class="eyebrow reveal">-- schema: skills</p>
+    <h2 class="section-title reveal">What I work with</h2>
+    <table class="schema reveal">
+      <colgroup>
+        <col class="col-no"><col class="col-field"><col class="col-type"><col>
+      </colgroup>
+      <thead>
+        <tr><th>No</th><th>Field</th><th>Type</th><th>Notes</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-label="No"><span class="field-no">1</span></td>
+          <td data-label="Field"><span class="field-name">sql</span></td>
+          <td data-label="Type"><span class="field-type">QUERY_LANGUAGE</span></td>
+          <td data-label="Notes" class="field-desc">Joins, window functions, CTEs, conditional aggregation — practiced on HackerRank and LeetCode.</td>
+        </tr>
+        <tr>
+          <td data-label="No"><span class="field-no">2</span></td>
+          <td data-label="Field"><span class="field-name">python</span></td>
+          <td data-label="Type"><span class="field-type">SCRIPTING</span></td>
+          <td data-label="Notes" class="field-desc">Data cleaning and analysis scripts.</td>
+        </tr>
+        <tr>
+          <td data-label="No"><span class="field-no">3</span></td>
+          <td data-label="Field"><span class="field-name">excel</span></td>
+          <td data-label="Type"><span class="field-type">SPREADSHEET</span></td>
+          <td data-label="Notes" class="field-desc">Pivot tables, INDIRECT, spill ranges, running totals.</td>
+        </tr>
+        <tr>
+          <td data-label="No"><span class="field-no">4</span></td>
+          <td data-label="Field"><span class="field-name">power_bi</span></td>
+          <td data-label="Type"><span class="field-type">DATA_VISUALIZATION</span></td>
+          <td data-label="Notes" class="field-desc">Creating interactive dashboards and reports.</td>
+        </tr>
+        <tr>
+          <td data-label="No"><span class="field-no">4</span></td>
+          <td data-label="Field"><span class="field-name">apache_spark</span></td>
+          <td data-label="Type"><span class="field-type">BIG_DATA</span></td>
+          <td data-label="Notes" class="field-desc">Large-scale data processing on a cloud VM.</td>
+        </tr>
+        <tr>
+          <td data-label="No"><span class="field-no">5</span></td>
+          <td data-label="Field"><span class="field-name">azure</span></td>
+          <td data-label="Type"><span class="field-type">CLOUD</span></td>
+          <td data-label="Notes" class="field-desc">Provisioning and managing VMs for data workloads.</td>
+        </tr>
+        <tr>
+          <td data-label="No"><span class="field-no">6</span></td>
+          <td data-label="Field"><span class="field-name">git</span></td>
+          <td data-label="Type"><span class="field-type">VERSION_CONTROL</span></td>
+          <td data-label="Notes" class="field-desc">Day-to-day workflow across all projects.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="chart-wrap reveal">
+      <p class="chart-label mono">-- self-assessed, by how much I've actually used each one</p>
+      <div class="bar-row">
+        <span class="bar-name mono">SQL</span>
+        <div class="bar-track"><div class="bar-fill" style="--w:100%"></div></div>
+        <span class="bar-pct mono">Strong</span>
+      </div>
+      <div class="bar-row">
+        <span class="bar-name mono">Excel</span>
+        <div class="bar-track"><div class="bar-fill" style="--w:100%"></div></div>
+        <span class="bar-pct mono">Strong</span>
+      </div>
+      <div class="bar-row">
+        <span class="bar-name mono">Git</span>
+        <div class="bar-track"><div class="bar-fill" style="--w:66%"></div></div>
+        <span class="bar-pct mono">Working</span>
+      </div>
+      <div class="bar-row">
+        <span class="bar-name mono">Python</span>
+        <div class="bar-track"><div class="bar-fill" style="--w:66%"></div></div>
+        <span class="bar-pct mono">Working</span>
+      </div>
+      <div class="bar-row">
+        <span class="bar-name mono">Spark</span>
+        <div class="bar-track"><div class="bar-fill" style="--w:33%"></div></div>
+        <span class="bar-pct mono">Learning</span>
+      </div>
+      <div class="bar-row">
+        <span class="bar-name mono">Azure</span>
+        <div class="bar-track"><div class="bar-fill" style="--w:33%"></div></div>
+        <span class="bar-pct mono">Learning</span>
+      </div>
+      <p class="chart-key mono">Strong = used regularly and independently · Working = used on real projects · Learning = used once, still building</p>
+    </div>
+  </section>
+
+  <!-- CERTIFICATES -->
+  <section id="certificates">
+    <p class="eyebrow reveal">-- table: certificates</p>
+    <h2 class="section-title reveal">Certificates & courses</h2>
+    <div class="cert-grid reveal">
+      <div class="cert-card">
+        <div class="cert-head">
+          <h3 class="cert-title">Google Data Analytics Professional Certificate</h3>
+          <span class="cert-badge done">Completed</span>
+        </div>
+        <p class="cert-issuer">Google — Coursera</p>
+        <div class="cert-foot">
+          <span class="cert-date">2025</span>
+          <a class="cert-btn" id="certLink1" href="#" target="_blank" rel="noopener">View certificate ↗</a>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-head">
+          <h3 class="cert-title">MySQL Certificate</h3>
+          <span class="cert-badge done">Completed</span>
+        </div>
+        <p class="cert-issuer">Maven Analytics</p>
+        <div class="cert-foot">
+          <span class="cert-date">2026</span>
+          <a class="cert-btn" id="certLink2" href="#" target="_blank" rel="noopener">View certificate ↗</a>
+        </div>
+      </div>
+      <div class="cert-card placeholder">Coming Soon</div>
+    </div>
+
+    <div class="certs-all reveal" id="certsAllWrap">
+      <a class="cv-btn" id="certsAllBtn" href="#" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        View all certificates
+      </a>
+    </div>
+  </section>
+
+  <!-- LANGUAGES -->
+  <section id="languages">
+    <p class="eyebrow reveal">-- table: languages</p>
+    <h2 class="section-title reveal">Languages</h2>
+    <div class="lang-grid reveal">
+      <div class="lang-card">
+        <div class="lang-head">
+          <span class="lang-name">English</span>
+          <span class="lang-level">Fluent</span>
+        </div>
+        <div class="lang-dots" aria-hidden="true">
+          <span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span>
+        </div>
+        <p class="lang-note">Degree taught and assessed in English; daily use at work.</p>
+      </div>
+      <div class="lang-card">
+        <div class="lang-head">
+          <span class="lang-name">Burmese</span>
+          <span class="lang-level">Native</span>
+        </div>
+        <div class="lang-dots" aria-hidden="true">
+          <span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span>
+        </div>
+        <p class="lang-note">Mother tongue.</p>
+      </div>
+      <!-- <div class="lang-card">
+        <div class="lang-head">
+          <span class="lang-name">Japanese</span>
+          <span class="lang-level">Learning</span>
+        </div>
+        <div class="lang-dots" aria-hidden="true">
+          <span class="on"></span><span class="on"></span><span></span><span></span><span></span>
+        </div>
+        <p class="lang-note">Studying in my own time — basic reading and conversation.</p>
+      </div> -->
+    </div>
+  </section>
+
+  <!-- CV DOWNLOAD -->
+  <section id="cv">
+    <div class="cv-banner reveal">
+      <p class="eyebrow" style="margin-bottom:6px;">-- resume.pdf</p>
+      <h2 class="section-title" style="margin-bottom:6px;">Want the full picture?</h2>
+      <p class="about-text" style="margin:0 auto;">Download my CV for full work history, references, and more detail than fits on this page.</p>
+      <a class="cv-btn" id="cvBtn" href="./YeLinNaing(Leo).pdf" download>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download CV
+      </a>
+      <p class="cv-note">PDF · updated August 2026</p>
+    </div>
+  </section>
+  <section id="projects">
+    <p class="eyebrow reveal">-- table: projects</p>
+    <h2 class="section-title reveal">Things I've built</h2>
+
+    <div class="project-row reveal">
+      <div class="row-idx">01</div>
+      <div>
+        <h3 class="project-title">CandidView</h3>
+        <p class="project-desc">An AI-powered anonymous feedback platform, built with a team at the CBC Spring 2026 Hackathon.</p>
+        <p class="project-outcome"><span class="edit-me">CandidView helps recruiters screen candidate CVs against job descriptions using semantic AI matching — not keyword matching. The core philosophy is "sort and explain — humans decide." Every candidate stays visible. Every match is explained. Recruiters always make the final call.</span></p>
+        <div class="tags">
+          <span class="tag">Next.js</span><span class="tag">TypeScript</span><span class="tag">Tailwind CSS</span><span class="tag">Prisma</span><span class="tag">Claude API</span>
+        </div>
+        <a class="project-link" href="https://candid-view.vercel.app/" target="_blank" rel="noopener">View live →</a>
+        <a class="project-link" href="https://github.com/yelin-naing/CandidView" target="_blank" rel="noopener">View on GitHub →</a>
+      </div>
+    </div>
+
+    <div class="project-row reveal">
+      <div class="row-idx">02</div>
+      <div>
+        <h3 class="project-title">World Life Expectancy Data Analysis</h3>
+        <p class="project-desc">Analysis of global life expectancy trends using data cleaning and data visualization techniques.</p>
+        <p class="project-outcome"><span class="edit-me">A SQL project that cleans and explores a global life expectancy dataset covering 193 countries from 2007 to 2022. The aim was to fix data quality issues and then answer real questions about health, wealth, and life expectancy using SQL alone.</span></p>
+        <div class="tags">
+          <span class="tag">Data Analysis</span><span class="tag">Data Cleaning</span><span class="tag">Data Visualization</span><span class="tag">SQL</span>
+        </div>
+        <a class="project-link" href="https://github.com/yelin-naing/world-life-expectancy-analysis" target="_blank" rel="noopener">View on GitHub for more details→</a>
+      </div>
+    </div>
+
+    <div class="project-row reveal">
+      <div class="row-idx">03</div>
+      <div>
+        <h3 class="project-title">UK Crime Data Analysis</h3>
+        <p class="project-desc">Analysis of UK crime statistics at scale, using Apache Spark on an Azure VM, for a university Big Data module.</p>
+        <p class="project-outcome"><span class="edit-me">This project investigates three claims about crime in the UK, using a 65-million-row police crime dataset processed with Apache Spark on Microsoft Azure. The same code was tested on a sample dataset and then run on the full dataset on Azure.</span></p> 
+        <div class="tags">
+          <span class="tag">Apache Spark</span><span class="tag">Azure</span><span class="tag">Data Cleaning</span><span class="tag">Data Visualisation</span><span class="tag">Big Data</span><span class="tag">Jupyter Notebook</span>
+        </div>
+        <a class="project-link" href="https://github.com/yelin-naing/uk-crime-bigdata-analysis" target="_blank" rel="noopener">View on GitHub for more details →</a>
+      </div>
+    </div>
+
+    <div class="see-more reveal">
+      <a class="cv-btn" href="./projects.html">
+        See all projects
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+      <p class="see-more-note">Full project list with an interactive breakdown</p>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <p class="eyebrow reveal">-- table: experience</p>
+    <h2 class="section-title reveal">Work experience</h2>
+
+    <div class="exp-row reveal">
+      <div class="exp-main">
+        <h3 class="exp-title">Crew Member — McDonald's, Blaydon</h3>
+        <p class="exp-meta">Gateshead, England · alongside full-time study <span class="edit-me">Nov 2025 - Present</span></p>
+        <ul class="exp-points">
+          <li>Worked front counter and kitchen through peak trading, where accuracy matters as much as speed.</li>
+          <li>Won Star of the Shift multiple times and awared Emoplyee of the Month (May) in 2026 for consistency and pace under pressure.</li>
+          <li>Currently working toward Crew Trainer, which means training new starters on process and standards.</li>
+          <li>Held this alongside a full-time degree I finished with First Class Honours.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-row reveal">
+      <div class="exp-main">
+        <h3 class="exp-title">Graphic Designer — YOUTH Student Activities Team</h3>
+        <p class="exp-meta">Yangon, Myanmar <span class="edit-me">Dec 2024 - Apr 2025</span></p>
+        <ul class="exp-points">
+          <li>Designed posters, social media posts, banners, and flyers for student events using Canva, supporting the full event promotion cycle.</li>
+          <li>Created visual content that received <strong>100+ reactions</strong> and <strong>30+ shares</strong>, increasing student awarness and participation.</li>
+          <li>Worked closely with a team to deliver designs on time, making sure all content matched the event theme and message.</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="exp-note">No data role yet — that's what I'm looking for. What this job gave me is the habit of getting details right when it's busy, which is most of what analysis actually is.</p>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <p class="eyebrow reveal">-- table: education</p>
+    <h2 class="section-title reveal">Education</h2>
+    <div class="edu-row reveal">
+      <div>
+        <div class="edu-inst">BSc (Hons) Computing — Northumbria University</div>
+        <div class="edu-detail">Graduated July 2026</div>
+      </div>
+      <span class="edu-badge">First Class Honours</span>
+    </div>
+    <div class="edu-row reveal">
+      <div>
+        <div class="edu-inst">Higher National Diploma in Computing — YOUTH International College</div>
+        <div class="edu-detail">Graduated July 2025</div>
+      </div>
+      <span class="edu-badge">First Class Honours</span>
+    </div>
+  </section>
+
+  <!-- TRY IT -->
+  <section id="try">
+    <p class="eyebrow reveal">-- try it yourself</p>
+    <h2 class="section-title reveal">Check if I match your role</h2>
+    <p class="about-text reveal" style="margin-bottom:20px;">Pick what your role needs. The query builds itself, and the result tells you where I stand.</p>
+
+    <div class="builder reveal">
+      <div class="chip-row" id="chipRow">
+        <button class="chip" type="button" data-key="sql">SQL</button>
+        <button class="chip" type="button" data-key="python">Python</button>
+        <button class="chip" type="button" data-key="excel">Excel</button>
+        <button class="chip" type="button" data-key="spark">Apache Spark</button>
+        <button class="chip" type="button" data-key="azure">Azure</button>
+        <button class="chip" type="button" data-key="git">Git</button>
+        <button class="chip" type="button" data-key="degree">Degree in Computing</button>
+        <button class="chip" type="button" data-key="onsite">Based in North East UK</button>
+        <button class="chip" type="button" data-key="nosponsor">No visa sponsorship needed</button>
+        <button class="chip" type="button" data-key="powerbi">Power BI</button>
+        <button class="chip" type="button" data-key="tableau">Tableau</button>
+        <button class="chip" type="button" data-key="senior">5+ years experience</button>
+      </div>
+
+      <div class="code-box mono builder-query">
+        <div class="code-line"><span class="line-no">1</span><span class="line-content"><span class="kw">SELECT</span> * <span class="kw">FROM</span> yelinnaing</span></div>
+        <div class="code-line"><span class="line-no">2</span><span class="line-content" id="whereLine"><span class="cm">-- pick a requirement above to start</span></span></div>
+      </div>
+
+      <div class="verdict" id="verdict">
+        <div class="verdict-head">
+          <span class="verdict-icon" id="verdictIcon">–</span>
+          <span class="verdict-text" id="verdictText">No requirements selected yet</span>
+        </div>
+        <ul class="verdict-list" id="verdictList"></ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <footer id="contact">
+    <p class="eyebrow reveal">-- query: contact</p>
+    <h2 class="section-title reveal">Get in touch</h2>
+    <div class="code-box mono contact-results reveal">
+      <div class="code-line"><span class="line-no">1</span><span class="line-content"><span class="kw">SELECT</span> contact_method, information <span class="kw">FROM</span> yelinnaing</span></div>
+      <div class="code-line"><span class="line-no">2</span><span class="line-content"><span class="kw">WHERE</span> type <span class="kw">IN</span> (<span class="str">'email'</span>, <span class="str">'github'</span>, <span class="str">'linkedin'</span>);</span></div>
+      <div class="code-line"><span class="line-no">&nbsp;</span><span class="line-content"></span></div>
+      <div class="code-line"><span class="line-no">→</span><span class="line-content">email    <a href="mailto:yelinnaing.job@gmail.com">yelinnaing.job@gmail.com</a></span></div>
+      <div class="code-line"><span class="line-no">→</span><span class="line-content">github   <a href="https://github.com/yelin-naing" target="_blank" rel="noopener">github.com/yelin-naing</a></span></div>
+      <div class="code-line"><span class="line-no">→</span><span class="line-content">linkedin <a  href="https://www.linkedin.com/in/yelinnaing/" target="_blank" rel="noopener">linkedin.com/in/yelinnaing/</a></span></div>
+    </div>
+    <p class="foot-note">Built by Ye Lin Naing — updated August 2026.</p>
+  </footer>
+
+</main>
+
+<!-- MASCOT: Leo the lion -->
+<div class="mascot-dock" id="mascotDock">
+  <div class="mascot-bubble" id="mascotBubble" role="status" aria-live="polite">
+    <span id="mascotSays">Hi, I'm Leo.</span>
+    <button class="bubble-close" id="bubbleClose" type="button" aria-label="Hide Leo">×</button>
+  </div>
+
+  <button class="mascot-btn" id="mascotBtn" type="button" aria-label="Leo the lion — tap for a tip">
+    <span class="mascot-3d" id="mascot3d">
+    <svg class="mascot-svg" id="mascotSvg" viewBox="0 0 200 262" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <defs>
+    <radialGradient id="mA" cx="35%" cy="25%" r="80%">
+      <stop offset="0%" stop-color="#4A535C"/><stop offset="60%" stop-color="#252C33"/><stop offset="100%" stop-color="#12171C"/>
+    </radialGradient>
+    <radialGradient id="mB" cx="35%" cy="25%" r="80%">
+      <stop offset="0%" stop-color="#39424B"/><stop offset="60%" stop-color="#1B2127"/><stop offset="100%" stop-color="#0C1013"/>
+    </radialGradient>
+    <radialGradient id="furG" cx="34%" cy="24%" r="82%">
+      <stop offset="0%" stop-color="#F0F3F5"/><stop offset="52%" stop-color="#D7DDE1"/><stop offset="100%" stop-color="#A4AEB5"/>
+    </radialGradient>
+    <radialGradient id="bodyG" cx="34%" cy="20%" r="88%">
+      <stop offset="0%" stop-color="#FFFFFF"/><stop offset="58%" stop-color="#EFF2F3"/><stop offset="100%" stop-color="#C4CBCF"/>
+    </radialGradient>
+    <radialGradient id="bellyG" cx="42%" cy="26%" r="80%">
+      <stop offset="0%" stop-color="#FFFFFF"/><stop offset="100%" stop-color="#E7EBED"/>
+    </radialGradient>
+    <radialGradient id="earG" cx="40%" cy="34%" r="76%">
+      <stop offset="0%" stop-color="#6B757E"/><stop offset="100%" stop-color="#39424A"/>
+    </radialGradient>
+    <radialGradient id="muzG" cx="42%" cy="26%" r="82%">
+      <stop offset="0%" stop-color="#FFFFFF"/><stop offset="100%" stop-color="#FAFCFC"/>
+    </radialGradient>
+    <radialGradient id="shG" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="rgba(18,23,28,0.30)"/><stop offset="100%" stop-color="rgba(18,23,28,0)"/>
+    </radialGradient>
+  </defs>
+
+  <ellipse id="mascotShadow" cx="100" cy="248" rx="52" ry="8" fill="url(#shG)"/>
+
+  <!-- tail -->
+  <g id="tailG">
+    <path d="M66 206 q-24 6 -30 -8" fill="none" stroke="#12171C" stroke-width="7" stroke-linecap="round"/>
+    <path d="M40 200 q-16 -14 -6 -26 q16 4 18 20 q-4 8 -12 6 z" fill="url(#mA)" stroke="#12171C" stroke-width="3"/>
+  </g>
+
+  <!-- MANE -->
+  <g id="maneLayer">
+    <g id="maneBack" opacity="0.55">
+      <ellipse cx="100" cy="30" rx="23" ry="26" fill="url(#mB)" transform="rotate(15 100 88)"/>
+      <ellipse cx="100" cy="30" rx="23" ry="26" fill="url(#mB)" transform="rotate(75 100 88)"/>
+      <ellipse cx="100" cy="30" rx="23" ry="26" fill="url(#mB)" transform="rotate(135 100 88)"/>
+      <ellipse cx="100" cy="30" rx="23" ry="26" fill="url(#mB)" transform="rotate(225 100 88)"/>
+      <ellipse cx="100" cy="30" rx="23" ry="26" fill="url(#mB)" transform="rotate(285 100 88)"/>
+      <ellipse cx="100" cy="30" rx="23" ry="26" fill="url(#mB)" transform="rotate(345 100 88)"/>
+    </g>
+    <g id="mane" stroke="#12171C" stroke-width="3">
+      <ellipse cx="100" cy="33" rx="24" ry="27" fill="url(#mA)" transform="rotate(0 100 88)"/>
+      <ellipse cx="100" cy="33" rx="24" ry="27" fill="url(#mB)" transform="rotate(45 100 88)"/>
+      <ellipse cx="100" cy="33" rx="24" ry="27" fill="url(#mA)" transform="rotate(90 100 88)"/>
+      <ellipse cx="100" cy="33" rx="24" ry="27" fill="url(#mB)" transform="rotate(135 100 88)"/>
+      <ellipse cx="100" cy="33" rx="24" ry="27" fill="url(#mA)" transform="rotate(180 100 88)"/>
+      <ellipse cx="100" cy="33" rx="24" ry="27" fill="url(#mB)" transform="rotate(225 100 88)"/>
+      <ellipse cx="100" cy="33" rx="24" ry="27" fill="url(#mA)" transform="rotate(270 100 88)"/>
+      <ellipse cx="100" cy="33" rx="24" ry="27" fill="url(#mB)" transform="rotate(315 100 88)"/>
+      <ellipse cx="100" cy="26" rx="18" ry="23" fill="url(#mA)"/>
+    </g>
+  </g>
+
+  <!-- BODY -->
+  <g id="bodyG_" stroke="#12171C" stroke-width="3">
+    <ellipse cx="56" cy="236" rx="17" ry="11" fill="url(#bodyG)"/>
+    <ellipse cx="144" cy="236" rx="17" ry="11" fill="url(#bodyG)"/>
+    <rect x="62" y="150" width="76" height="86" rx="35" fill="url(#bodyG)"/>
+    <ellipse cx="100" cy="200" rx="23" ry="33" fill="url(#bellyG)" stroke="none"/>
+    <rect x="70" y="196" width="26" height="46" rx="13" fill="url(#bodyG)"/>
+    <rect x="104" y="196" width="26" height="46" rx="13" fill="url(#bodyG)"/>
+  </g>
+  <g stroke="#12171C" stroke-width="2.2" stroke-linecap="round" opacity="0.55" fill="none">
+    <path d="M78 240 v-6"/><path d="M85 241 v-6"/>
+    <path d="M112 241 v-6"/><path d="M119 240 v-6"/>
+  </g>
+
+  <!-- neck ruff -->
+  <g stroke="#12171C" stroke-width="3">
+    <ellipse cx="72" cy="150" rx="14" ry="13" fill="url(#mB)"/>
+    <ellipse cx="100" cy="153" rx="16" ry="14" fill="url(#mA)"/>
+    <ellipse cx="128" cy="150" rx="14" ry="13" fill="url(#mB)"/>
+  </g>
+
+  <!-- FACE -->
+  <g id="faceLayer">
+    <g stroke="#12171C" stroke-width="3">
+      <circle cx="55" cy="52" r="18" fill="url(#furG)"/>
+      <circle cx="145" cy="52" r="18" fill="url(#furG)"/>
+    </g>
+    <circle cx="55" cy="53" r="9.5" fill="#39424A"/>
+    <circle cx="145" cy="53" r="9.5" fill="#39424A"/>
+
+    <circle cx="100" cy="88" r="47" fill="url(#furG)" stroke="#12171C" stroke-width="3"/>
+    <ellipse cx="80" cy="66" rx="18" ry="11" fill="#fff" opacity="0.55" transform="rotate(-26 80 66)"/>
+
+    <!-- brows -->
+    <g id="mascotBrows" fill="#12171C" opacity="0.75">
+      <path d="M72 66 q10 -6 20 -1 q-10 -1 -19 4 z"/>
+      <path d="M128 66 q-10 -6 -20 -1 q10 -1 19 4 z"/>
+    </g>
+
+    <!-- eyes -->
+    <g id="mascotEyes">
+      <ellipse cx="82" cy="84" rx="9.5" ry="10.5" fill="#fff" stroke="#12171C" stroke-width="2.5"/>
+      <ellipse cx="118" cy="84" rx="9.5" ry="10.5" fill="#fff" stroke="#12171C" stroke-width="2.5"/>
+      <circle cx="83" cy="85" r="6" fill="#12171C"/>
+      <circle cx="119" cy="85" r="6" fill="#12171C"/>
+      <circle cx="85" cy="82" r="2.3" fill="#fff"/>
+      <circle cx="121" cy="82" r="2.3" fill="#fff"/>
+      <circle cx="80.5" cy="88" r="1.1" fill="#fff" opacity="0.7"/>
+      <circle cx="116.5" cy="88" r="1.1" fill="#fff" opacity="0.7"/>
+    </g>
+    <g id="mascotLids" class="lids">
+      <path d="M73 85 q9 7 18 0"/>
+      <path d="M109 85 q9 7 18 0"/>
+    </g>
+
+    <!-- muzzle -->
+    <g>
+      <ellipse cx="88" cy="106" rx="16" ry="13" fill="url(#muzG)" stroke="#12171C" stroke-opacity="0.30" stroke-width="2.2"/>
+      <ellipse cx="112" cy="106" rx="16" ry="13" fill="url(#muzG)" stroke="#12171C" stroke-opacity="0.30" stroke-width="2.2"/>
+      <path d="M100 92 q9 0 9 6 q0 6 -9 9 q-9 -3 -9 -9 q0 -6 9 -6 z" fill="#2A3138" stroke="#12171C" stroke-width="2.5"/>
+      <path d="M96.5 95 q4 -1.5 7 0.5 q-3.5 0 -7 1.5 z" fill="#fff" opacity="0.4"/>
+      <path d="M100 107 v4.5" stroke="#12171C" stroke-width="2.6" stroke-linecap="round" fill="none"/>
+      <path d="M80 110 q20 26 40 0 q-20 8 -40 0 z" fill="#161C22" stroke="#12171C" stroke-width="2.4" stroke-linejoin="round"/>
+      <path d="M92 122 q8 7 16 0 q-8 6 -16 0 z" fill="#6B757E"/>
+      <path d="M100 111 q-10 4 -19 -1" fill="none" stroke="#12171C" stroke-width="2.2" stroke-linecap="round" opacity="0.9"/>
+      <path d="M100 111 q10 4 19 -1" fill="none" stroke="#12171C" stroke-width="2.2" stroke-linecap="round" opacity="0.9"/>
+    </g>
+
+    <!-- whisker dots -->
+    <g fill="#12171C" opacity="0.35">
+      <circle cx="79" cy="101" r="1.5"/><circle cx="75" cy="107" r="1.5"/>
+      <circle cx="121" cy="101" r="1.5"/><circle cx="125" cy="107" r="1.5"/>
+    </g>
+  </g>
+</svg>
+    </span>
+    <span class="mascot-canvas" id="mascotCanvas"></span>
+    <span class="mascot-ping" id="mascotPing"></span>
+  </button>
+</div>
+
+<script src="js/main.js"></script>
+
+<!-- Three.js powers the 3D mascot. If it fails to load, or the device has no
+     WebGL, the SVG lion above stays on screen and nothing breaks. -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+<script src="js/mascot3d.js" defer></script>
+<!-- CERTIFICATE VIEWER -->
+<div class="viewer" id="certViewer" role="dialog" aria-modal="true" aria-labelledby="viewerTitle" hidden>
+  <div class="viewer-backdrop" data-close></div>
+  <div class="viewer-panel">
+    <div class="viewer-bar">
+      <p class="viewer-title" id="viewerTitle">Certificate</p>
+      <div class="viewer-actions">
+        <a class="viewer-btn" id="viewerOpen" href="#" target="_blank" rel="noopener">Open in new tab</a>
+        <a class="viewer-btn" id="viewerDownload" href="#" download>Download</a>
+        <button class="viewer-close" type="button" data-close aria-label="Close">&times;</button>
+      </div>
+    </div>
+    <div class="viewer-body" id="viewerBody"></div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Every project by Ye Lin Naing (Leo) — an interactive breakdown of the tools, categories and work behind each build.">
+<meta name="theme-color" content="#12171C">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect x='6' y='6' width='88' height='88' rx='20' fill='%23000000'/%3E%3Crect x='23' y='56' width='15' height='26' rx='3' fill='%23FFFFFF'/%3E%3Crect x='43' y='40' width='15' height='42' rx='3' fill='%23FFFFFF'/%3E%3Crect x='63' y='22' width='15' height='60' rx='3' fill='%23FFFFFF'/%3E%3C/svg%3E">
+<title>YeLinN. Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F6F7F5;
+    --ink:#12171C;
+    --ink-muted:#5B6570;
+    --grid:#D8DCDD;
+    --green:#1F7A5C;
+    --green-soft:#E4F0EA;
+    --amber:#C97A2B;
+    --radius:10px;
+    --maxw:980px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0; background:#fff; color:var(--ink);
+    font-family:'Inter',sans-serif; font-size:16px; line-height:1.6;
+  }
+  a{color:inherit;}
+  :focus-visible{outline:2px solid var(--green); outline-offset:2px;}
+  .mono{font-family:'JetBrains Mono',monospace;}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px;}
+
+  /* header */
+  header.site{
+    position:sticky; top:0; z-index:10;
+    background:rgba(255,255,255,0.9); backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--grid);
+  }
+  .nav-inner{
+    max-width:var(--maxw); margin:0 auto; padding:16px 24px;
+    display:flex; align-items:center; justify-content:space-between; gap:16px;
+  }
+  .logo{font-family:'JetBrains Mono',monospace; font-weight:600; font-size:14px; text-decoration:none;}
+  .back-link{
+    display:inline-flex; align-items:center; gap:7px;
+    font-size:13.5px; color:var(--ink-muted); text-decoration:none;
+  }
+  .back-link:hover{color:var(--green);}
+  .back-link svg{width:15px; height:15px;}
+
+  /* intro */
+  section{padding:44px 0;}
+  .lead{padding-top:52px;}
+  .eyebrow{
+    font-size:12.5px; text-transform:uppercase; letter-spacing:0.08em;
+    color:var(--green); font-weight:600; margin:0 0 14px;
+  }
+  h1{font-family:'Space Grotesk',sans-serif; font-size:clamp(28px,5vw,38px); margin:0 0 14px;}
+  .sub{color:var(--ink-muted); max-width:62ch; margin:0; font-size:16.5px;}
+
+  /* stat strip */
+  .stats{
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:14px; margin-top:28px;
+  }
+  .stat{
+    border:1px solid var(--grid); border-radius:var(--radius);
+    padding:16px 18px; background:#fff;
+  }
+  .stat-num{
+    font-family:'Space Grotesk',sans-serif; font-size:30px; font-weight:600;
+    line-height:1.1; display:block;
+  }
+  .stat-label{
+    font-family:'JetBrains Mono',monospace; font-size:11px; text-transform:uppercase;
+    letter-spacing:0.07em; color:var(--ink-muted);
+  }
+
+  /* filters */
+  .filter-bar{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:6px;}
+  .filter-bar.scrollable{
+    flex-wrap:nowrap; overflow-x:auto; padding-bottom:8px;
+    scrollbar-width:thin; scrollbar-color:var(--grid) transparent;
+  }
+  .filter-bar.scrollable::-webkit-scrollbar{height:6px;}
+  .filter-bar.scrollable::-webkit-scrollbar-track{background:transparent;}
+  .filter-bar.scrollable::-webkit-scrollbar-thumb{background:var(--grid); border-radius:999px;}
+  .filter-bar.scrollable::-webkit-scrollbar-thumb:hover{background:var(--ink-muted);}
+  .filter-bar.scrollable .chip{flex:0 0 auto;}
+  .chip{
+    font-family:'JetBrains Mono',monospace; font-size:12.5px; color:var(--ink);
+    border:1px solid var(--grid); background:#fff; border-radius:999px;
+    padding:7px 14px; cursor:pointer; line-height:1.2;
+    transition:background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  }
+  .chip:hover{border-color:var(--green);}
+  .chip.on{background:var(--green); border-color:var(--green); color:#fff;}
+  .filter-note{font-size:12.5px; color:var(--ink-muted); margin:0 0 22px;}
+
+  /* charts */
+  .charts{
+    display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-bottom:34px;
+  }
+  .panel{
+    border:1px solid var(--grid); border-radius:var(--radius);
+    padding:20px; background:#fff;
+  }
+  .panel h2{
+    font-family:'Space Grotesk',sans-serif; font-size:16px; margin:0 0 4px;
+  }
+  .panel .hint{
+    font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--ink-muted);
+    margin:0 0 16px;
+  }
+
+  /* bar chart */
+  .bar-chart-scroll{
+    max-height:158px; overflow-y:auto; padding-right:6px;
+    scrollbar-width:thin; scrollbar-color:var(--grid) transparent;
+  }
+  .bar-chart-scroll::-webkit-scrollbar{width:6px;}
+  .bar-chart-scroll::-webkit-scrollbar-track{background:transparent;}
+  .bar-chart-scroll::-webkit-scrollbar-thumb{background:var(--grid); border-radius:999px;}
+  .bar-chart-scroll::-webkit-scrollbar-thumb:hover{background:var(--ink-muted);}
+  .bar-row{
+    display:grid; grid-template-columns:118px 1fr 30px; align-items:center;
+    gap:12px; margin-bottom:9px;
+  }
+  .bar-name{font-family:'JetBrains Mono',monospace; font-size:12px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+  .bar-track{height:9px; background:var(--paper); border-radius:5px; overflow:hidden;}
+  .bar-fill{
+    display:block; height:100%; width:0; background:var(--green); border-radius:5px;
+    transition:width 0.6s cubic-bezier(.16,1,.3,1);
+  }
+  .bar-val{font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--ink-muted); text-align:right;}
+
+  /* project cards */
+  .grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:18px;}
+  .card{
+    border:1px solid var(--grid); border-radius:var(--radius);
+    padding:20px; background:#fff; display:flex; flex-direction:column;
+    transition:border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .card:hover{border-color:var(--green); transform:translateY(-3px); box-shadow:0 14px 28px -22px rgba(18,23,28,0.5);}
+  .card-top{display:flex; justify-content:space-between; align-items:flex-start; gap:10px; margin-bottom:6px;}
+  .card h3{font-family:'Space Grotesk',sans-serif; font-size:18px; margin:0;}
+  .cat{
+    font-family:'JetBrains Mono',monospace; font-size:10.5px; text-transform:uppercase;
+    letter-spacing:0.05em; padding:3px 8px; border-radius:5px; white-space:nowrap;
+    background:var(--green-soft); color:var(--green);
+  }
+  .period{font-family:'JetBrains Mono',monospace; font-size:11.5px; color:var(--ink-muted); margin:0 0 10px;}
+  .card p.desc{font-size:14.5px; color:var(--ink-muted); margin:0 0 12px;}
+  .outcome{
+    font-size:14px; margin:0 0 14px; padding-left:12px;
+    border-left:2px solid var(--green); color:var(--ink);
+  }
+  .tags{display:flex; flex-wrap:wrap; gap:7px; margin-bottom:14px;}
+  .tag{
+    font-family:'JetBrains Mono',monospace; font-size:11px;
+    border:1px solid var(--grid); border-radius:5px; padding:3px 8px;
+  }
+  .card-links{margin-top:auto; display:flex; gap:14px; flex-wrap:wrap;}
+  .card-links a{
+    font-size:13.5px; font-weight:600; color:var(--green); text-decoration:none;
+  }
+  .card-links a:hover{text-decoration:underline;}
+  .edit-me{
+    font-family:'JetBrains Mono',monospace; font-size:11px;
+    background:#FBF0E3; color:var(--amber); padding:2px 6px; border-radius:4px;
+  }
+  .empty{
+    grid-column:1/-1; text-align:center; padding:40px; color:var(--ink-muted);
+    border:1px dashed var(--grid); border-radius:var(--radius);
+  }
+
+  footer{
+    padding:36px 0 60px; border-top:1px solid var(--grid); margin-top:20px;
+    text-align:center; color:var(--ink-muted); font-size:13.5px;
+  }
+  footer a{color:var(--green); font-weight:600; text-decoration:none;}
+
+  @media (max-width:560px){
+    .charts{grid-template-columns:1fr;}
+  }
+  @media (max-width:640px){
+    section{padding:32px 0;}
+    .lead{padding-top:36px;}
+    .bar-row{grid-template-columns:88px 1fr 26px; gap:9px;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{transition:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="nav-inner">
+    <a class="logo" href="./index.html">YeLinN.</a>
+    <a class="back-link" href="./index.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+      Back to portfolio
+    </a>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="lead">
+    <p class="eyebrow">-- table: projects</p>
+    <h1>Everything I've built</h1>
+    <p class="sub">Each project below is real work with code behind it. Filter by category or tool and the numbers update with you.</p>
+
+    <div class="stats" id="stats"></div>
+  </section>
+
+  <section>
+    <div class="filter-bar" id="catBar"></div>
+    <div class="filter-bar scrollable" id="techBar"></div>
+    <p class="filter-note" id="filterNote">Showing all projects</p>
+
+    <div class="charts">
+      <div class="panel">
+        <h2>Tools used</h2>
+        <p class="hint">-- top 5 shown, scroll for more</p>
+        <div class="bar-chart-scroll" id="techChart"></div>
+      </div>
+      <div class="panel">
+        <h2>Skills used</h2>
+        <p class="hint">-- top 5 shown, scroll for more</p>
+        <div class="bar-chart-scroll" id="skillChart"></div>
+      </div>
+    </div>
+
+    <div class="grid" id="grid"></div>
+  </section>
+
+</main>
+
+<footer>
+  <p>Built by Ye Lin Naing — <a href="./index.html">back to the portfolio</a></p>
+</footer>
+
+<script>
+/* ============================================================
+   EDIT THIS LIST — add a project and every chart, filter and
+   stat on this page updates itself. Nothing else to change.
+   ============================================================ */
+var PROJECTS = [
+  {
+    name: "CandidView",
+    category: "Web App",
+    period: "Spring 2026",
+    desc: "An AI-powered anonymous feedback platform, built with Team Binary Donut at the CBC Spring 2026 Hackathon.",
+    outcome: "CandidView helps recruiters screen candidate CVs against job descriptions using semantic AI matching — not keyword matching. The core philosophy is sort and explain — humans decide. Every candidate stays visible. Every match is explained. Recruiters always make the final call.",   // <- what it does for users, or how the hackathon went
+    tech: ["Claude","Vibe Coding", "Artifical Intelligence"],
+    live: "https://candid-view.vercel.app/",
+    repo: "https://github.com/yelin-naing/CandidView"
+  },
+  {
+    name: "World Life Expectancy Data Analysis",
+    category: "Data Analysis",
+    period: "2026",
+    desc: "Analysis of global life expectancy trends using data cleaning and data visualization techniques.",
+    outcome: "A SQL project that cleans and explores a global life expectancy dataset covering 193 countries from 2007 to 2022. The aim was to fix data quality issues and then answer real questions about health, wealth, and life expectancy using SQL alone",   // <- what it tracked, and your grade or feedback
+    tech: ["SQL","Data Cleaning","Data Transformation","Data Visualisation","EDA","Data Analysis"],
+    live: "",
+    repo: "https://github.com/yelin-naing/world-life-expectancy-analysis"
+  },
+  {
+    name: "UK Crime Data Analysis",
+    category: "Data Analysis",
+    period: "2026",
+    desc: "Analysis of UK crime statistics at scale using Apache Spark on an Azure VM, for the Big Data module at Northumbria.",
+    outcome: "This project investigates three claims about crime in the UK, using a 65-million-row police crime dataset processed with Apache Spark on Microsoft Azure. The same code was tested on a sample dataset and then run on the full dataset on Azure.",   // <- how many rows, what question, what you found
+    tech: ["Apache Spark","Miscrosoft Azure","Python","Data Cleaning","Data Transformation","Jypter Notebook","Data Analysis","Data Analytics","SQL","Big Data"],
+    live: "",
+    repo: "https://github.com/yelin-naing/uk-crime-bigdata-analysis"
+  }
+];
+
+(function(){
+  var grid    = document.getElementById('grid');
+  var catBar  = document.getElementById('catBar');
+  var techBar = document.getElementById('techBar');
+  var note    = document.getElementById('filterNote');
+  var statsEl  = document.getElementById('stats');
+  var techEl   = document.getElementById('techChart');
+  var skillEl  = document.getElementById('skillChart');
+
+  // tags that are concrete tools/languages/platforms — everything else
+  // in a project's `tech` list is treated as a skill/technique.
+  var TOOL_TAGS = {
+    "Claude":1, "SQL":1, "Apache Spark":1, "Miscrosoft Azure":1,
+    "Python":1, "Jypter Notebook":1
+  };
+
+  var activeCat  = 'All';
+  var activeTech = null;
+
+  function uniq(arr){ return arr.filter(function(v,i){ return arr.indexOf(v) === i; }); }
+  function esc(s){
+    return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;')
+                    .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  var allCats  = uniq(PROJECTS.map(function(p){ return p.category; }));
+  var allTech  = uniq(PROJECTS.reduce(function(a,p){ return a.concat(p.tech); }, []));
+
+  function visible(){
+    return PROJECTS.filter(function(p){
+      if (activeCat !== 'All' && p.category !== activeCat) return false;
+      if (activeTech && p.tech.indexOf(activeTech) === -1) return false;
+      return true;
+    });
+  }
+
+  // ---------- filters ----------
+  function buildChips(){
+    catBar.innerHTML = '';
+    ['All'].concat(allCats).forEach(function(c){
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'chip' + (c === activeCat ? ' on' : '');
+      b.textContent = c;
+      b.onclick = function(){ activeCat = c; render(); };
+      catBar.appendChild(b);
+    });
+
+    techBar.innerHTML = '';
+    allTech.forEach(function(t){
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'chip' + (t === activeTech ? ' on' : '');
+      b.textContent = t;
+      b.onclick = function(){ activeTech = (activeTech === t) ? null : t; render(); };
+      techBar.appendChild(b);
+    });
+  }
+
+  // ---------- stats ----------
+  function renderStats(list){
+    var techCount = uniq(list.reduce(function(a,p){ return a.concat(p.tech); }, [])).length;
+    var catCount  = uniq(list.map(function(p){ return p.category; })).length;
+    var live      = list.filter(function(p){ return p.live; }).length;
+    var data = [
+      [list.length, 'Projects'],
+      [techCount,   'Tools used'],
+      [catCount,    'Categories'],
+      [live,        'Live online']
+    ];
+    statsEl.innerHTML = data.map(function(d){
+      return '<div class="stat"><span class="stat-num">' + d[0] +
+             '</span><span class="stat-label">' + d[1] + '</span></div>';
+    }).join('');
+  }
+
+  // ---------- tools / skills bar charts ----------
+  function renderBarChart(el, list, isTool){
+    var counts = {};
+    list.forEach(function(p){
+      p.tech.forEach(function(t){
+        if (!!TOOL_TAGS[t] !== isTool) return;
+        counts[t] = (counts[t] || 0) + 1;
+      });
+    });
+    var rows = Object.keys(counts).map(function(k){ return [k, counts[k]]; })
+                     .sort(function(a,b){ return b[1] - a[1] || a[0].localeCompare(b[0]); });
+
+    if (!rows.length){
+      el.innerHTML = '<p class="hint">Nothing matches this filter.</p>';
+      return;
+    }
+    var max = rows[0][1];
+    el.innerHTML = rows.map(function(r){
+      return '<div class="bar-row">' +
+        '<span class="bar-name" title="' + esc(r[0]) + '">' + esc(r[0]) + '</span>' +
+        '<span class="bar-track"><span class="bar-fill" data-w="' +
+          Math.round((r[1]/max)*100) + '"></span></span>' +
+        '<span class="bar-val">' + r[1] + '</span></div>';
+    }).join('');
+
+    requestAnimationFrame(function(){
+      Array.prototype.forEach.call(el.querySelectorAll('.bar-fill'), function(el){
+        el.style.width = el.getAttribute('data-w') + '%';
+      });
+    });
+  }
+
+  // ---------- cards ----------
+  function renderCards(list){
+    if (!list.length){
+      grid.innerHTML = '<p class="empty">No projects match that combination. Try clearing a filter.</p>';
+      return;
+    }
+    grid.innerHTML = list.map(function(p){
+      var links = '';
+      if (p.live) links += '<a href="' + esc(p.live) + '" target="_blank" rel="noopener">View live →</a>';
+      if (p.repo) links += '<a href="' + esc(p.repo) + '" target="_blank" rel="noopener">GitHub →</a>';
+
+      var outcome = p.outcome
+        ? '<p class="outcome">' + esc(p.outcome) + '</p>'
+        : '<p class="outcome"><span class="edit-me">[Add the outcome — what you found, built or achieved]</span></p>';
+
+      return '<article class="card">' +
+        '<div class="card-top"><h3>' + esc(p.name) + '</h3>' +
+        '<span class="cat">' + esc(p.category) + '</span></div>' +
+        '<p class="period">' + esc(p.period) + '</p>' +
+        '<p class="desc">' + esc(p.desc) + '</p>' +
+        outcome +
+        '<div class="tags">' + p.tech.map(function(t){
+          return '<span class="tag">' + esc(t) + '</span>'; }).join('') + '</div>' +
+        '<div class="card-links">' + links + '</div>' +
+      '</article>';
+    }).join('');
+  }
+
+  function render(){
+    var list = visible();
+    buildChips();
+    renderStats(list);
+    renderBarChart(techEl, list, true);
+    renderBarChart(skillEl, list, false);
+    renderCards(list);
+
+    var bits = [];
+    if (activeCat !== 'All') bits.push(activeCat);
+    if (activeTech) bits.push('using ' + activeTech);
+    note.textContent = bits.length
+      ? 'Showing ' + list.length + ' project' + (list.length === 1 ? '' : 's') + ' — ' + bits.join(', ')
+      : 'Showing all ' + list.length + ' projects';
+  }
+
+  render();
+})();
+</script>
+
+</body>
+</html>

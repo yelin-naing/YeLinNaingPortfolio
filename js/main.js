@@ -289,15 +289,14 @@ var SITE = {
     sql:        {label:"sql",              has:true,  note:"Core skill — joins, window functions, CTEs"},
     python:     {label:"python",           has:true,  note:"Used for data cleaning and analysis"},
     excel:      {label:"excel",            has:true,  note:"Pivot tables, lookups, running totals"},
-    spark:      {label:"apache_spark",     has:true,  note:"Used on the UK crime data project"},
     azure:      {label:"azure",            has:true,  note:"Provisioned and ran VMs for data work"},
     git:        {label:"git",              has:true,  note:"Daily use across all projects"},
     degree:     {label:"degree_computing", has:true,  note:"BSc (Hons) Computing, First Class"},
     onsite:     {label:"location_ne_uk",   has:true,  note:"Based in Newcastle upon Tyne"},
     nosponsor:  {label:"sponsorship_free", has:true,  note:"UK Graduate visa — right to work already"},
-    powerbi:    {label:"power_bi",         has:false, note:"Not yet — but Excel and SQL transfer directly, and I pick up tools fast"},
-    tableau:    {label:"tableau",          has:false, note:"Not yet — currently building this up"},
-    senior:     {label:"years_experience", has:false, note:"I'm a 2026 graduate, so this one's an honest no"}
+    tableau:    {label:"tableau",          has:false, note:"Planned to Learn in the future"},
+    senior:     {label:"years_experience", has:false, note:"I'm a 2026 graduate, so this one's an honest no"},
+    powerbi:    {label:"power_bi",         has:true, note:"He is trying to answer Microsoft Power BI Certificate exam (PL-300)"}
   };
 
   var chipRow = document.getElementById('chipRow');
@@ -406,14 +405,11 @@ var SITE = {
   }
 
   var tips = [
-    "Hi. I'm Leo — the lion, not the analyst.",
-    "Leo, born early August. Hence the mane.",
-    "Fun fact: the mane is a bar chart. Of course it is.",
-    "He once resized an Azure VM at midnight to save a deadline.",
-    "SQL is the strong one. Power BI is the honest gap.",
+    "Hi. I'm mini ye lin not the analyst.",
+    "He is a big One Piece fan and like listening to music.",
+    "He've won multiple Star of the Shift awards at McDonald's and are working his way up to Crew Trainer.",
     "Every project here was actually built, not just planned.",
-    "He works at McDonald's while job hunting. Star of the Shift, a few times over.",
-    "Ask him about the crime data project. He'll talk for a while.",
+    "Ask him about the data projects. He'll talk for a while.",
     "Roar. That's all I've got, really."
   ];
   var tipIndex = 0;

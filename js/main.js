@@ -122,16 +122,20 @@ var SITE = {
 (function(){
   // ===== ABOUT: the query types itself, but only once it's on screen =====
   // Nothing above the fold waits on this, so the hero paints immediately.
+  // Real MySQL, and the SELECT list matches the columns in the result table
+  // below. FIND_IN_SET matches a whole item in a comma-separated skills
+  // column, so 'SQL' doesn't get a false hit from 'MySQL' the way LIKE would.
   var lines = [
-    [{t:'SELECT ',c:'kw'},{t:'name, role, skills',c:''}],
+    [{t:'SELECT ',c:'kw'},{t:'name, role, location, status',c:''}],
     [{t:'FROM ',c:'kw'},{t:'candidates',c:''}],
-    [{t:'WHERE ',c:'kw'},{t:"skill_set CONTAINS ",c:''},{t:"'SQL'",c:'str'},{t:' AND ',c:'kw'},{t:"'Python'",c:''}],
-    [{t:'AND ',c:'kw'},{t:'degree_class = ',c:''},{t:"'First Class Honours'",c:'str'}],
+    [{t:'WHERE ',c:'kw'},{t:'FIND_IN_SET',c:'fn'},{t:'(',c:''},{t:"'SQL'",c:'str'},{t:', skills)',c:''}],
+    [{t:'  AND ',c:'kw'},{t:'FIND_IN_SET',c:'fn'},{t:'(',c:''},{t:"'Python'",c:'str'},{t:', skills)',c:''}],
+    [{t:'  AND ',c:'kw'},{t:'degree_class = ',c:''},{t:"'First Class Honours'",c:'str'}],
     [{t:'LIMIT ',c:'kw'},{t:'1;',c:''}]
   ];
 
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var els = [1,2,3,4,5].map(function(n){ return document.getElementById('l'+n); });
+  var els = [1,2,3,4,5,6].map(function(n){ return document.getElementById('l'+n); });
   var results = document.getElementById('results');
   var resultMeta = document.getElementById('resultMeta');
   var selectionWrap = document.getElementById('selectionWrap');
@@ -437,4 +441,39 @@ var SITE = {
       open(url, el.getAttribute('data-viewer-title') || 'Project');
     });
   });
+})();
+(function(){
+  // ===== THEME TOGGLE =====
+  // No stored value means "follow the OS", so the first click has to commit
+  // to the opposite of whatever is actually showing, not a fixed default.
+  var btn = document.getElementById('themeToggle');
+  if (!btn) return;
+  var root = document.documentElement;
+
+  function current(){
+    var set = root.getAttribute('data-theme');
+    if (set) return set;
+    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+      ? 'dark' : 'light';
+  }
+  function label(){
+    btn.setAttribute('aria-label',
+      current() === 'dark' ? 'Switch to light theme' : 'Switch to dark theme');
+  }
+
+  btn.addEventListener('click', function(){
+    var next = current() === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('theme', next); } catch(e){}
+    label();
+  });
+
+  // follow the OS while the visitor hasn't chosen for themselves
+  if (window.matchMedia){
+    var mq = window.matchMedia('(prefers-color-scheme: dark)');
+    var onChange = function(){ if (!root.getAttribute('data-theme')) label(); };
+    if (mq.addEventListener) mq.addEventListener('change', onChange);
+    else if (mq.addListener) mq.addListener(onChange);
+  }
+  label();
 })();

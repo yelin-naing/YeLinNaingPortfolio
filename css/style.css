@@ -133,7 +133,7 @@
   /* ===== HERO: the first thing a recruiter sees ===== */
   .hero-intro{padding:52px 0 40px;}
   .hero-grid{
-    display:grid; grid-template-columns:1fr 200px; gap:40px; align-items:center;
+    display:grid; grid-template-columns:1fr 260px; gap:44px; align-items:center;
   }
   .hero-status{
     display:inline-flex; align-items:center; gap:8px;
@@ -180,7 +180,7 @@
     color:var(--green); font-weight:600;
   }
   .hero-photo{
-    width:200px; height:200px; border-radius:50%; overflow:hidden;
+    width:260px; height:260px; border-radius:50%; overflow:hidden;
     background:var(--green-soft); border:1px solid var(--grid);
     position:relative; justify-self:end;
   }
@@ -751,7 +751,7 @@
       justify-items:center; text-align:center;
     }
     .hero-photo{
-      order:-1; width:132px; height:132px; justify-self:center;
+      order:-1; width:168px; height:168px; justify-self:center;
     }
     .hero-status{justify-content:center;}
     .hero-actions{justify-content:center;}

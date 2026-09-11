@@ -672,123 +672,6 @@
     .viewer-btn{font-size:10.5px; padding:5px 9px;}
   }
 
-  /* ===== MASCOT: Leo the lion ===== */
-  .mascot-dock{
-    position:fixed; right:22px; bottom:22px; z-index:30;
-    display:flex; flex-direction:column; align-items:flex-end; gap:10px;
-    pointer-events:none;
-  }
-  .mascot-dock > *{pointer-events:auto;}
-
-  .mascot-btn{
-    position:relative; width:118px; height:168px; padding:0;
-    border:0; background:none; cursor:pointer; line-height:0;
-    filter:drop-shadow(0 12px 18px rgba(18,23,28,0.18));
-  }
-  /* 3D stage — sits on top of the SVG, which stays as the fallback */
-  .mascot-canvas{
-    position:absolute; inset:0; display:none; line-height:0;
-    cursor:grab; touch-action:pan-y;
-  }
-  .mascot-canvas:active{cursor:grabbing;}
-  .mascot-canvas canvas{width:100%; height:100%; display:block;}
-  .mascot-dock.has3d .mascot-canvas{display:block;}
-  .mascot-dock.has3d .mascot-3d{display:none;}
-  .mascot-dock.has3d .mascot-btn{filter:none;}
-  .mascot-dock.has3d .mascot-btn:hover{transform:translateY(-3px) scale(1.02);}
-  @media (prefers-reduced-motion: no-preference){
-    .mascot-btn{transition:transform 0.28s cubic-bezier(.16,1,.3,1), filter 0.25s ease, opacity 0.25s ease;}
-  }
-  .mascot-btn:hover{transform:translateY(-5px) scale(1.05);}
-  .mascot-btn:active{transform:scale(0.95);}
-  .mascot-svg{width:100%; height:100%; display:block; overflow:visible;}
-  .mascot-3d{
-    display:block; width:100%; height:100%;
-    transform-style:preserve-3d; will-change:transform;
-  }
-  .mascot-btn{perspective:420px;}
-  @media (prefers-reduced-motion: no-preference){
-    .mascot-3d{transition:transform 0.25s cubic-bezier(.16,1,.3,1);}
-    #faceLayer{transition:transform 0.25s cubic-bezier(.16,1,.3,1);}
-    #maneLayer{transition:transform 0.4s cubic-bezier(.16,1,.3,1);}
-    #mascotShadow{transition:transform 0.3s ease, opacity 0.3s ease;}
-  }
-
-  /* mascot parts */
-  .lids{fill:none; stroke:#12171C; stroke-width:2.4; stroke-linecap:round; opacity:0;}
-  .lids.shut{opacity:1;}
-  #mascotEyes.hidden{opacity:0;}
-
-  @media (prefers-reduced-motion: no-preference){
-    #mane{transform-box:view-box; transform-origin:100px 88px; animation:maneIdle 6s ease-in-out infinite;}
-    #maneBack{transform-box:view-box; transform-origin:100px 88px; animation:maneIdle 6s ease-in-out infinite reverse;}
-    #mascotEyes, .lids{transition:opacity 0.09s linear;}
-    #mascotEyes{transition:transform 0.18s ease-out, opacity 0.09s linear;}
-  }
-  @keyframes maneIdle{
-    0%,100%{transform:rotate(0deg);}
-    50%{transform:rotate(7deg);}
-  }
-  /* roar burst on click */
-  .mascot-btn.roar #mane{transform-box:view-box; transform-origin:100px 88px; animation:roar 0.6s cubic-bezier(.16,1,.3,1);}
-  @keyframes roar{
-    0%{transform:scale(1) rotate(0deg);}
-    40%{transform:scale(1.22) rotate(-9deg);}
-    100%{transform:scale(1) rotate(0deg);}
-  }
-  .mascot-btn.roar{animation:nudge 0.5s ease;}
-  @keyframes nudge{
-    0%,100%{transform:translateY(0);}
-    35%{transform:translateY(-8px) scale(1.05);}
-  }
-
-  /* unread ping */
-  .mascot-ping{
-    position:absolute; top:2px; right:0;
-    width:11px; height:11px; border-radius:50%;
-    background:var(--amber); border:2px solid #fff;
-  }
-  .mascot-ping.off{display:none;}
-  @media (prefers-reduced-motion: no-preference){
-    .mascot-ping{animation:pulse 2s ease-in-out infinite;}
-  }
-
-  /* speech bubble */
-  .mascot-bubble{
-    position:relative; max-width:250px;
-    background:var(--ink); color:var(--code-text);
-    font-size:13.5px; line-height:1.5;
-    padding:12px 30px 12px 14px; border-radius:12px;
-    box-shadow:0 10px 28px -14px rgba(18,23,28,0.5);
-    opacity:0; transform:translateY(6px) scale(0.96); transform-origin:bottom right;
-    pointer-events:none;
-  }
-  .mascot-bubble.show{opacity:1; transform:translateY(0) scale(1); pointer-events:auto;}
-  @media (prefers-reduced-motion: no-preference){
-    .mascot-bubble{transition:opacity 0.28s ease, transform 0.28s cubic-bezier(.16,1,.3,1);}
-  }
-  .mascot-bubble::after{
-    content:''; position:absolute; right:26px; bottom:-6px;
-    width:12px; height:12px; background:var(--ink); transform:rotate(45deg);
-  }
-  .bubble-close{
-    position:absolute; top:6px; right:8px;
-    background:none; border:0; color:var(--code-muted);
-    font-size:16px; line-height:1; cursor:pointer; padding:2px 4px;
-  }
-  .bubble-close:hover{color:var(--code-text);}
-
-  /* On a phone Leo sat over the bottom of whatever section you were reading,
-     the role-match card especially. Shrink him, tuck him into the corner, and
-     let him fade back so he never competes with the content underneath. */
-  @media (max-width:640px){
-    .mascot-dock{right:6px; bottom:6px;}
-    .mascot-btn{width:56px; height:80px; opacity:0.55;}
-    .mascot-btn:hover, .mascot-btn:focus-visible, .mascot-btn:active{opacity:1;}
-    .mascot-dock.talking .mascot-btn{opacity:1;}
-    .mascot-bubble{max-width:190px; font-size:12.5px; padding:10px 26px 10px 12px;}
-    .mascot-ping{width:9px; height:9px;}
-  }
   /* Very small screens: the project SQL needs to fit without a sideways swipe. */
   @media (max-width:380px){
     /* Wrap the SQL rather than leave a swipeable box on a tiny screen.
@@ -796,12 +679,7 @@
     .qcard-sql{font-size:9.5px; padding:12px 10px; white-space:pre-wrap; overflow-wrap:break-word;}
     .qcard-out{padding:4px 10px 14px;}
     .qbar-row{grid-template-columns:66px 1fr 38px; gap:8px;}
-    .mascot-btn{width:48px; height:68px;}
   }
-
-  /* To hide Leo on phones entirely, uncomment this:
-  @media (max-width:640px){ .mascot-dock{display:none;} }
-  */
 
   /* experience */
   .exp-row{

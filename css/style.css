@@ -274,7 +274,11 @@
   .about-grid{
     display:grid; grid-template-columns:1fr; gap:30px; align-items:start;
   }
-  .about-query{margin-top:4px;}
+  /* Grid and flex children default to min-width:auto, so a `white-space:pre`
+     code line can push this column wider than the screen — and because the
+     column grows, the code box's own overflow-x never engages. min-width:0
+     lets it shrink back to the container and scroll (or wrap) instead. */
+  .about-query{margin-top:4px; min-width:0;}
   .avatar-fallback{
     display:none; align-items:center; justify-content:center;
     width:100%; height:100%; font-family:'Space Grotesk',sans-serif;
@@ -319,50 +323,56 @@
     font-family:'JetBrains Mono',monospace; font-size:12.5px; color:var(--ink-muted);
   }
 
-  /* cert footer */
-  .cert-foot{
-    display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;
-  }
-  .cert-btn{
-    display:inline-flex; align-items:center; gap:6px;
-    font-size:12.5px; font-weight:600; color:var(--green); text-decoration:none;
-    border:1px solid var(--green); border-radius:999px; padding:5px 12px;
-    white-space:nowrap;
-  }
-  @media (prefers-reduced-motion: no-preference){
-    .cert-btn{transition:background 0.2s ease, color 0.2s ease;}
-  }
-  .cert-btn:hover{background:var(--green); color:#fff;}
   .see-more{margin-top:28px; text-align:center;}
   .see-more .cv-btn{margin-top:0;}
   .see-more-note{font-size:12.5px; color:var(--ink-muted); margin-top:10px;}
-  .certs-all{margin-top:20px; text-align:center;}
-  .certs-all .cv-btn{margin-top:0;}
 
-  /* languages */
-  .lang-grid{
-    display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); gap:16px;
+  /* ===== CREDENTIALS =====
+     Certificates, languages and the CV used to be three full sections with
+     three headings and three sets of cards. On a phone that was a lot of
+     scrolling for supporting detail, so they share one compact section. */
+  .cred-grid{
+    display:grid; grid-template-columns:1fr 1fr; gap:34px; align-items:start;
   }
-  .lang-card{
-    border:1px solid var(--grid); border-radius:var(--radius); padding:18px; background:#fff;
+  .cred-head{
+    font-size:11px; text-transform:uppercase; letter-spacing:0.09em;
+    color:var(--ink-muted); font-weight:500; margin:0 0 4px;
+    padding-bottom:8px; border-bottom:1px solid var(--grid);
   }
-  @media (prefers-reduced-motion: no-preference){
-    .lang-card{transition:border-color 0.25s ease, transform 0.25s ease;}
+  .cred-list{list-style:none; margin:0; padding:0;}
+  .cred-item{
+    display:flex; align-items:flex-start; justify-content:space-between; gap:14px;
+    padding:12px 0; border-bottom:1px solid var(--grid);
   }
-  .lang-card:hover{border-color:var(--green); transform:translateY(-3px);}
-  .lang-head{display:flex; align-items:baseline; justify-content:space-between; gap:10px; margin-bottom:10px;}
-  .lang-name{font-family:'Space Grotesk',sans-serif; font-size:17px;}
-  .lang-level{
-    font-family:'JetBrains Mono',monospace; font-size:11px; text-transform:uppercase;
+  .cred-main{display:flex; flex-direction:column; gap:2px; min-width:0;}
+  .cred-name{font-size:14.5px; line-height:1.4; color:var(--ink);}
+  .cred-meta{font-size:12.5px; color:var(--ink-muted); line-height:1.45;}
+  .cred-item-soon .cred-name{color:var(--ink-muted);}
+  .cred-link{
+    font-size:12.5px; font-weight:600; color:var(--green);
+    text-decoration:none; white-space:nowrap; flex:0 0 auto; padding-top:1px;
+  }
+  .cred-link:hover{text-decoration:underline;}
+  .cred-badge{
+    font-family:'JetBrains Mono',monospace; font-size:10.5px; text-transform:uppercase;
     letter-spacing:0.04em; color:var(--green); background:var(--green-soft);
-    padding:3px 8px; border-radius:5px;
+    padding:3px 8px; border-radius:5px; white-space:nowrap; flex:0 0 auto;
   }
-  .lang-dots{display:flex; gap:5px; margin-bottom:10px;}
-  .lang-dots span{
-    width:100%; height:5px; border-radius:3px; background:var(--grid);
+  .certs-all{margin:12px 0 0;}
+
+  /* CV: a strip rather than a full-width banner section */
+  .cv-strip{
+    display:flex; align-items:center; justify-content:space-between;
+    gap:20px; flex-wrap:wrap; margin-top:30px;
+    border:1px solid var(--grid); border-radius:var(--radius);
+    padding:20px 24px; background:var(--paper);
   }
-  .lang-dots span.on{background:var(--green);}
-  .lang-note{font-size:13.5px; color:var(--ink-muted); margin:0;}
+  .cv-strip-copy{min-width:0;}
+  .cv-strip-title{
+    font-family:'Space Grotesk',sans-serif; font-size:17px; margin:0 0 3px;
+  }
+  .cv-strip-note{font-size:13.5px; color:var(--ink-muted); margin:0; max-width:52ch;}
+  .cv-strip .cv-btn{margin-top:0; flex:0 0 auto;}
 
   /* interactive builder */
   .builder{
@@ -441,38 +451,7 @@
     font-size:11.5px; color:var(--ink-muted); margin:16px 0 0; line-height:1.7;
   }
 
-  /* certificates */
-  .cert-grid{
-    display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr)); gap:16px; margin-top:8px;
-  }
-  .cert-card{
-    border:1px solid var(--grid); border-radius:var(--radius); padding:18px;
-    background:#fff; position:relative;
-  }
-  @media (prefers-reduced-motion: no-preference){
-    .cert-card{transition:border-color 0.25s ease, transform 0.25s ease;}
-  }
-  .cert-card:hover{border-color:var(--green); transform:translateY(-3px);}
-  .cert-head{display:flex; justify-content:space-between; align-items:flex-start; gap:10px; margin-bottom:8px;}
-  .cert-title{font-family:'Space Grotesk',sans-serif; font-size:16.5px; margin:0;}
-  .cert-issuer{color:var(--ink-muted); font-size:14px; margin:0 0 10px;}
-  .cert-date{font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--ink-muted);}
-  .cert-badge{
-    font-family:'JetBrains Mono',monospace; font-size:11px; text-transform:uppercase;
-    letter-spacing:0.04em; padding:3px 8px; border-radius:5px; white-space:nowrap; flex:0 0 auto;
-  }
-  .cert-badge.done{color:var(--green); background:var(--green-soft);}
-  .cert-badge.progress{color:var(--amber); background:#FBF0E3;}
-  .cert-card.placeholder{
-    border-style:dashed; display:flex; align-items:center; justify-content:center;
-    color:var(--ink-muted); font-size:14px; text-align:center; min-height:96px;
-  }
-
-  /* cv download */
-  .cv-banner{
-    border:1px solid var(--grid); border-radius:var(--radius);
-    padding:36px 32px; text-align:center; background:#fff;
-  }
+  /* cv download button */
   .cv-btn{
     display:inline-flex; align-items:center; gap:10px;
     background:var(--ink); color:#fff; text-decoration:none;
@@ -561,11 +540,32 @@
   .qbar-val{font-size:11px; color:var(--code-muted); text-align:right;}
 
   .proj-body{min-width:0;}
-  .proj-head{display:flex; align-items:baseline; gap:12px; margin-bottom:14px;}
+  .proj-head{display:flex; align-items:baseline; gap:12px; margin-bottom:12px;}
   .proj-idx{color:var(--ink-muted); font-size:13px; flex:0 0 auto;}
   .proj-title{
     font-family:'Space Grotesk',sans-serif; font-size:20px; margin:0; line-height:1.3;
   }
+
+  /* The repo link sits directly under the title — the evidence shouldn't be
+     buried at the end of the case study. */
+  .proj-cta{
+    display:flex; flex-wrap:wrap; align-items:center; gap:10px 14px; margin-bottom:16px;
+  }
+  .repo-btn, .live-btn{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:13.5px;
+    text-decoration:none; padding:8px 15px; border-radius:8px;
+    border:1px solid transparent; white-space:nowrap;
+  }
+  .repo-btn{background:var(--ink); color:#fff;}
+  .repo-btn svg{width:15px; height:15px; flex:0 0 auto;}
+  .live-btn{background:#fff; color:var(--ink); border-color:var(--grid);}
+  @media (prefers-reduced-motion: no-preference){
+    .repo-btn, .live-btn{transition:background 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;}
+  }
+  .repo-btn:hover{background:var(--green); transform:translateY(-2px);}
+  .live-btn:hover{border-color:var(--green); color:var(--green); transform:translateY(-2px);}
+  .proj-cta-note{font-size:11.5px; color:var(--ink-muted);}
 
   /* problem -> work -> result */
   .pwr{margin:0 0 16px;}
@@ -584,9 +584,8 @@
     background:var(--green-soft); color:var(--green);
     padding:1px 5px; border-radius:4px;
   }
-  .proj-links{display:flex; flex-wrap:wrap; gap:18px;}
-
   .tags{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:12px;}
+  .proj-body .tags:last-child{margin-bottom:0;}
   .tag{
     font-family:'JetBrains Mono',monospace; font-size:11.5px; color:var(--ink);
     border:1px solid var(--grid); border-radius:5px; padding:3px 8px; background:#fff;
@@ -698,7 +697,7 @@
   .mascot-dock.has3d .mascot-btn{filter:none;}
   .mascot-dock.has3d .mascot-btn:hover{transform:translateY(-3px) scale(1.02);}
   @media (prefers-reduced-motion: no-preference){
-    .mascot-btn{transition:transform 0.28s cubic-bezier(.16,1,.3,1), filter 0.25s ease;}
+    .mascot-btn{transition:transform 0.28s cubic-bezier(.16,1,.3,1), filter 0.25s ease, opacity 0.25s ease;}
   }
   .mascot-btn:hover{transform:translateY(-5px) scale(1.05);}
   .mascot-btn:active{transform:scale(0.95);}
@@ -779,11 +778,30 @@
   }
   .bubble-close:hover{color:var(--code-text);}
 
+  /* On a phone Leo sat over the bottom of whatever section you were reading,
+     the role-match card especially. Shrink him, tuck him into the corner, and
+     let him fade back so he never competes with the content underneath. */
   @media (max-width:640px){
-    .mascot-dock{right:14px; bottom:14px;}
-    .mascot-btn{width:88px; height:126px;}
-    .mascot-bubble{max-width:200px; font-size:12.5px;}
+    .mascot-dock{right:6px; bottom:6px;}
+    .mascot-btn{width:56px; height:80px; opacity:0.55;}
+    .mascot-btn:hover, .mascot-btn:focus-visible, .mascot-btn:active{opacity:1;}
+    .mascot-dock.talking .mascot-btn{opacity:1;}
+    .mascot-bubble{max-width:190px; font-size:12.5px; padding:10px 26px 10px 12px;}
+    .mascot-ping{width:9px; height:9px;}
   }
+  /* Very small screens: the project SQL needs to fit without a sideways swipe. */
+  @media (max-width:380px){
+    /* Wrap the SQL rather than leave a swipeable box on a tiny screen.
+       Font metrics vary with fallback fonts, so don't rely on size alone. */
+    .qcard-sql{font-size:9.5px; padding:12px 10px; white-space:pre-wrap; overflow-wrap:break-word;}
+    .qcard-out{padding:4px 10px 14px;}
+    .qbar-row{grid-template-columns:66px 1fr 38px; gap:8px;}
+    .mascot-btn{width:48px; height:68px;}
+  }
+
+  /* To hide Leo on phones entirely, uncomment this:
+  @media (max-width:640px){ .mascot-dock{display:none;} }
+  */
 
   /* experience */
   .exp-row{
@@ -803,11 +821,6 @@
     font-size:14.5px; color:var(--ink-muted); max-width:64ch; margin:0;
     padding-left:14px; border-left:2px solid var(--green);
   }
-  .edit-me{
-    font-family:'JetBrains Mono',monospace; font-size:11.5px;
-    background:#FBF0E3; color:var(--amber); padding:2px 6px; border-radius:4px;
-  }
-
   /* footer / contact */
   footer{padding:44px 0 64px;}
   .contact-results a{
@@ -870,7 +883,11 @@
     .proj-figure{max-width:none;}
     .qcard-sql{font-size:10px;}
     .pwr-item{grid-template-columns:1fr; gap:3px;}
-    .code-line{font-size:13px;}
+    /* Wrap code lines rather than making a phone scroll sideways to read
+       an email address or the end of a WHERE clause. */
+    .code-line{font-size:12px; white-space:pre-wrap; overflow-wrap:break-word;}
+    .line-no{width:24px; padding-right:10px;}
+    .line-content{padding-right:10px; min-width:0;}
     .results table, .results thead, .results tbody, .results th, .results td, .results tr{display:block;}
     .results thead{display:none;}
     .results td{border-bottom:1px solid var(--grid);}
@@ -878,20 +895,30 @@
       content:attr(data-label); display:block; font-family:'JetBrains Mono',monospace;
       font-size:11px; text-transform:uppercase; color:var(--ink-muted); margin-bottom:4px;
     }
+    /* The stacked-card fallback turned each skill into eight lines (a label
+       and a value per cell), making this table alone a fifth of the page on
+       a phone. Lay each skill out as name + type on one row with the note
+       underneath, and drop the row number — it carries no information. */
     .schema thead, .schema colgroup{display:none;}
     .schema{table-layout:auto;}
-    .schema, .schema tbody, .schema tr, .schema td{display:block; width:100%;}
+    .schema, .schema tbody{display:block; width:100%;}
     .schema tbody td:first-child, .schema tbody tr:hover td:first-child{box-shadow:none;}
     .schema tbody tr:hover td{background:transparent;}
-    .schema tr{border-bottom:1px solid var(--grid); padding:14px 0;}
-    .schema td{border-bottom:none; padding:4px 0;}
-    .schema td:before{
-      content:attr(data-label); display:block; font-family:'JetBrains Mono',monospace;
-      font-size:11px; text-transform:uppercase; color:var(--ink-muted); margin-bottom:4px;
+    .schema tr{
+      display:grid; grid-template-columns:1fr auto; gap:5px 10px;
+      align-items:baseline; padding:12px 0; border-bottom:1px solid var(--grid);
     }
+    /* must out-specify the base `.schema tbody td` rule, or its padding and
+       row border survive and draw lines through the middle of each card */
+    .schema tbody td{display:block; padding:0; border-bottom:none;}
+    .schema tbody td:before{display:none;}
+    .schema tbody td:nth-child(1){display:none;}
+    .schema tbody td:nth-child(3){text-align:right;}
+    .schema tbody td:nth-child(4){grid-column:1 / -1;}
     .bar-row{grid-template-columns:64px 1fr 66px; gap:8px;}
-    .cv-banner{padding:28px 20px;}
     .builder{padding:16px;}
     .chip{font-size:12px; padding:6px 12px;}
-    .lang-grid, .cert-grid{grid-template-columns:1fr;}
+    .cred-grid{grid-template-columns:1fr; gap:26px;}
+    .cv-strip{padding:18px; gap:16px;}
+    .cv-strip .cv-btn{width:100%; justify-content:center;}
   }

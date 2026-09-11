@@ -366,9 +366,15 @@ var SITE = {
     if (dismissed) return;
     says.textContent = msg;
     bubble.classList.add('show');
+    // on mobile Leo sits faded so he doesn't compete with the section
+    // underneath; while he's actually saying something, bring him forward
+    dock.classList.add('talking');
     ping.classList.add('off');
     clearTimeout(hideTimer);
-    hideTimer = setTimeout(function(){ bubble.classList.remove('show'); }, ms || 5200);
+    hideTimer = setTimeout(function(){
+      bubble.classList.remove('show');
+      dock.classList.remove('talking');
+    }, ms || 5200);
   }
 
   var tips = [
@@ -396,6 +402,7 @@ var SITE = {
   closeBt.addEventListener('click', function(e){
     e.stopPropagation();
     bubble.classList.remove('show');
+    dock.classList.remove('talking');
     dismissed = true;
     setTimeout(function(){ dismissed = false; }, 20000);
   });
@@ -544,8 +551,8 @@ var SITE = {
       if (!url || url === '#') return;
       if (!isViewable(url)) return;   // external link → let it open normally
       e.preventDefault();
-      var card = el.closest('.cert-card');
-      var name = card ? (card.querySelector('.cert-title') || {}).textContent : null;
+      var row = el.closest('.cred-item');
+      var name = row ? (row.querySelector('.cred-name') || {}).textContent : null;
       open(url, name || 'Certificate');
     });
   });

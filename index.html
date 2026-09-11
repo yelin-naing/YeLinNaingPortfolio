@@ -28,7 +28,7 @@
 <!-- ?v= is bumped whenever css/style.css or js/main.js changes structurally.
      Without it, a returning visitor pairs the new HTML with a cached old
      stylesheet and gets an unstyled page until their cache expires. -->
-<link rel="stylesheet" href="css/style.css?v=5">
+<link rel="stylesheet" href="css/style.css?v=6">
 <!-- Scroll reveals are JS-driven. Without JS, show everything rather than
      leaving a recruiter staring at an empty page. -->
 <noscript><style>.reveal{opacity:1 !important; transform:none !important;}</style></noscript>
@@ -101,177 +101,63 @@
     <p class="section-lede reveal">Three projects, newest analysis first. Each one has the code behind it on GitHub.</p>
 
     <!-- 01 -->
-    <article class="proj reveal">
-      <div class="proj-figure">
-        <div class="qcard">
-          <div class="qcard-bar mono"><span class="qdot"></span>worldLifeEDA.sql</div>
-          <pre class="qcard-sql mono"><span class="cm">-- Developed vs Developing</span>
-<span class="kw">SELECT</span> Status,
-  <span class="fn">ROUND</span>(<span class="fn">AVG</span>(Lifeexpectancy),1) <span class="kw">AS</span> avgLifeExp,
-  <span class="fn">ROUND</span>(<span class="fn">AVG</span>(AdultMortality),1) <span class="kw">AS</span> avgAdultMort
-<span class="kw">FROM</span> worldlifexpectancy
-<span class="kw">GROUP BY</span> Status
-<span class="kw">ORDER BY</span> avgLifeExp <span class="kw">DESC</span>;</pre>
-          <div class="qcard-out">
-            <p class="qcard-out-label mono">avg life expectancy (years)</p>
-            <div class="qbar-row">
-              <span class="qbar-name mono">Developed</span>
-              <span class="qbar-track"><span class="qbar-fill" style="--w:96%"></span></span>
-              <span class="qbar-val mono">79.2</span>
-            </div>
-            <div class="qbar-row">
-              <span class="qbar-name mono">Developing</span>
-              <span class="qbar-track"><span class="qbar-fill" style="--w:81%"></span></span>
-              <span class="qbar-val mono">66.8</span>
-            </div>
-            <p class="qcard-out-label mono">avg adult mortality (per 1,000)</p>
-            <div class="qbar-row">
-              <span class="qbar-name mono">Developed</span>
-              <span class="qbar-track"><span class="qbar-fill alt" style="--w:44%"></span></span>
-              <span class="qbar-val mono">79.7</span>
-            </div>
-            <div class="qbar-row">
-              <span class="qbar-name mono">Developing</span>
-              <span class="qbar-track"><span class="qbar-fill alt" style="--w:100%"></span></span>
-              <span class="qbar-val mono">182.1</span>
-            </div>
+    <div class="pgrid">
+
+      <article class="pcard reveal">
+        <a class="pcard-thumb pcard-thumb-sql" href="/projects/" aria-label="World Life Expectancy — full case study">
+          <span class="mono"><b>SELECT</b> Status,<br>  <b>ROUND</b>(<b>AVG</b>(Lifeexpectancy),1)<br><b>FROM</b> worldlifexpectancy</span>
+          <span class="pcard-thumb-nums mono"><i>79.2</i> developed &nbsp;·&nbsp; <i>66.8</i> developing</span>
+        </a>
+        <div class="pcard-body">
+          <div class="pcard-head">
+            <h3>World Life Expectancy</h3>
+            <span class="cat-badge mono">Data Analysis</span>
           </div>
-        </div>
-        <p class="proj-caption">One of seven questions answered in MySQL, on the cleaned dataset.</p>
-      </div>
-
-      <div class="proj-body">
-        <div class="proj-head">
-          <span class="proj-idx mono">01</span>
-          <h3 class="proj-title">World Life Expectancy — SQL analysis</h3>
-        </div>
-        <div class="proj-cta">
-          <a class="repo-btn" href="https://github.com/yelin-naing/world-life-expectancy-analysis" target="_blank" rel="noopener">
-            <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
-            View repository
-          </a>
-          <span class="proj-cta-note mono">SQL · 3 files</span>
-        </div>
-
-        <dl class="pwr">
-          <div class="pwr-item">
-            <dt>Problem</dt>
-            <dd>A 2,941-row global health dataset — 193 countries, 2007 to 2022 — with duplicate rows, missing Developed/Developing labels and gaps in life expectancy. Not usable as it stood.</dd>
+          <p class="pcard-result">Cleaned 2,941 rows in MySQL, then answered seven questions. Life expectancy rose 66.8 &rarr; 71.6 years; developed countries average 79.2 against 66.8.</p>
+          <div class="pcard-links">
+            <a class="repo-btn" href="https://github.com/yelin-naing/world-life-expectancy-analysis" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>View repository</a>
           </div>
-          <div class="pwr-item">
-            <dt>Work</dt>
-            <dd>Cleaned it in MySQL: <code>ROW_NUMBER</code> to find and remove 3 duplicates, a self join to fill 8 blank status labels, and adjacent-year interpolation for 2 missing values. Then answered seven questions with CTEs, window functions and <code>CASE</code>.</dd>
-          </div>
-          <div class="pwr-item">
-            <dt>Result</dt>
-            <dd>Global life expectancy rose from 66.8 to 71.6 years, with a clear 2020 dip. Developed countries average 79.2 years against 66.8, and less than half the adult mortality. Zimbabwe improved most, gaining 21 years.</dd>
-          </div>
-        </dl>
-
-        <div class="tags">
-          <span class="tag">SQL</span><span class="tag">MySQL</span><span class="tag">Data Cleaning</span><span class="tag">Window Functions</span><span class="tag">EDA</span>
+          <a class="pcard-more" href="/projects/">Full case study &rarr;</a>
         </div>
-      </div>
-    </article>
+      </article>
 
-    <!-- 02 -->
-    <article class="proj reveal">
-      <div class="proj-figure">
-        <button class="figbtn" type="button" data-viewer="./img/projects/uk-crime-1.png" data-viewer-title="Monthly burglary count with trend — UK Crime analysis">
-          <img src="./img/projects/uk-crime-1.png" alt="Line chart of monthly UK burglary counts from 2011 to 2021 with a 12-month rolling mean, showing a steady fall and a sharp drop after the March 2020 lockdown" loading="lazy" width="1932" height="656">
-        </button>
-        <div class="fig-thumbs">
-          <button class="figthumb" type="button" data-viewer="./img/projects/uk-crime-2.png" data-viewer-title="SARIMA burglary forecast — UK Crime analysis">
-            <img src="./img/projects/uk-crime-2.png" alt="SARIMA forecast chart for future burglary rates" loading="lazy">
-          </button>
-          <button class="figthumb" type="button" data-viewer="./img/projects/uk-crime-3.png" data-viewer-title="Firearms rate by police force — UK Crime analysis">
-            <img src="./img/projects/uk-crime-3.png" alt="Bar chart of firearms incidents per 100,000 people by police force, with Merseyside highlighted in fourth place" loading="lazy">
-          </button>
-          <button class="figthumb" type="button" data-viewer="./img/projects/uk-crime-4.png" data-viewer-title="Firearms vs drug offences by police force — UK Crime analysis">
-            <img src="./img/projects/uk-crime-4.png" alt="Scatterplot of firearms offences against drug offences by police force with a fitted regression line" loading="lazy">
-          </button>
-        </div>
-        <p class="proj-caption">Charts produced in PySpark. Tap any one to enlarge.</p>
-      </div>
-
-      <div class="proj-body">
-        <div class="proj-head">
-          <span class="proj-idx mono">02</span>
-          <h3 class="proj-title">UK Crime — big data analysis</h3>
-        </div>
-        <div class="proj-cta">
-          <a class="repo-btn" href="https://github.com/yelin-naing/uk-crime-bigdata-analysis" target="_blank" rel="noopener">
-            <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
-            View repository
-          </a>
-          <span class="proj-cta-note mono">Jupyter notebook · 4 charts</span>
-        </div>
-
-        <dl class="pwr">
-          <div class="pwr-item">
-            <dt>Problem</dt>
-            <dd>Three claims about crime in the UK, none of them tested against the full record: burglary is rising, Liverpool has the worst firearms rate, and firearms offences track drug offences.</dd>
+      <article class="pcard reveal">
+        <a class="pcard-thumb" href="/projects/" aria-label="UK Crime — full case study">
+          <img src="./img/projects/uk-crime-1.png" alt="Line chart of monthly UK burglary counts from 2011 to 2021 showing a steady fall" loading="lazy" width="1932" height="656">
+        </a>
+        <div class="pcard-body">
+          <div class="pcard-head">
+            <h3>UK Crime</h3>
+            <span class="cat-badge mono">Data Analysis</span>
           </div>
-          <div class="pwr-item">
-            <dt>Work</dt>
-            <dd>Processed a 65-million-row police dataset with Apache Spark on an Azure VM — tested on a sample first, then ran the full load. Normalised by population, fitted a SARIMA forecast, and ran correlation and regression in Spark MLlib.</dd>
+          <p class="pcard-result">Tested three public claims against a 65-million-row police dataset in Spark. Two refuted: burglary fell about 50%, and Merseyside ranks 4th, not 1st.</p>
+          <div class="pcard-links">
+            <a class="repo-btn" href="https://github.com/yelin-naing/uk-crime-bigdata-analysis" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>View repository</a>
           </div>
-          <div class="pwr-item">
-            <dt>Result</dt>
-            <dd>Two claims refuted, one confirmed. Burglary <strong>fell about 50%</strong> in ten years, from ~42,000 a month to ~20,000. Merseyside ranks <strong>4th</strong> per 100,000, not 1st. Firearms and drug offences correlate at <strong>r = 0.92</strong>.</dd>
-          </div>
-        </dl>
-
-        <div class="tags">
-          <span class="tag">Apache Spark</span><span class="tag">Azure</span><span class="tag">Python</span><span class="tag">Big Data</span><span class="tag">SARIMA</span><span class="tag">Jupyter Notebook</span>
+          <a class="pcard-more" href="/projects/">Full case study &rarr;</a>
         </div>
-      </div>
-    </article>
+      </article>
 
-    <!-- 03 -->
-    <article class="proj reveal">
-      <div class="proj-figure">
-        <button class="figbtn" type="button" data-viewer="./img/projects/candidview.png" data-viewer-title="CandidView — live site">
-          <img src="./img/projects/candidview.png" alt="Screenshot of the CandidView home page, headed &quot;Sort and explain. Humans decide.&quot;" loading="lazy" width="1400" height="700">
-        </button>
-        <p class="proj-caption">The live app, built over a hackathon weekend.</p>
-      </div>
-
-      <div class="proj-body">
-        <div class="proj-head">
-          <span class="proj-idx mono">03</span>
-          <h3 class="proj-title">CandidView — CV screening that explains itself</h3>
-        </div>
-        <div class="proj-cta">
-          <a class="repo-btn" href="https://github.com/yelin-naing/CandidView" target="_blank" rel="noopener">
-            <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
-            View repository
-          </a>
-          <a class="live-btn" href="https://candid-view.vercel.app/" target="_blank" rel="noopener">
-            Open live app ↗
-          </a>
-        </div>
-
-        <dl class="pwr">
-          <div class="pwr-item">
-            <dt>Problem</dt>
-            <dd>Screening tools reject candidates on keyword matches and never say why, so good people disappear before a human ever sees them.</dd>
+      <article class="pcard reveal">
+        <a class="pcard-thumb" href="/projects/" aria-label="CandidView — full case study">
+          <img src="./img/projects/candidview.png" alt="Screenshot of the CandidView home page" loading="lazy" width="1400" height="700">
+        </a>
+        <div class="pcard-body">
+          <div class="pcard-head">
+            <h3>CandidView</h3>
+            <span class="cat-badge mono">Web App</span>
           </div>
-          <div class="pwr-item">
-            <dt>Work</dt>
-            <dd>Built with a team at the CBC Spring 2026 Hackathon. Matches a CV against the job description semantically rather than by keyword, and attaches a plain-English reason to every score.</dd>
+          <p class="pcard-result">An AI CV screener that explains every match instead of rejecting on keywords. Built with a team over a hackathon weekend.</p>
+          <div class="pcard-links">
+            <a class="repo-btn" href="https://github.com/yelin-naing/CandidView" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>View repository</a>
+            <a class="live-btn" href="https://candid-view.vercel.app/" target="_blank" rel="noopener">Open live app &#8599;</a>
           </div>
-          <div class="pwr-item">
-            <dt>Result</dt>
-            <dd>A live app on the principle "sort and explain — humans decide". Every candidate stays visible, every match is explained, and the recruiter still makes the call.</dd>
-          </div>
-        </dl>
-
-        <div class="tags">
-          <span class="tag">Claude</span><span class="tag">Artificial Intelligence</span><span class="tag">Team Project</span><span class="tag">Hackathon</span>
+          <a class="pcard-more" href="/projects/">Full case study &rarr;</a>
         </div>
-      </div>
-    </article>
+      </article>
+
+    </div>
+
 
     <div class="see-more reveal">
       <a class="cv-btn" href="/projects/">

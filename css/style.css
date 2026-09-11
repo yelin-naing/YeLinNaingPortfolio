@@ -465,6 +465,62 @@
   .cv-btn svg{width:16px; height:16px; flex:0 0 auto;}
   .cv-note{font-size:13px; color:var(--ink-muted); margin-top:12px;}
 
+  /* ===== HOME PROJECT CARDS =====
+     Three across: a scannable summary of each project. The full case study
+     — figures, Problem/Work/Result — lives on the projects page. */
+  .pgrid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:20px; align-items:stretch;
+  }
+  .pcard{
+    display:flex; flex-direction:column; min-width:0;
+    border:1px solid var(--grid); border-radius:var(--radius);
+    background:#fff; overflow:hidden;
+  }
+  @media (prefers-reduced-motion: no-preference){
+    .pcard{transition:border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;}
+  }
+  .pcard:hover{
+    border-color:var(--green); transform:translateY(-3px);
+    box-shadow:0 14px 28px -22px rgba(18,23,28,0.5);
+  }
+  .pcard-thumb{
+    display:block; aspect-ratio:16/9; overflow:hidden;
+    background:var(--paper); border-bottom:1px solid var(--grid);
+  }
+  .pcard-thumb img{width:100%; height:100%; object-fit:cover; object-position:top center; display:block;}
+  /* the SQL project has no screenshot, so its thumbnail is the query itself */
+  .pcard-thumb-sql{
+    background:var(--code-bg); color:var(--code-muted);
+    display:flex; flex-direction:column; justify-content:center; gap:8px;
+    padding:14px; font-size:9.5px; line-height:1.6; text-decoration:none;
+    border-bottom:none;
+  }
+  .pcard-thumb-sql b{color:var(--code-green); font-weight:500;}
+  .pcard-thumb-nums{color:var(--code-text); font-size:10px;}
+  .pcard-thumb-nums i{color:var(--code-amber); font-style:normal; font-weight:600;}
+  .pcard-body{display:flex; flex-direction:column; flex:1 1 auto; padding:16px 18px 18px; min-width:0;}
+  .pcard-head{display:flex; align-items:flex-start; justify-content:space-between; gap:8px; margin-bottom:8px;}
+  .pcard-head h3{font-family:'Space Grotesk',sans-serif; font-size:17px; margin:0; line-height:1.25;}
+  .cat-badge{
+    font-size:9.5px; text-transform:uppercase; letter-spacing:0.05em;
+    padding:3px 7px; border-radius:5px; white-space:nowrap; flex:0 0 auto;
+    background:var(--green-soft); color:var(--green);
+  }
+  .pcard-result{font-size:13.5px; color:var(--ink-muted); margin:0 0 14px; line-height:1.55;}
+  .pcard-links{display:flex; flex-wrap:wrap; gap:8px; margin-top:auto;}
+  .pcard-links .repo-btn, .pcard-links .live-btn{font-size:12.5px; padding:7px 12px;}
+  .pcard-more{
+    font-size:12.5px; font-weight:600; color:var(--green);
+    text-decoration:none; margin-top:12px;
+  }
+  .pcard-more:hover{text-decoration:underline;}
+  @media (max-width:860px){
+    .pgrid{grid-template-columns:1fr 1fr;}
+  }
+  @media (max-width:600px){
+    .pgrid{grid-template-columns:1fr;}
+  }
+
   /* ===== PROJECTS ===== */
   .proj{
     display:grid; grid-template-columns:360px 1fr; gap:30px; align-items:start;

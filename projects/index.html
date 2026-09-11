@@ -17,6 +17,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- The site stylesheet carries the case-study styles (.proj, .qcard, .pwr).
+     It loads first so the page-specific rules below still override it. -->
+<link rel="stylesheet" href="/css/style.css?v=6">
 <style>
   :root{
     --paper:#F6F7F5;
@@ -96,45 +99,12 @@
   .chip.on{background:var(--green); border-color:var(--green); color:#fff;}
   .filter-note{font-size:12.5px; color:var(--ink-muted); margin:0 0 22px;}
 
-  /* project cards */
-  /* min() so a 300px track can still shrink on a narrow phone — a bare
-     minmax(300px,1fr) overflows the viewport below about 340px. */
-  .grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(min(300px,100%),1fr)); gap:18px;}
-  .card{
-    border:1px solid var(--grid); border-radius:var(--radius);
-    padding:20px; background:#fff; display:flex; flex-direction:column;
-    transition:border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
-  }
-  .card:hover{border-color:var(--green); transform:translateY(-3px); box-shadow:0 14px 28px -22px rgba(18,23,28,0.5);}
-  .card-top{display:flex; justify-content:space-between; align-items:flex-start; gap:10px; margin-bottom:6px;}
-  .card h3{font-family:'Space Grotesk',sans-serif; font-size:18px; margin:0;}
-  .cat{
-    font-family:'JetBrains Mono',monospace; font-size:10.5px; text-transform:uppercase;
-    letter-spacing:0.05em; padding:3px 8px; border-radius:5px; white-space:nowrap;
-    background:var(--green-soft); color:var(--green);
-  }
-  .period{font-family:'JetBrains Mono',monospace; font-size:11.5px; color:var(--ink-muted); margin:0 0 10px;}
-  .card p.desc{font-size:14.5px; color:var(--ink-muted); margin:0 0 12px;}
-  .outcome{
-    font-size:14px; margin:0 0 14px; padding-left:12px;
-    border-left:2px solid var(--green); color:var(--ink);
-  }
-  .tags{display:flex; flex-wrap:wrap; gap:7px; margin-bottom:14px;}
-  .tag{
-    font-family:'JetBrains Mono',monospace; font-size:11px;
-    border:1px solid var(--grid); border-radius:5px; padding:3px 8px;
-  }
-  .card-links{margin-top:auto; display:flex; gap:14px; flex-wrap:wrap;}
-  .card-links a{
-    font-size:13.5px; font-weight:600; color:var(--green); text-decoration:none;
-  }
-  .card-links a:hover{text-decoration:underline;}
-  .edit-me{
-    font-family:'JetBrains Mono',monospace; font-size:11px;
-    background:#FBF0E3; color:var(--amber); padding:2px 6px; border-radius:4px;
-  }
+  /* The case studies are full-width and stack; the shared stylesheet styles
+     them (.proj, .qcard, .pwr, .tags, .repo-btn). */
+  .grid{display:block;}
+  .grid .proj:first-of-type{border-top:1px solid var(--grid);}
   .empty{
-    grid-column:1/-1; text-align:center; padding:40px; color:var(--ink-muted);
+    text-align:center; padding:40px; color:var(--ink-muted);
     border:1px dashed var(--grid); border-radius:var(--radius);
   }
 
@@ -179,7 +149,179 @@
     <div class="filter-bar" id="catBar"></div>
     <p class="filter-note" id="filterNote">Showing all projects</p>
 
-    <div class="grid" id="grid"></div>
+    <div class="grid" id="grid">
+    <article class="proj" data-category="Data Analysis">
+      <div class="proj-figure">
+        <div class="qcard">
+          <div class="qcard-bar mono"><span class="qdot"></span>worldLifeEDA.sql</div>
+          <pre class="qcard-sql mono"><span class="cm">-- Developed vs Developing</span>
+<span class="kw">SELECT</span> Status,
+  <span class="fn">ROUND</span>(<span class="fn">AVG</span>(Lifeexpectancy),1) <span class="kw">AS</span> avgLifeExp,
+  <span class="fn">ROUND</span>(<span class="fn">AVG</span>(AdultMortality),1) <span class="kw">AS</span> avgAdultMort
+<span class="kw">FROM</span> worldlifexpectancy
+<span class="kw">GROUP BY</span> Status
+<span class="kw">ORDER BY</span> avgLifeExp <span class="kw">DESC</span>;</pre>
+          <div class="qcard-out">
+            <p class="qcard-out-label mono">avg life expectancy (years)</p>
+            <div class="qbar-row">
+              <span class="qbar-name mono">Developed</span>
+              <span class="qbar-track"><span class="qbar-fill" style="--w:96%"></span></span>
+              <span class="qbar-val mono">79.2</span>
+            </div>
+            <div class="qbar-row">
+              <span class="qbar-name mono">Developing</span>
+              <span class="qbar-track"><span class="qbar-fill" style="--w:81%"></span></span>
+              <span class="qbar-val mono">66.8</span>
+            </div>
+            <p class="qcard-out-label mono">avg adult mortality (per 1,000)</p>
+            <div class="qbar-row">
+              <span class="qbar-name mono">Developed</span>
+              <span class="qbar-track"><span class="qbar-fill alt" style="--w:44%"></span></span>
+              <span class="qbar-val mono">79.7</span>
+            </div>
+            <div class="qbar-row">
+              <span class="qbar-name mono">Developing</span>
+              <span class="qbar-track"><span class="qbar-fill alt" style="--w:100%"></span></span>
+              <span class="qbar-val mono">182.1</span>
+            </div>
+          </div>
+        </div>
+        <p class="proj-caption">One of seven questions answered in MySQL, on the cleaned dataset.</p>
+      </div>
+
+      <div class="proj-body">
+        <div class="proj-head">
+          <span class="proj-idx mono">01</span>
+          <h3 class="proj-title">World Life Expectancy — SQL analysis</h3>
+        </div>
+        <div class="proj-cta">
+          <a class="repo-btn" href="https://github.com/yelin-naing/world-life-expectancy-analysis" target="_blank" rel="noopener">
+            <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+            View repository
+          </a>
+          <span class="proj-cta-note mono">SQL · 3 files</span>
+        </div>
+
+        <dl class="pwr">
+          <div class="pwr-item">
+            <dt>Problem</dt>
+            <dd>A 2,941-row global health dataset — 193 countries, 2007 to 2022 — with duplicate rows, missing Developed/Developing labels and gaps in life expectancy. Not usable as it stood.</dd>
+          </div>
+          <div class="pwr-item">
+            <dt>Work</dt>
+            <dd>Cleaned it in MySQL: <code>ROW_NUMBER</code> to find and remove 3 duplicates, a self join to fill 8 blank status labels, and adjacent-year interpolation for 2 missing values. Then answered seven questions with CTEs, window functions and <code>CASE</code>.</dd>
+          </div>
+          <div class="pwr-item">
+            <dt>Result</dt>
+            <dd>Global life expectancy rose from 66.8 to 71.6 years, with a clear 2020 dip. Developed countries average 79.2 years against 66.8, and less than half the adult mortality. Zimbabwe improved most, gaining 21 years.</dd>
+          </div>
+        </dl>
+
+        <div class="tags">
+          <span class="tag">SQL</span><span class="tag">MySQL</span><span class="tag">Data Cleaning</span><span class="tag">Window Functions</span><span class="tag">EDA</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- 02 -->
+    <article class="proj" data-category="Data Analysis">
+      <div class="proj-figure">
+        <button class="figbtn" type="button" data-viewer="/img/projects/uk-crime-1.png" data-viewer-title="Monthly burglary count with trend — UK Crime analysis">
+          <img src="/img/projects/uk-crime-1.png" alt="Line chart of monthly UK burglary counts from 2011 to 2021 with a 12-month rolling mean, showing a steady fall and a sharp drop after the March 2020 lockdown" loading="lazy" width="1932" height="656">
+        </button>
+        <div class="fig-thumbs">
+          <button class="figthumb" type="button" data-viewer="/img/projects/uk-crime-2.png" data-viewer-title="SARIMA burglary forecast — UK Crime analysis">
+            <img src="/img/projects/uk-crime-2.png" alt="SARIMA forecast chart for future burglary rates" loading="lazy">
+          </button>
+          <button class="figthumb" type="button" data-viewer="/img/projects/uk-crime-3.png" data-viewer-title="Firearms rate by police force — UK Crime analysis">
+            <img src="/img/projects/uk-crime-3.png" alt="Bar chart of firearms incidents per 100,000 people by police force, with Merseyside highlighted in fourth place" loading="lazy">
+          </button>
+          <button class="figthumb" type="button" data-viewer="/img/projects/uk-crime-4.png" data-viewer-title="Firearms vs drug offences by police force — UK Crime analysis">
+            <img src="/img/projects/uk-crime-4.png" alt="Scatterplot of firearms offences against drug offences by police force with a fitted regression line" loading="lazy">
+          </button>
+        </div>
+        <p class="proj-caption">Charts produced in PySpark. Tap any one to enlarge.</p>
+      </div>
+
+      <div class="proj-body">
+        <div class="proj-head">
+          <span class="proj-idx mono">02</span>
+          <h3 class="proj-title">UK Crime — big data analysis</h3>
+        </div>
+        <div class="proj-cta">
+          <a class="repo-btn" href="https://github.com/yelin-naing/uk-crime-bigdata-analysis" target="_blank" rel="noopener">
+            <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+            View repository
+          </a>
+          <span class="proj-cta-note mono">Jupyter notebook · 4 charts</span>
+        </div>
+
+        <dl class="pwr">
+          <div class="pwr-item">
+            <dt>Problem</dt>
+            <dd>Three claims about crime in the UK, none of them tested against the full record: burglary is rising, Liverpool has the worst firearms rate, and firearms offences track drug offences.</dd>
+          </div>
+          <div class="pwr-item">
+            <dt>Work</dt>
+            <dd>Processed a 65-million-row police dataset with Apache Spark on an Azure VM — tested on a sample first, then ran the full load. Normalised by population, fitted a SARIMA forecast, and ran correlation and regression in Spark MLlib.</dd>
+          </div>
+          <div class="pwr-item">
+            <dt>Result</dt>
+            <dd>Two claims refuted, one confirmed. Burglary <strong>fell about 50%</strong> in ten years, from ~42,000 a month to ~20,000. Merseyside ranks <strong>4th</strong> per 100,000, not 1st. Firearms and drug offences correlate at <strong>r = 0.92</strong>.</dd>
+          </div>
+        </dl>
+
+        <div class="tags">
+          <span class="tag">Apache Spark</span><span class="tag">Azure</span><span class="tag">Python</span><span class="tag">Big Data</span><span class="tag">SARIMA</span><span class="tag">Jupyter Notebook</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- 03 -->
+    <article class="proj" data-category="Web App">
+      <div class="proj-figure">
+        <button class="figbtn" type="button" data-viewer="/img/projects/candidview.png" data-viewer-title="CandidView — live site">
+          <img src="/img/projects/candidview.png" alt="Screenshot of the CandidView home page, headed &quot;Sort and explain. Humans decide.&quot;" loading="lazy" width="1400" height="700">
+        </button>
+        <p class="proj-caption">The live app, built over a hackathon weekend.</p>
+      </div>
+
+      <div class="proj-body">
+        <div class="proj-head">
+          <span class="proj-idx mono">03</span>
+          <h3 class="proj-title">CandidView — CV screening that explains itself</h3>
+        </div>
+        <div class="proj-cta">
+          <a class="repo-btn" href="https://github.com/yelin-naing/CandidView" target="_blank" rel="noopener">
+            <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+            View repository
+          </a>
+          <a class="live-btn" href="https://candid-view.vercel.app/" target="_blank" rel="noopener">
+            Open live app ↗
+          </a>
+        </div>
+
+        <dl class="pwr">
+          <div class="pwr-item">
+            <dt>Problem</dt>
+            <dd>Screening tools reject candidates on keyword matches and never say why, so good people disappear before a human ever sees them.</dd>
+          </div>
+          <div class="pwr-item">
+            <dt>Work</dt>
+            <dd>Built with a team at the CBC Spring 2026 Hackathon. Matches a CV against the job description semantically rather than by keyword, and attaches a plain-English reason to every score.</dd>
+          </div>
+          <div class="pwr-item">
+            <dt>Result</dt>
+            <dd>A live app on the principle "sort and explain — humans decide". Every candidate stays visible, every match is explained, and the recruiter still makes the call.</dd>
+          </div>
+        </dl>
+
+        <div class="tags">
+          <span class="tag">Claude</span><span class="tag">Artificial Intelligence</span><span class="tag">Team Project</span><span class="tag">Hackathon</span>
+        </div>
+      </div>
+    </article>
+    </div>
   </section>
 
 </main>
@@ -189,67 +331,28 @@
 </footer>
 
 <script>
-/* ============================================================
-   EDIT THIS LIST — add a project and every chart, filter and
-   stat on this page updates itself. Nothing else to change.
-   ============================================================ */
-var PROJECTS = [
-  {
-    name: "World Life Expectancy Data Analysis",
-    category: "Data Analysis",
-    period: "2026",
-    desc: "Cleaning and exploring a global life expectancy dataset — 193 countries, 2007 to 2022 — in MySQL.",
-    outcome: "Fixed three data-quality problems first: removed 3 duplicate country/year rows with ROW_NUMBER, filled 8 blank Developed/Developing labels with a self join, and estimated 2 missing life expectancy values from adjacent years. Then answered seven questions. Global life expectancy rose from 66.8 to 71.6 years with a clear 2020 dip; developed countries average 79.2 years against 66.8, and less than half the adult mortality.",
-    tech: ["SQL","MySQL","Data Cleaning","Data Transformation","Data Visualisation","EDA","Data Analysis"],
-    live: "",
-    repo: "https://github.com/yelin-naing/world-life-expectancy-analysis"
-  },
-  {
-    name: "UK Crime Data Analysis",
-    category: "Data Analysis",
-    period: "2026",
-    desc: "Testing three public claims about UK crime against a 65-million-row police dataset, using Apache Spark on an Azure VM, for the Big Data module at Northumbria.",
-    outcome: "Two claims refuted, one confirmed. Burglary fell about 50% over ten years, from roughly 42,000 cases a month in 2011 to 20,000 in 2021, and a SARIMA forecast projected it staying flat rather than rising. Normalised by population, Merseyside ranks 4th for firearms incidents per 100,000, not 1st. Firearms and drug offences correlate strongly (Pearson r = 0.92).",
-    tech: ["Apache Spark","Microsoft Azure","Python","Data Cleaning","Data Transformation","Jupyter Notebook","Data Analysis","SARIMA","SQL","Big Data"],
-    live: "",
-    repo: "https://github.com/yelin-naing/uk-crime-bigdata-analysis"
-  },
-  {
-    name: "CandidView",
-    category: "Web App",
-    period: "Spring 2026",
-    desc: "An AI CV screening tool that explains every match, built with a team at the CBC Spring 2026 Hackathon.",
-    outcome: "CandidView screens candidate CVs against a job description using semantic AI matching rather than keyword matching. The core philosophy is sort and explain — humans decide. Every candidate stays visible. Every match is explained. Recruiters always make the final call.",
-    tech: ["Claude","Artificial Intelligence","Team Project","Hackathon"],
-    live: "https://candid-view.vercel.app/",
-    repo: "https://github.com/yelin-naing/CandidView"
-  }
-];
-
 (function(){
+  // The case studies are static HTML above — this only filters them and
+  // keeps the counts in step. Category comes from data-category on each
+  // <article>, so adding a project needs no changes here.
   var grid    = document.getElementById('grid');
   var catBar  = document.getElementById('catBar');
   var note    = document.getElementById('filterNote');
-  var statsEl  = document.getElementById('stats');
+  var statsEl = document.getElementById('stats');
+  if (!grid || !catBar) return;
 
-  var activeCat  = 'All';
+  var projects = Array.prototype.slice.call(grid.querySelectorAll('.proj'));
+  var activeCat = 'All';
 
-  function uniq(arr){ return arr.filter(function(v,i){ return arr.indexOf(v) === i; }); }
-  function esc(s){
-    return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;')
-                    .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-  }
-
-  var allCats  = uniq(PROJECTS.map(function(p){ return p.category; }));
+  function uniq(a){ return a.filter(function(v,i){ return a.indexOf(v) === i; }); }
+  var allCats = uniq(projects.map(function(el){ return el.getAttribute('data-category'); }));
 
   function visible(){
-    return PROJECTS.filter(function(p){
-      if (activeCat !== 'All' && p.category !== activeCat) return false;
-      return true;
+    return projects.filter(function(el){
+      return activeCat === 'All' || el.getAttribute('data-category') === activeCat;
     });
   }
 
-  // ---------- filters ----------
   function buildChips(){
     catBar.innerHTML = '';
     ['All'].concat(allCats).forEach(function(c){
@@ -262,16 +365,20 @@ var PROJECTS = [
     });
   }
 
-  // ---------- stats ----------
   function renderStats(list){
-    var techCount = uniq(list.reduce(function(a,p){ return a.concat(p.tech); }, [])).length;
-    var catCount  = uniq(list.map(function(p){ return p.category; })).length;
-    var live      = list.filter(function(p){ return p.live; }).length;
+    var tags = [];
+    list.forEach(function(el){
+      Array.prototype.forEach.call(el.querySelectorAll('.tag'), function(t){
+        tags.push(t.textContent.trim());
+      });
+    });
+    var live = list.filter(function(el){ return el.querySelector('.live-btn'); }).length;
+    var cats = uniq(list.map(function(el){ return el.getAttribute('data-category'); }));
     var data = [
-      [list.length, 'Projects'],
-      [techCount,   'Tools used'],
-      [catCount,    'Categories'],
-      [live,        'Live demo']
+      [list.length, 'Project' + (list.length === 1 ? '' : 's')],
+      [uniq(tags).length, 'Tools used'],
+      [cats.length, cats.length === 1 ? 'Category' : 'Categories'],
+      [live, 'Live demo']
     ];
     statsEl.innerHTML = data.map(function(d){
       return '<div class="stat"><span class="stat-num">' + d[0] +
@@ -279,48 +386,74 @@ var PROJECTS = [
     }).join('');
   }
 
-  // ---------- cards ----------
-  function renderCards(list){
-    if (!list.length){
-      grid.innerHTML = '<p class="empty">No projects match that combination. Try clearing a filter.</p>';
-      return;
-    }
-    grid.innerHTML = list.map(function(p){
-      var links = '';
-      if (p.live) links += '<a href="' + esc(p.live) + '" target="_blank" rel="noopener">View live →</a>';
-      if (p.repo) links += '<a href="' + esc(p.repo) + '" target="_blank" rel="noopener">GitHub →</a>';
-
-      var outcome = p.outcome
-        ? '<p class="outcome">' + esc(p.outcome) + '</p>'
-        : '<p class="outcome"><span class="edit-me">[Add the outcome — what you found, built or achieved]</span></p>';
-
-      return '<article class="card">' +
-        '<div class="card-top"><h3>' + esc(p.name) + '</h3>' +
-        '<span class="cat">' + esc(p.category) + '</span></div>' +
-        '<p class="period">' + esc(p.period) + '</p>' +
-        '<p class="desc">' + esc(p.desc) + '</p>' +
-        outcome +
-        '<div class="tags">' + p.tech.map(function(t){
-          return '<span class="tag">' + esc(t) + '</span>'; }).join('') + '</div>' +
-        '<div class="card-links">' + links + '</div>' +
-      '</article>';
-    }).join('');
-  }
-
   function render(){
     var list = visible();
+    projects.forEach(function(el){ el.hidden = list.indexOf(el) === -1; });
     buildChips();
     renderStats(list);
-    renderCards(list);
-
-    var bits = [];
-    if (activeCat !== 'All') bits.push(activeCat);
-    note.textContent = bits.length
-      ? 'Showing ' + list.length + ' project' + (list.length === 1 ? '' : 's') + ' — ' + bits.join(', ')
-      : 'Showing all ' + list.length + ' projects';
+    note.textContent = activeCat === 'All'
+      ? 'Showing all ' + list.length + ' projects'
+      : 'Showing ' + list.length + ' project' + (list.length === 1 ? '' : 's') + ' — ' + activeCat;
   }
 
   render();
+})();
+</script>
+
+<!-- IMAGE VIEWER — the case-study figures are tap-to-enlarge, same as on the
+     home page. Styles come from the shared stylesheet. -->
+<div class="viewer" id="certViewer" role="dialog" aria-modal="true" aria-labelledby="viewerTitle" hidden>
+  <div class="viewer-backdrop" data-close></div>
+  <div class="viewer-panel">
+    <div class="viewer-bar">
+      <p class="viewer-title" id="viewerTitle">Figure</p>
+      <div class="viewer-actions">
+        <a class="viewer-btn" id="viewerOpen" href="#" target="_blank" rel="noopener">Open in new tab</a>
+        <button class="viewer-close" type="button" data-close aria-label="Close">&times;</button>
+      </div>
+    </div>
+    <div class="viewer-body" id="viewerBody"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var box   = document.getElementById('certViewer');
+  var title = document.getElementById('viewerTitle');
+  var body  = document.getElementById('viewerBody');
+  var openL = document.getElementById('viewerOpen');
+  if (!box) return;
+  var lastFocus = null;
+
+  function open(url, label){
+    lastFocus = document.activeElement;
+    title.textContent = label || 'Figure';
+    openL.setAttribute('href', url);
+    body.innerHTML = '<img src="' + url + '" alt="' + (label || 'Figure') + '">';
+    box.hidden = false;
+    document.body.classList.add('viewer-open');
+    var c = box.querySelector('.viewer-close');
+    if (c) c.focus();
+  }
+  function close(){
+    box.hidden = true;
+    body.innerHTML = '';
+    document.body.classList.remove('viewer-open');
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+
+  document.addEventListener('click', function(e){
+    var trigger = e.target.closest('[data-viewer]');
+    if (trigger){
+      e.preventDefault();
+      open(trigger.getAttribute('data-viewer'), trigger.getAttribute('data-viewer-title'));
+      return;
+    }
+    if (e.target.closest('[data-close]')) close();
+  });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape' && !box.hidden) close();
+  });
 })();
 </script>
 

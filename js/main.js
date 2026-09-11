@@ -120,48 +120,8 @@ var SITE = {
   }
 })();
 (function(){
-  // ===== HERO NAME: typing animation =====
-  var el = document.getElementById('heroTypedText');
-  if (!el) return;
-  var text = el.textContent;
-  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  function afterIntro(fn){
-    if (window.__preload && !window.__preload.done) window.__preload.onDone(fn);
-    else fn();
-  }
-
-  if (reduce){
-    el.textContent = text;
-    return;
-  }
-
-  el.textContent = '';
-  el.classList.add('typing');
-  var i = 0;
-
-  function typeNext(){
-    if (i < text.length){
-      el.textContent += text.charAt(i);
-      i++;
-      setTimeout(typeNext, 95);
-    } else {
-      setTimeout(eraseNext, 1800);
-    }
-  }
-  function eraseNext(){
-    if (i > 0){
-      i--;
-      el.textContent = text.slice(0, i);
-      setTimeout(eraseNext, 50);
-    } else {
-      setTimeout(typeNext, 500);
-    }
-  }
-  afterIntro(function(){ setTimeout(typeNext, 150); });
-})();
-
-(function(){
+  // ===== ABOUT: the query types itself, but only once it's on screen =====
+  // Nothing above the fold waits on this, so the hero paints immediately.
   var lines = [
     [{t:'SELECT ',c:'kw'},{t:'name, role, skills',c:''}],
     [{t:'FROM ',c:'kw'},{t:'candidates',c:''}],
@@ -190,14 +150,22 @@ var SITE = {
     }, reduce ? 0 : 150);
   }
 
-  function afterIntro(fn){
-    if (window.__preload && !window.__preload.done) window.__preload.onDone(fn);
-    else fn();
+  // run `fn` the first time the code box scrolls into view
+  function whenVisible(fn){
+    var box = document.getElementById('codebox');
+    if (!box || !('IntersectionObserver' in window)){ fn(); return; }
+    var io = new IntersectionObserver(function(entries){
+      if (entries.some(function(e){ return e.isIntersecting; })){
+        io.disconnect();
+        fn();
+      }
+    }, {threshold:0.25});
+    io.observe(box);
   }
 
   if (reduce) {
     els.forEach(function(el, i){ el.innerHTML = renderLineHTML(lines[i]); });
-    afterIntro(showResults);
+    whenVisible(showResults);
     return;
   }
 
@@ -237,7 +205,7 @@ var SITE = {
       setTimeout(typeNext, 120);
     }
   }
-  afterIntro(function(){ setTimeout(typeNext, 220); });
+  whenVisible(function(){ setTimeout(typeNext, 220); });
 })();
 
 (function(){
@@ -255,7 +223,7 @@ var SITE = {
   onScroll();
 
   // staggered scroll reveal
-  var groups = document.querySelectorAll('section:not(.hero), footer');
+  var groups = document.querySelectorAll('section, footer');
   groups.forEach(function(group){
     var items = group.querySelectorAll('.reveal');
     items.forEach(function(el, i){ el.style.transitionDelay = (i * 70) + 'ms'; });
@@ -279,8 +247,7 @@ var SITE = {
   }
   }
 
-  if (window.__preload && !window.__preload.done) window.__preload.onDone(startReveals);
-  else startReveals();
+  startReveals();
 })();
 
 (function(){
@@ -294,9 +261,9 @@ var SITE = {
     degree:     {label:"degree_computing", has:true,  note:"BSc (Hons) Computing, First Class"},
     onsite:     {label:"location_ne_uk",   has:true,  note:"Based in Newcastle upon Tyne"},
     nosponsor:  {label:"sponsorship_free", has:true,  note:"UK Graduate visa — right to work already"},
-    tableau:    {label:"tableau",          has:false, note:"Planned to Learn in the future"},
-    senior:     {label:"years_experience", has:false, note:"I'm a 2026 graduate, so this one's an honest no"},
-    powerbi:    {label:"power_bi",         has:true, note:"He is trying to answer Microsoft Power BI Certificate exam (PL-300)"}
+    powerbi:    {label:"power_bi",         has:true,  note:"Dashboards and reports — working toward the PL-300 exam"},
+    tableau:    {label:"tableau",          has:false, note:"Not used yet — on the list to learn"},
+    senior:     {label:"years_experience", has:false, note:"I'm a 2026 graduate, so this one's an honest no"}
   };
 
   var chipRow = document.getElementById('chipRow');
@@ -405,9 +372,9 @@ var SITE = {
   }
 
   var tips = [
-    "Hi. I'm mini ye lin not the analyst.",
-    "He is a big One Piece fan and like listening to music.",
-    "He've won multiple Star of the Shift awards at McDonald's and are working his way up to Crew Trainer.",
+    "Hi. I'm Leo the mascot, not Leo the analyst.",
+    "He's a big One Piece fan and likes listening to music.",
+    "He's won Star of the Shift several times at McDonald's, and is working toward Crew Trainer.",
     "Every project here was actually built, not just planned.",
     "Ask him about the data projects. He'll talk for a while.",
     "Roar. That's all I've got, really."
@@ -501,8 +468,9 @@ var SITE = {
   // a visitor's first impression. The ping dot invites the tap.
 })();
 (function(){
-  // ===== CERTIFICATE VIEWER =====
+  // ===== IMAGE / CERTIFICATE VIEWER =====
   // PDFs render in an iframe, images inline. Anything else opens in a new tab.
+  // Used by the certificate buttons and by any [data-viewer] project figure.
   var box   = document.getElementById('certViewer');
   var panel = box && box.querySelector('.viewer-panel');
   var body  = document.getElementById('viewerBody');
@@ -579,6 +547,15 @@ var SITE = {
       var card = el.closest('.cert-card');
       var name = card ? (card.querySelector('.cert-title') || {}).textContent : null;
       open(url, name || 'Certificate');
+    });
+  });
+
+  // project figures: any element carrying data-viewer opens here
+  Array.prototype.forEach.call(document.querySelectorAll('[data-viewer]'), function(el){
+    el.addEventListener('click', function(){
+      var url = el.getAttribute('data-viewer');
+      if (!url) return;
+      open(url, el.getAttribute('data-viewer-title') || 'Project');
     });
   });
 })();

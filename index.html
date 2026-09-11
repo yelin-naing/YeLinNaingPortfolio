@@ -10,34 +10,27 @@
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Ye Lin Naing (Leo) — data analyst based in Newcastle upon Tyne. First Class Honours in Computing. SQL, Python, Excel, Apache Spark and Azure. Open to data analyst roles.">
+<meta name="description" content="Ye Lin Naing (Leo) — data analyst in Newcastle upon Tyne. SQL, Excel, Power BI. First Class Honours in Computing. Open to data analyst roles in the UK.">
 <meta name="author" content="Ye Lin Naing">
 <meta name="theme-color" content="#12171C">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect x='6' y='6' width='88' height='88' rx='20' fill='%23000000'/%3E%3Crect x='23' y='56' width='15' height='26' rx='3' fill='%23FFFFFF'/%3E%3Crect x='43' y='40' width='15' height='42' rx='3' fill='%23FFFFFF'/%3E%3Crect x='63' y='22' width='15' height='60' rx='3' fill='%23FFFFFF'/%3E%3C/svg%3E">
 <meta property="og:type" content="website">
-<meta property="og:title" content="YeLinN. Portfolio">
-<meta property="og:description" content="First Class Honours Computing graduate working with SQL, Python and Excel. Open to data analyst roles in the UK.">
+<meta property="og:title" content="Ye Lin Naing (Leo) — Data Analyst">
+<meta property="og:description" content="SQL · Excel · Power BI · Newcastle, UK. First Class Honours in Computing, open to data analyst roles.">
 <meta property="og:image" content="./profile.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="YeLinN. Portfolio">
-<meta name="twitter:description" content="First Class Honours Computing graduate working with SQL, Python and Excel. Open to data analyst roles in the UK.">
-<title>YeLinN. Portfolio</title>
+<meta name="twitter:title" content="Ye Lin Naing (Leo) — Data Analyst">
+<meta name="twitter:description" content="SQL · Excel · Power BI · Newcastle, UK. First Class Honours in Computing, open to data analyst roles.">
+<title>Ye Lin Naing (Leo) — Data Analyst</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+Myanmar:wght@500&family=Noto+Sans+Thai:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
+<!-- Scroll reveals are JS-driven. Without JS, show everything rather than
+     leaving a recruiter staring at an empty page. -->
+<noscript><style>.reveal{opacity:1 !important; transform:none !important;}</style></noscript>
 </head>
-<body class="preloading">
-
-<!-- PRELOADER: hello, in the languages around this page -->
-<div id="preloader" role="status" aria-live="polite" aria-label="Loading">
-  <p class="pre-word" id="preWord">မင်္ဂလာပါ</p>
-  <p class="pre-lang" id="preLang">Burmese</p>
-  <span class="pre-bar"><span class="pre-fill" id="preFill"></span></span>
-  <p class="pre-skip" id="preSkip">Tap to skip</p>
-</div>
-
-<script src="js/preloader.js"></script>
+<body>
 
 <div class="scroll-progress" id="scrollProgress"></div>
 
@@ -46,12 +39,12 @@
     <a class="logo mono" href="#top">YeLinN.</a>
 
     <nav class="nav-links" id="navLinks" aria-label="Sections">
+      <a href="#projects">Projects</a>
+      <a href="#match">Role match</a>
       <a href="#about">About</a>
       <a href="#skills">Skills</a>
-      <a href="#certificates">Certificates</a>
-      <a href="#projects">Projects</a>
       <a href="#experience">Experience</a>
-      <a href="#try">Try it</a>
+      <a href="#certificates">Certificates</a>
       <a href="#contact">Contact</a>
     </nav>
 
@@ -66,51 +59,289 @@
 
 <main class="wrap" id="top">
 
-  <!-- ABOUT -->
-  <section id="about" class="lead">
-    <p class="eyebrow reveal">-- about</p>
-    <div class="about-grid">
-      <div class="avatar reveal">
-        <img src="./profile.jpg" alt="Photo of Ye Lin Naing (Leo)" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="avatar-fallback">LN</div>
+  <!-- HERO -->
+  <section class="hero-intro">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <p class="hero-status mono"><span class="dot"></span>Open to data analyst roles</p>
+        <h1 class="hero-name">Ye Lin Naing (Leo) <span class="hero-dash">—</span> <span class="hero-role">Data Analyst</span></h1>
+        <p class="hero-stack mono">SQL · Excel · Power BI · Newcastle,&nbsp;UK</p>
+
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#projects">
+            View projects
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+          <a class="btn btn-ghost" id="heroCvBtn" href="./YeLinNaing(Leo).pdf" download>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download CV
+          </a>
+        </div>
+
+        <ul class="hero-proof">
+          <li>First Class Honours BSc (Hons) Computing — Northumbria University</li>
+          <li>Right to work in the UK — no visa sponsorship needed</li>
+        </ul>
       </div>
-      <div>
-        <h2 class="section-title reveal" id="heroName" aria-label="Hello...I'm Ye Lin Naing (Leo)"><span id="heroTypedText" aria-hidden="true">Hello...I'm Ye Lin Naing (Leo)</span></h2>
-        <h3 class="section-title reveal">First Class Honours in Computing @ Northumbria</h3>
-        <p class="about-text reveal">I'm originally from Myanmar (Burma) and now based in Newcastle upon Tyne, United Kingdom.I like working with data — cleaning it, querying it, finding patterns & insights, and turning it into something people can actually use to make a decision. SQL, Python and Excel are my main tools, and I've used Apache Spark and Azure on larger projects.</p>
-        <p class="about-text reveal">I graduated from Northumbria University in July 2026 and I'm now applying for data analyst roles while building real projects to back it up. I'm open to relocating within the UK or Southeast Asia for the right role.</p>
+
+      <div class="hero-photo">
+        <img src="./profile.jpg" alt="Photo of Ye Lin Naing (Leo)" width="200" height="200" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="avatar-fallback">LN</div>
       </div>
     </div>
   </section>
 
-  <!-- QUERY -->
-  <section class="hero">
-    <div class="filetab mono">// query.sql</div>
-    <div class="code-box mono" id="codebox">
-      <div class="code-line"><span class="line-no">1</span><span class="line-content" id="l1"></span></div>
-      <div class="code-line"><span class="line-no">2</span><span class="line-content" id="l2"></span></div>
-      <div class="code-line"><span class="line-no">3</span><span class="line-content" id="l3"></span></div>
-      <div class="code-line"><span class="line-no">4</span><span class="line-content" id="l4"></span></div>
-      <div class="code-line"><span class="line-no">5</span><span class="line-content" id="l5"></span></div>
+  <!-- PROJECTS -->
+  <section id="projects">
+    <p class="eyebrow reveal">-- table: projects</p>
+    <h2 class="section-title reveal">Data work, with the results</h2>
+    <p class="section-lede reveal">Three projects, newest analysis first. Each one has the code behind it on GitHub.</p>
+
+    <!-- 01 -->
+    <article class="proj reveal">
+      <div class="proj-figure">
+        <div class="qcard">
+          <div class="qcard-bar mono"><span class="qdot"></span>worldLifeEDA.sql</div>
+          <pre class="qcard-sql mono"><span class="cm">-- Developed vs Developing</span>
+<span class="kw">SELECT</span> Status,
+  <span class="fn">ROUND</span>(<span class="fn">AVG</span>(Lifeexpectancy),1) <span class="kw">AS</span> avgLifeExp,
+  <span class="fn">ROUND</span>(<span class="fn">AVG</span>(AdultMortality),1) <span class="kw">AS</span> avgAdultMort
+<span class="kw">FROM</span> worldlifexpectancy
+<span class="kw">GROUP BY</span> Status
+<span class="kw">ORDER BY</span> avgLifeExp <span class="kw">DESC</span>;</pre>
+          <div class="qcard-out">
+            <p class="qcard-out-label mono">avg life expectancy (years)</p>
+            <div class="qbar-row">
+              <span class="qbar-name mono">Developed</span>
+              <span class="qbar-track"><span class="qbar-fill" style="--w:96%"></span></span>
+              <span class="qbar-val mono">79.2</span>
+            </div>
+            <div class="qbar-row">
+              <span class="qbar-name mono">Developing</span>
+              <span class="qbar-track"><span class="qbar-fill" style="--w:81%"></span></span>
+              <span class="qbar-val mono">66.8</span>
+            </div>
+            <p class="qcard-out-label mono">avg adult mortality (per 1,000)</p>
+            <div class="qbar-row">
+              <span class="qbar-name mono">Developed</span>
+              <span class="qbar-track"><span class="qbar-fill alt" style="--w:44%"></span></span>
+              <span class="qbar-val mono">79.7</span>
+            </div>
+            <div class="qbar-row">
+              <span class="qbar-name mono">Developing</span>
+              <span class="qbar-track"><span class="qbar-fill alt" style="--w:100%"></span></span>
+              <span class="qbar-val mono">182.1</span>
+            </div>
+          </div>
+        </div>
+        <p class="proj-caption">One of seven questions answered in MySQL, on the cleaned dataset.</p>
+      </div>
+
+      <div class="proj-body">
+        <div class="proj-head">
+          <span class="proj-idx mono">01</span>
+          <h3 class="proj-title">World Life Expectancy — SQL analysis</h3>
+        </div>
+
+        <dl class="pwr">
+          <div class="pwr-item">
+            <dt>Problem</dt>
+            <dd>A 2,941-row global health dataset — 193 countries, 2007 to 2022 — with duplicate rows, missing Developed/Developing labels and gaps in life expectancy. Not usable as it stood.</dd>
+          </div>
+          <div class="pwr-item">
+            <dt>Work</dt>
+            <dd>Cleaned it in MySQL: <code>ROW_NUMBER</code> to find and remove 3 duplicates, a self join to fill 8 blank status labels, and adjacent-year interpolation for 2 missing values. Then answered seven questions with CTEs, window functions and <code>CASE</code>.</dd>
+          </div>
+          <div class="pwr-item">
+            <dt>Result</dt>
+            <dd>Global life expectancy rose from 66.8 to 71.6 years, with a clear 2020 dip. Developed countries average 79.2 years against 66.8, and less than half the adult mortality. Zimbabwe improved most, gaining 21 years.</dd>
+          </div>
+        </dl>
+
+        <div class="tags">
+          <span class="tag">SQL</span><span class="tag">MySQL</span><span class="tag">Data Cleaning</span><span class="tag">Window Functions</span><span class="tag">EDA</span>
+        </div>
+        <div class="proj-links">
+          <a class="project-link" href="https://github.com/yelin-naing/world-life-expectancy-analysis" target="_blank" rel="noopener">View on GitHub →</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 02 -->
+    <article class="proj reveal">
+      <div class="proj-figure">
+        <button class="figbtn" type="button" data-viewer="./img/projects/uk-crime-1.png" data-viewer-title="Monthly burglary count with trend — UK Crime analysis">
+          <img src="./img/projects/uk-crime-1.png" alt="Line chart of monthly UK burglary counts from 2011 to 2021 with a 12-month rolling mean, showing a steady fall and a sharp drop after the March 2020 lockdown" loading="lazy" width="1932" height="656">
+        </button>
+        <div class="fig-thumbs">
+          <button class="figthumb" type="button" data-viewer="./img/projects/uk-crime-2.png" data-viewer-title="SARIMA burglary forecast — UK Crime analysis">
+            <img src="./img/projects/uk-crime-2.png" alt="SARIMA forecast chart for future burglary rates" loading="lazy">
+          </button>
+          <button class="figthumb" type="button" data-viewer="./img/projects/uk-crime-3.png" data-viewer-title="Firearms rate by police force — UK Crime analysis">
+            <img src="./img/projects/uk-crime-3.png" alt="Bar chart of firearms incidents per 100,000 people by police force, with Merseyside highlighted in fourth place" loading="lazy">
+          </button>
+          <button class="figthumb" type="button" data-viewer="./img/projects/uk-crime-4.png" data-viewer-title="Firearms vs drug offences by police force — UK Crime analysis">
+            <img src="./img/projects/uk-crime-4.png" alt="Scatterplot of firearms offences against drug offences by police force with a fitted regression line" loading="lazy">
+          </button>
+        </div>
+        <p class="proj-caption">Charts produced in PySpark. Tap any one to enlarge.</p>
+      </div>
+
+      <div class="proj-body">
+        <div class="proj-head">
+          <span class="proj-idx mono">02</span>
+          <h3 class="proj-title">UK Crime — big data analysis</h3>
+        </div>
+
+        <dl class="pwr">
+          <div class="pwr-item">
+            <dt>Problem</dt>
+            <dd>Three claims about crime in the UK, none of them tested against the full record: burglary is rising, Liverpool has the worst firearms rate, and firearms offences track drug offences.</dd>
+          </div>
+          <div class="pwr-item">
+            <dt>Work</dt>
+            <dd>Processed a 65-million-row police dataset with Apache Spark on an Azure VM — tested on a sample first, then ran the full load. Normalised by population, fitted a SARIMA forecast, and ran correlation and regression in Spark MLlib.</dd>
+          </div>
+          <div class="pwr-item">
+            <dt>Result</dt>
+            <dd>Two claims refuted, one confirmed. Burglary <strong>fell about 50%</strong> in ten years, from ~42,000 a month to ~20,000. Merseyside ranks <strong>4th</strong> per 100,000, not 1st. Firearms and drug offences correlate at <strong>r = 0.92</strong>.</dd>
+          </div>
+        </dl>
+
+        <div class="tags">
+          <span class="tag">Apache Spark</span><span class="tag">Azure</span><span class="tag">Python</span><span class="tag">Big Data</span><span class="tag">SARIMA</span><span class="tag">Jupyter Notebook</span>
+        </div>
+        <div class="proj-links">
+          <a class="project-link" href="https://github.com/yelin-naing/uk-crime-bigdata-analysis" target="_blank" rel="noopener">View on GitHub →</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 03 -->
+    <article class="proj reveal">
+      <div class="proj-figure">
+        <button class="figbtn" type="button" data-viewer="./img/projects/candidview.png" data-viewer-title="CandidView — live site">
+          <img src="./img/projects/candidview.png" alt="Screenshot of the CandidView home page, headed &quot;Sort and explain. Humans decide.&quot;" loading="lazy" width="1400" height="700">
+        </button>
+        <p class="proj-caption">The live app, built over a hackathon weekend.</p>
+      </div>
+
+      <div class="proj-body">
+        <div class="proj-head">
+          <span class="proj-idx mono">03</span>
+          <h3 class="proj-title">CandidView — CV screening that explains itself</h3>
+        </div>
+
+        <dl class="pwr">
+          <div class="pwr-item">
+            <dt>Problem</dt>
+            <dd>Screening tools reject candidates on keyword matches and never say why, so good people disappear before a human ever sees them.</dd>
+          </div>
+          <div class="pwr-item">
+            <dt>Work</dt>
+            <dd>Built with a team at the CBC Spring 2026 Hackathon. Matches a CV against the job description semantically rather than by keyword, and attaches a plain-English reason to every score.</dd>
+          </div>
+          <div class="pwr-item">
+            <dt>Result</dt>
+            <dd>A live app on the principle "sort and explain — humans decide". Every candidate stays visible, every match is explained, and the recruiter still makes the call.</dd>
+          </div>
+        </dl>
+
+        <div class="tags">
+          <span class="tag">Claude</span><span class="tag">Artificial Intelligence</span><span class="tag">Team Project</span><span class="tag">Hackathon</span>
+        </div>
+        <div class="proj-links">
+          <a class="project-link" href="https://candid-view.vercel.app/" target="_blank" rel="noopener">View live →</a>
+          <a class="project-link" href="https://github.com/yelin-naing/CandidView" target="_blank" rel="noopener">View on GitHub →</a>
+        </div>
+      </div>
+    </article>
+
+    <div class="see-more reveal">
+      <a class="cv-btn" href="./projects.html">
+        See all projects
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+      <p class="see-more-note">Full project list with an interactive breakdown</p>
     </div>
+  </section>
 
-    <p class="result-meta mono" id="resultMeta">-- 1 row returned</p>
+  <!-- ROLE MATCH -->
+  <section id="match">
+    <p class="eyebrow reveal">-- try it yourself</p>
+    <h2 class="section-title reveal">Check if I match your role</h2>
+    <p class="section-lede reveal">Pick what your role needs. The query builds itself, and the result tells you where I stand.</p>
 
-    <div class="selection-wrap" id="selectionWrap">
-      <div class="results" id="results">
-        <table>
-          <thead>
-            <tr><th>Name</th><th>Role</th><th>Location</th><th>Status</th></tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td data-label="Name"><strong>Ye Lin Naing (Leo)</strong></td>
-              <td data-label="Role">Data Analyst</td>
-              <td data-label="Location">England, United Kingdom</td>
-              <td data-label="Status">Open to work</td>
-            </tr>
-          </tbody>
-        </table>
+    <div class="builder reveal">
+      <div class="chip-row" id="chipRow">
+        <button class="chip" type="button" data-key="sql">SQL</button>
+        <button class="chip" type="button" data-key="excel">Excel</button>
+        <button class="chip" type="button" data-key="powerbi">Power BI</button>
+        <button class="chip" type="button" data-key="python">Python</button>
+        <button class="chip" type="button" data-key="azure">Azure</button>
+        <button class="chip" type="button" data-key="git">Git</button>
+        <button class="chip" type="button" data-key="degree">Degree in Computing</button>
+        <button class="chip" type="button" data-key="onsite">Based in North East UK</button>
+        <button class="chip" type="button" data-key="nosponsor">No visa sponsorship needed</button>
+        <button class="chip" type="button" data-key="tableau">Tableau</button>
+        <button class="chip" type="button" data-key="senior">5+ years experience</button>
+      </div>
+
+      <div class="code-box mono builder-query">
+        <div class="code-line"><span class="line-no">1</span><span class="line-content"><span class="kw">SELECT</span> * <span class="kw">FROM</span> yelinnaing</span></div>
+        <div class="code-line"><span class="line-no">2</span><span class="line-content" id="whereLine"><span class="cm">-- pick a requirement above to start</span></span></div>
+      </div>
+
+      <div class="verdict" id="verdict">
+        <div class="verdict-head">
+          <span class="verdict-icon" id="verdictIcon">–</span>
+          <span class="verdict-text" id="verdictText">No requirements selected yet</span>
+        </div>
+        <ul class="verdict-list" id="verdictList"></ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <p class="eyebrow reveal">-- about</p>
+    <h2 class="section-title reveal">A bit more about me</h2>
+
+    <div class="about-grid">
+      <div>
+        <p class="about-text reveal">I'm originally from Myanmar (Burma) and now based in Newcastle upon Tyne, United Kingdom. I like working with data — cleaning it, querying it, finding patterns and insights, and turning it into something people can actually use to make a decision. SQL, Excel and Power BI are my main tools, and I've used Python, Apache Spark and Azure on larger projects.</p>
+        <p class="about-text reveal">I graduated from Northumbria University in July 2026 and I'm now applying for data analyst roles while building real projects to back it up. I'm open to relocating within the UK or Southeast Asia for the right role.</p>
+      </div>
+
+      <div class="about-query reveal">
+        <div class="filetab mono">// query.sql</div>
+        <div class="code-box mono" id="codebox">
+          <div class="code-line"><span class="line-no">1</span><span class="line-content" id="l1"></span></div>
+          <div class="code-line"><span class="line-no">2</span><span class="line-content" id="l2"></span></div>
+          <div class="code-line"><span class="line-no">3</span><span class="line-content" id="l3"></span></div>
+          <div class="code-line"><span class="line-no">4</span><span class="line-content" id="l4"></span></div>
+          <div class="code-line"><span class="line-no">5</span><span class="line-content" id="l5"></span></div>
+        </div>
+
+        <p class="result-meta mono" id="resultMeta">-- 1 row returned</p>
+
+        <div class="selection-wrap" id="selectionWrap">
+          <div class="results" id="results">
+            <table>
+              <thead>
+                <tr><th>Name</th><th>Role</th><th>Location</th><th>Status</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td data-label="Name"><strong>Ye Lin Naing (Leo)</strong></td>
+                  <td data-label="Role">Data Analyst</td>
+                  <td data-label="Location">England, United Kingdom</td>
+                  <td data-label="Status">Open to work</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -135,27 +366,21 @@
         </tr>
         <tr>
           <td data-label="No"><span class="field-no">2</span></td>
-          <td data-label="Field"><span class="field-name">python</span></td>
-          <td data-label="Type"><span class="field-type">SCRIPTING</span></td>
-          <td data-label="Notes" class="field-desc">Data cleaning and analysis scripts.</td>
-        </tr>
-        <tr>
-          <td data-label="No"><span class="field-no">3</span></td>
           <td data-label="Field"><span class="field-name">excel</span></td>
           <td data-label="Type"><span class="field-type">SPREADSHEET</span></td>
           <td data-label="Notes" class="field-desc">Pivot tables, INDIRECT, spill ranges, running totals.</td>
         </tr>
         <tr>
-          <td data-label="No"><span class="field-no">4</span></td>
+          <td data-label="No"><span class="field-no">3</span></td>
           <td data-label="Field"><span class="field-name">power_bi</span></td>
-          <td data-label="Type"><span class="field-type">DATA_VISUALIZATION</span></td>
-          <td data-label="Notes" class="field-desc">Creating interactive dashboards and reports.</td>
+          <td data-label="Type"><span class="field-type">DATA_VISUALISATION</span></td>
+          <td data-label="Notes" class="field-desc">Interactive dashboards and reports; working toward the PL-300 certification.</td>
         </tr>
         <tr>
           <td data-label="No"><span class="field-no">4</span></td>
-          <td data-label="Field"><span class="field-name">apache_spark</span></td>
-          <td data-label="Type"><span class="field-type">BIG_DATA</span></td>
-          <td data-label="Notes" class="field-desc">Large-scale data processing on a cloud VM.</td>
+          <td data-label="Field"><span class="field-name">git</span></td>
+          <td data-label="Type"><span class="field-type">VERSION_CONTROL</span></td>
+          <td data-label="Notes" class="field-desc">Day-to-day workflow across all projects.</td>
         </tr>
         <tr>
           <td data-label="No"><span class="field-no">5</span></td>
@@ -165,9 +390,15 @@
         </tr>
         <tr>
           <td data-label="No"><span class="field-no">6</span></td>
-          <td data-label="Field"><span class="field-name">git</span></td>
-          <td data-label="Type"><span class="field-type">VERSION_CONTROL</span></td>
-          <td data-label="Notes" class="field-desc">Day-to-day workflow across all projects.</td>
+          <td data-label="Field"><span class="field-name">python</span></td>
+          <td data-label="Type"><span class="field-type">SCRIPTING</span></td>
+          <td data-label="Notes" class="field-desc">Data cleaning and analysis scripts.</td>
+        </tr>
+        <tr>
+          <td data-label="No"><span class="field-no">7</span></td>
+          <td data-label="Field"><span class="field-name">apache_spark</span></td>
+          <td data-label="Type"><span class="field-type">BIG_DATA</span></td>
+          <td data-label="Notes" class="field-desc">Large-scale data processing on a cloud VM.</td>
         </tr>
       </tbody>
     </table>
@@ -213,6 +444,59 @@
     </div>
   </section>
 
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <p class="eyebrow reveal">-- table: experience</p>
+    <h2 class="section-title reveal">Work experience</h2>
+
+    <div class="exp-row reveal">
+      <div class="exp-main">
+        <h3 class="exp-title">Crew Member — McDonald's, Blaydon</h3>
+        <p class="exp-meta">Gateshead, England · Nov 2025 – Present · alongside full-time study</p>
+        <ul class="exp-points">
+          <li>Worked front counter and kitchen through peak trading, where accuracy matters as much as speed.</li>
+          <li>Won Star of the Shift multiple times and was awarded Employee of the Month (May 2026) for consistency and pace under pressure.</li>
+          <li>Currently working toward Crew Trainer, which means training new starters on process and standards.</li>
+          <li>Held this alongside a full-time degree I finished with First Class Honours.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-row reveal">
+      <div class="exp-main">
+        <h3 class="exp-title">Graphic Designer — YOUTH Student Activities Team</h3>
+        <p class="exp-meta">Yangon, Myanmar · Dec 2024 – Apr 2025</p>
+        <ul class="exp-points">
+          <li>Designed posters, social media posts, banners and flyers for student events using Canva, supporting the full event promotion cycle.</li>
+          <li>Created visual content that received <strong>100+ reactions</strong> and <strong>30+ shares</strong>, increasing student awareness and participation.</li>
+          <li>Worked closely with a team to deliver designs on time, making sure all content matched the event theme and message.</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="exp-note">No data role yet — that's what I'm looking for. What this job gave me is the habit of getting details right when it's busy, which is most of what analysis actually is.</p>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <p class="eyebrow reveal">-- table: education</p>
+    <h2 class="section-title reveal">Education</h2>
+    <div class="edu-row reveal">
+      <div>
+        <div class="edu-inst">BSc (Hons) Computing — Northumbria University</div>
+        <div class="edu-detail">Graduated July 2026</div>
+      </div>
+      <span class="edu-badge">First Class Honours</span>
+    </div>
+    <div class="edu-row reveal">
+      <div>
+        <div class="edu-inst">Higher National Diploma in Computing — YOUTH International College</div>
+        <div class="edu-detail">Graduated July 2025</div>
+      </div>
+      <span class="edu-badge">First Class Honours</span>
+    </div>
+  </section>
+
   <!-- CERTIFICATES -->
   <section id="certificates">
     <p class="eyebrow reveal">-- table: certificates</p>
@@ -240,7 +524,7 @@
           <a class="cert-btn" id="certLink2" href="#" target="_blank" rel="noopener">View certificate ↗</a>
         </div>
       </div>
-      <div class="cert-card placeholder">Coming Soon</div>
+      <div class="cert-card placeholder">Coming soon</div>
     </div>
 
     <div class="certs-all reveal" id="certsAllWrap">
@@ -292,148 +576,6 @@
       <p class="cv-note">PDF · updated August 2026</p>
     </div>
   </section>
-  <section id="projects">
-    <p class="eyebrow reveal">-- table: projects</p>
-    <h2 class="section-title reveal">Things I've built</h2>
-
-    <div class="project-row reveal">
-      <div class="row-idx">01</div>
-      <div>
-        <h3 class="project-title">CandidView</h3>
-        <p class="project-desc">An AI-powered anonymous feedback platform, built with a team at the CBC Spring 2026 Hackathon.</p>
-        <p class="project-outcome"><span class="edit-me">CandidView helps recruiters screen candidate CVs against job descriptions using semantic AI matching — not keyword matching. The core philosophy is "sort and explain — humans decide." Every candidate stays visible. Every match is explained. Recruiters always make the final call.</span></p>
-        <div class="tags">
-          <span class="tag">Claude</span><span class="tag">Vibe Coding</span><span class="tag">Artifical Intelligence</span>
-        </div>
-        <a class="project-link" href="https://candid-view.vercel.app/" target="_blank" rel="noopener">View live →</a>
-        <a class="project-link" href="https://github.com/yelin-naing/CandidView" target="_blank" rel="noopener">View on GitHub →</a>
-      </div>
-    </div>
-
-    <div class="project-row reveal">
-      <div class="row-idx">02</div>
-      <div>
-        <h3 class="project-title">World Life Expectancy Data Analysis</h3>
-        <p class="project-desc">Analysis of global life expectancy trends using data cleaning and data visualization techniques.</p>
-        <p class="project-outcome"><span class="edit-me">A SQL project that cleans and explores a global life expectancy dataset covering 193 countries from 2007 to 2022. The aim was to fix data quality issues and then answer real questions about health, wealth, and life expectancy using SQL alone.</span></p>
-        <div class="tags">
-          <span class="tag">Data Analysis</span><span class="tag">Data Cleaning</span><span class="tag">Data Visualization</span><span class="tag">SQL</span>
-        </div>
-        <a class="project-link" href="https://github.com/yelin-naing/world-life-expectancy-analysis" target="_blank" rel="noopener">View on GitHub for more details→</a>
-      </div>
-    </div>
-
-    <div class="project-row reveal">
-      <div class="row-idx">03</div>
-      <div>
-        <h3 class="project-title">UK Crime Data Analysis</h3>
-        <p class="project-desc">Analysis of UK crime statistics at scale, using Apache Spark on an Azure VM, for a university Big Data module.</p>
-        <p class="project-outcome"><span class="edit-me">This project investigates three claims about crime in the UK, using a 65-million-row police crime dataset processed with Apache Spark on Microsoft Azure. The same code was tested on a sample dataset and then run on the full dataset on Azure.</span></p> 
-        <div class="tags">
-          <span class="tag">Apache Spark</span><span class="tag">Azure</span><span class="tag">Data Cleaning</span><span class="tag">Data Visualisation</span><span class="tag">Big Data</span><span class="tag">Jupyter Notebook</span>
-        </div>
-        <a class="project-link" href="https://github.com/yelin-naing/uk-crime-bigdata-analysis" target="_blank" rel="noopener">View on GitHub for more details →</a>
-      </div>
-    </div>
-
-    <div class="see-more reveal">
-      <a class="cv-btn" href="./projects.html">
-        See all projects
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-      </a>
-      <p class="see-more-note">Full project list with an interactive breakdown</p>
-    </div>
-  </section>
-
-  <!-- EXPERIENCE -->
-  <section id="experience">
-    <p class="eyebrow reveal">-- table: experience</p>
-    <h2 class="section-title reveal">Work experience</h2>
-
-    <div class="exp-row reveal">
-      <div class="exp-main">
-        <h3 class="exp-title">Crew Member — McDonald's, Blaydon</h3>
-        <p class="exp-meta">Gateshead, England · alongside full-time study <span class="edit-me">Nov 2025 - Present</span></p>
-        <ul class="exp-points">
-          <li>Worked front counter and kitchen through peak trading, where accuracy matters as much as speed.</li>
-          <li>Won Star of the Shift multiple times and awared Emoplyee of the Month (May) in 2026 for consistency and pace under pressure.</li>
-          <li>Currently working toward Crew Trainer, which means training new starters on process and standards.</li>
-          <li>Held this alongside a full-time degree I finished with First Class Honours.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="exp-row reveal">
-      <div class="exp-main">
-        <h3 class="exp-title">Graphic Designer — YOUTH Student Activities Team</h3>
-        <p class="exp-meta">Yangon, Myanmar <span class="edit-me">Dec 2024 - Apr 2025</span></p>
-        <ul class="exp-points">
-          <li>Designed posters, social media posts, banners, and flyers for student events using Canva, supporting the full event promotion cycle.</li>
-          <li>Created visual content that received <strong>100+ reactions</strong> and <strong>30+ shares</strong>, increasing student awarness and participation.</li>
-          <li>Worked closely with a team to deliver designs on time, making sure all content matched the event theme and message.</li>
-        </ul>
-      </div>
-    </div>
-
-    <p class="exp-note">No data role yet — that's what I'm looking for. What this job gave me is the habit of getting details right when it's busy, which is most of what analysis actually is.</p>
-  </section>
-
-  <!-- EDUCATION -->
-  <section id="education">
-    <p class="eyebrow reveal">-- table: education</p>
-    <h2 class="section-title reveal">Education</h2>
-    <div class="edu-row reveal">
-      <div>
-        <div class="edu-inst">BSc (Hons) Computing — Northumbria University</div>
-        <div class="edu-detail">Graduated July 2026</div>
-      </div>
-      <span class="edu-badge">First Class Honours</span>
-    </div>
-    <div class="edu-row reveal">
-      <div>
-        <div class="edu-inst">Higher National Diploma in Computing — YOUTH International College</div>
-        <div class="edu-detail">Graduated July 2025</div>
-      </div>
-      <span class="edu-badge">First Class Honours</span>
-    </div>
-  </section>
-
-  <!-- TRY IT -->
-  <section id="try">
-    <p class="eyebrow reveal">-- try it yourself</p>
-    <h2 class="section-title reveal">Check if I match your role</h2>
-    <p class="about-text reveal" style="margin-bottom:20px;">Pick what your role needs. The query builds itself, and the result tells you where I stand.</p>
-
-    <div class="builder reveal">
-      <div class="chip-row" id="chipRow">
-        <button class="chip" type="button" data-key="sql">SQL</button>
-        <button class="chip" type="button" data-key="powerbi">Power BI</button>
-        <button class="chip" type="button" data-key="python">Python</button>
-        <button class="chip" type="button" data-key="excel">Excel</button>
-        <button class="chip" type="button" data-key="azure">Azure</button>
-        <button class="chip" type="button" data-key="git">Git</button>
-        <button class="chip" type="button" data-key="degree">Degree in Computing</button>
-        <button class="chip" type="button" data-key="onsite">Based in North East UK</button>
-        <button class="chip" type="button" data-key="nosponsor">No visa sponsorship needed</button>
-        <button class="chip" type="button" data-key="powerbi">Power BI</button>
-        <button class="chip" type="button" data-key="tableau">Tableau</button>
-        <button class="chip" type="button" data-key="senior">5+ years experience</button>
-      </div>
-
-      <div class="code-box mono builder-query">
-        <div class="code-line"><span class="line-no">1</span><span class="line-content"><span class="kw">SELECT</span> * <span class="kw">FROM</span> yelinnaing</span></div>
-        <div class="code-line"><span class="line-no">2</span><span class="line-content" id="whereLine"><span class="cm">-- pick a requirement above to start</span></span></div>
-      </div>
-
-      <div class="verdict" id="verdict">
-        <div class="verdict-head">
-          <span class="verdict-icon" id="verdictIcon">–</span>
-          <span class="verdict-text" id="verdictText">No requirements selected yet</span>
-        </div>
-        <ul class="verdict-list" id="verdictList"></ul>
-      </div>
-    </div>
-  </section>
 
   <!-- CONTACT -->
   <footer id="contact">
@@ -441,14 +583,13 @@
     <h2 class="section-title reveal">Get in touch</h2>
     <div class="code-box mono contact-results reveal">
       <div class="code-line"><span class="line-no">1</span><span class="line-content"><span class="kw">SELECT</span> contact_method, information <span class="kw">FROM</span> yelinnaing</span></div>
-      <div class="code-line"><span class="line-no">2</span><span class="line-content"><span class="kw">WHERE</span> type <span class="kw">IN</span> (<span class="str">'email'</span>, <span class="str">'phone'</span>, <span class="str">'github'</span>, <span class="str">'linkedin'</span>);</span></div>
+      <div class="code-line"><span class="line-no">2</span><span class="line-content"><span class="kw">WHERE</span> type <span class="kw">IN</span> (<span class="str">'email'</span>, <span class="str">'linkedin'</span>, <span class="str">'github'</span>);</span></div>
       <div class="code-line"><span class="line-no">&nbsp;</span><span class="line-content"></span></div>
       <div class="code-line"><span class="line-no">→</span><span class="line-content">email    <a href="mailto:yelinnaing.job@gmail.com">yelinnaing.job@gmail.com</a></span></div>
-      <div class="code-line"><span class="line-no">→</span><span class="line-content">phone    <a href="tel:+447352162411">+44 7352 162411</a> <span class="str">-- also on WhatsApp</span></span></div>
+      <div class="code-line"><span class="line-no">→</span><span class="line-content">linkedin <a href="https://www.linkedin.com/in/yelinnaing/" target="_blank" rel="noopener">linkedin.com/in/yelinnaing/</a></span></div>
       <div class="code-line"><span class="line-no">→</span><span class="line-content">github   <a href="https://github.com/yelin-naing" target="_blank" rel="noopener">github.com/yelin-naing</a></span></div>
-      <div class="code-line"><span class="line-no">→</span><span class="line-content">linkedin <a  href="https://www.linkedin.com/in/yelinnaing/" target="_blank" rel="noopener">linkedin.com/in/yelinnaing/</a></span></div>
     </div>
-    <p class="foot-note">Built by Ye Lin Naing — updated August 2026.</p>
+    <p class="foot-note">Built by Ye Lin Naing — updated September 2026.</p>
   </footer>
 
 </main>
@@ -602,13 +743,14 @@
   </button>
 </div>
 
-<script src="js/main.js"></script>
+<script src="js/main.js" defer></script>
 
 <!-- Three.js powers the 3D mascot. If it fails to load, or the device has no
      WebGL, the SVG lion above stays on screen and nothing breaks. -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
 <script src="js/mascot3d.js" defer></script>
-<!-- CERTIFICATE VIEWER -->
+
+<!-- IMAGE / CERTIFICATE VIEWER -->
 <div class="viewer" id="certViewer" role="dialog" aria-modal="true" aria-labelledby="viewerTitle" hidden>
   <div class="viewer-backdrop" data-close></div>
   <div class="viewer-panel">

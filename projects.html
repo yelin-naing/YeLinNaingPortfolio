@@ -13,7 +13,7 @@
 <meta name="description" content="Every project by Ye Lin Naing (Leo) — an interactive breakdown of the tools, categories and work behind each build.">
 <meta name="theme-color" content="#12171C">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect x='6' y='6' width='88' height='88' rx='20' fill='%23000000'/%3E%3Crect x='23' y='56' width='15' height='26' rx='3' fill='%23FFFFFF'/%3E%3Crect x='43' y='40' width='15' height='42' rx='3' fill='%23FFFFFF'/%3E%3Crect x='63' y='22' width='15' height='60' rx='3' fill='%23FFFFFF'/%3E%3C/svg%3E">
-<title>YeLinN. Portfolio</title>
+<title>Projects — Ye Lin Naing (Leo)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -259,22 +259,12 @@
    ============================================================ */
 var PROJECTS = [
   {
-    name: "CandidView",
-    category: "Web App",
-    period: "Spring 2026",
-    desc: "An AI-powered anonymous feedback platform, built with Team Binary Donut at the CBC Spring 2026 Hackathon.",
-    outcome: "CandidView helps recruiters screen candidate CVs against job descriptions using semantic AI matching — not keyword matching. The core philosophy is sort and explain — humans decide. Every candidate stays visible. Every match is explained. Recruiters always make the final call.",   // <- what it does for users, or how the hackathon went
-    tech: ["Claude","Vibe Coding", "Artifical Intelligence"],
-    live: "https://candid-view.vercel.app/",
-    repo: "https://github.com/yelin-naing/CandidView"
-  },
-  {
     name: "World Life Expectancy Data Analysis",
     category: "Data Analysis",
     period: "2026",
-    desc: "Analysis of global life expectancy trends using data cleaning and data visualization techniques.",
-    outcome: "A SQL project that cleans and explores a global life expectancy dataset covering 193 countries from 2007 to 2022. The aim was to fix data quality issues and then answer real questions about health, wealth, and life expectancy using SQL alone",   // <- what it tracked, and your grade or feedback
-    tech: ["SQL","Data Cleaning","Data Transformation","Data Visualisation","EDA","Data Analysis"],
+    desc: "Cleaning and exploring a global life expectancy dataset — 193 countries, 2007 to 2022 — in MySQL.",
+    outcome: "Fixed three data-quality problems first: removed 3 duplicate country/year rows with ROW_NUMBER, filled 8 blank Developed/Developing labels with a self join, and estimated 2 missing life expectancy values from adjacent years. Then answered seven questions. Global life expectancy rose from 66.8 to 71.6 years with a clear 2020 dip; developed countries average 79.2 years against 66.8, and less than half the adult mortality.",
+    tech: ["SQL","MySQL","Data Cleaning","Data Transformation","Data Visualisation","EDA","Data Analysis"],
     live: "",
     repo: "https://github.com/yelin-naing/world-life-expectancy-analysis"
   },
@@ -282,11 +272,21 @@ var PROJECTS = [
     name: "UK Crime Data Analysis",
     category: "Data Analysis",
     period: "2026",
-    desc: "Analysis of UK crime statistics at scale using Apache Spark on an Azure VM, for the Big Data module at Northumbria.",
-    outcome: "This project investigates three claims about crime in the UK, using a 65-million-row police crime dataset processed with Apache Spark on Microsoft Azure. The same code was tested on a sample dataset and then run on the full dataset on Azure.",   // <- how many rows, what question, what you found
-    tech: ["Apache Spark","Miscrosoft Azure","Python","Data Cleaning","Data Transformation","Jypter Notebook","Data Analysis","Data Analytics","SQL","Big Data"],
+    desc: "Testing three public claims about UK crime against a 65-million-row police dataset, using Apache Spark on an Azure VM, for the Big Data module at Northumbria.",
+    outcome: "Two claims refuted, one confirmed. Burglary fell about 50% over ten years, from roughly 42,000 cases a month in 2011 to 20,000 in 2021, and a SARIMA forecast projected it staying flat rather than rising. Normalised by population, Merseyside ranks 4th for firearms incidents per 100,000, not 1st. Firearms and drug offences correlate strongly (Pearson r = 0.92).",
+    tech: ["Apache Spark","Microsoft Azure","Python","Data Cleaning","Data Transformation","Jupyter Notebook","Data Analysis","SARIMA","SQL","Big Data"],
     live: "",
     repo: "https://github.com/yelin-naing/uk-crime-bigdata-analysis"
+  },
+  {
+    name: "CandidView",
+    category: "Web App",
+    period: "Spring 2026",
+    desc: "An AI CV screening tool that explains every match, built with a team at the CBC Spring 2026 Hackathon.",
+    outcome: "CandidView screens candidate CVs against a job description using semantic AI matching rather than keyword matching. The core philosophy is sort and explain — humans decide. Every candidate stays visible. Every match is explained. Recruiters always make the final call.",
+    tech: ["Claude","Artificial Intelligence","Team Project","Hackathon"],
+    live: "https://candid-view.vercel.app/",
+    repo: "https://github.com/yelin-naing/CandidView"
   }
 ];
 
@@ -302,8 +302,8 @@ var PROJECTS = [
   // tags that are concrete tools/languages/platforms — everything else
   // in a project's `tech` list is treated as a skill/technique.
   var TOOL_TAGS = {
-    "Claude":1, "SQL":1, "Apache Spark":1, "Miscrosoft Azure":1,
-    "Python":1, "Jypter Notebook":1
+    "Claude":1, "SQL":1, "MySQL":1, "Apache Spark":1, "Microsoft Azure":1,
+    "Python":1, "Jupyter Notebook":1
   };
 
   var activeCat  = 'All';

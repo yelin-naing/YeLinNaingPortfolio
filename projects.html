@@ -60,7 +60,8 @@
 
   /* intro */
   section{padding:44px 0;}
-  .lead{padding-top:52px;}
+  .lead{padding-top:52px; padding-bottom:0;}
+  .lead + section{padding-top:26px;}
   .eyebrow{
     font-size:12.5px; text-transform:uppercase; letter-spacing:0.08em;
     color:var(--green); font-weight:600; margin:0 0 14px;
@@ -68,18 +69,15 @@
   h1{font-family:'Space Grotesk',sans-serif; font-size:clamp(28px,5vw,38px); margin:0 0 14px;}
   .sub{color:var(--ink-muted); max-width:62ch; margin:0; font-size:16.5px;}
 
-  /* stat strip */
+  /* Stat strip: one compact line. As four bordered tiles with 30px numbers
+     this read as a dashboard and pushed the actual projects below the fold. */
   .stats{
-    display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
-    gap:14px; margin-top:28px;
+    display:flex; flex-wrap:wrap; gap:7px 20px;
+    margin-top:20px; padding-top:16px; border-top:1px solid var(--grid);
   }
-  .stat{
-    border:1px solid var(--grid); border-radius:var(--radius);
-    padding:16px 18px; background:#fff;
-  }
+  .stat{display:inline-flex; align-items:baseline; gap:6px;}
   .stat-num{
-    font-family:'Space Grotesk',sans-serif; font-size:30px; font-weight:600;
-    line-height:1.1; display:block;
+    font-family:'Space Grotesk',sans-serif; font-size:16px; font-weight:600; line-height:1;
   }
   .stat-label{
     font-family:'JetBrains Mono',monospace; font-size:11px; text-transform:uppercase;
@@ -88,15 +86,6 @@
 
   /* filters */
   .filter-bar{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:6px;}
-  .filter-bar.scrollable{
-    flex-wrap:nowrap; overflow-x:auto; padding-bottom:8px;
-    scrollbar-width:thin; scrollbar-color:var(--grid) transparent;
-  }
-  .filter-bar.scrollable::-webkit-scrollbar{height:6px;}
-  .filter-bar.scrollable::-webkit-scrollbar-track{background:transparent;}
-  .filter-bar.scrollable::-webkit-scrollbar-thumb{background:var(--grid); border-radius:999px;}
-  .filter-bar.scrollable::-webkit-scrollbar-thumb:hover{background:var(--ink-muted);}
-  .filter-bar.scrollable .chip{flex:0 0 auto;}
   .chip{
     font-family:'JetBrains Mono',monospace; font-size:12.5px; color:var(--ink);
     border:1px solid var(--grid); background:#fff; border-radius:999px;
@@ -107,45 +96,10 @@
   .chip.on{background:var(--green); border-color:var(--green); color:#fff;}
   .filter-note{font-size:12.5px; color:var(--ink-muted); margin:0 0 22px;}
 
-  /* charts */
-  .charts{
-    display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-bottom:34px;
-  }
-  .panel{
-    border:1px solid var(--grid); border-radius:var(--radius);
-    padding:20px; background:#fff;
-  }
-  .panel h2{
-    font-family:'Space Grotesk',sans-serif; font-size:16px; margin:0 0 4px;
-  }
-  .panel .hint{
-    font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--ink-muted);
-    margin:0 0 16px;
-  }
-
-  /* bar chart */
-  .bar-chart-scroll{
-    max-height:158px; overflow-y:auto; padding-right:6px;
-    scrollbar-width:thin; scrollbar-color:var(--grid) transparent;
-  }
-  .bar-chart-scroll::-webkit-scrollbar{width:6px;}
-  .bar-chart-scroll::-webkit-scrollbar-track{background:transparent;}
-  .bar-chart-scroll::-webkit-scrollbar-thumb{background:var(--grid); border-radius:999px;}
-  .bar-chart-scroll::-webkit-scrollbar-thumb:hover{background:var(--ink-muted);}
-  .bar-row{
-    display:grid; grid-template-columns:118px 1fr 30px; align-items:center;
-    gap:12px; margin-bottom:9px;
-  }
-  .bar-name{font-family:'JetBrains Mono',monospace; font-size:12px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
-  .bar-track{height:9px; background:var(--paper); border-radius:5px; overflow:hidden;}
-  .bar-fill{
-    display:block; height:100%; width:0; background:var(--green); border-radius:5px;
-    transition:width 0.6s cubic-bezier(.16,1,.3,1);
-  }
-  .bar-val{font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--ink-muted); text-align:right;}
-
   /* project cards */
-  .grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:18px;}
+  /* min() so a 300px track can still shrink on a narrow phone — a bare
+     minmax(300px,1fr) overflows the viewport below about 340px. */
+  .grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(min(300px,100%),1fr)); gap:18px;}
   .card{
     border:1px solid var(--grid); border-radius:var(--radius);
     padding:20px; background:#fff; display:flex; flex-direction:column;
@@ -190,13 +144,9 @@
   }
   footer a{color:var(--green); font-weight:600; text-decoration:none;}
 
-  @media (max-width:560px){
-    .charts{grid-template-columns:1fr;}
-  }
   @media (max-width:640px){
     section{padding:32px 0;}
     .lead{padding-top:36px;}
-    .bar-row{grid-template-columns:88px 1fr 26px; gap:9px;}
   }
   @media (prefers-reduced-motion: reduce){
     *{transition:none !important;}
@@ -220,28 +170,14 @@
   <section class="lead">
     <p class="eyebrow">-- table: projects</p>
     <h1>Everything I've built</h1>
-    <p class="sub">Each project below is real work with code behind it. Filter by category or tool and the numbers update with you.</p>
+    <p class="sub">Each project below is real work with code behind it. Filter by category to explore the work.</p>
 
     <div class="stats" id="stats"></div>
   </section>
 
   <section>
     <div class="filter-bar" id="catBar"></div>
-    <div class="filter-bar scrollable" id="techBar"></div>
     <p class="filter-note" id="filterNote">Showing all projects</p>
-
-    <div class="charts">
-      <div class="panel">
-        <h2>Tools used</h2>
-        <p class="hint">-- top 5 shown, scroll for more</p>
-        <div class="bar-chart-scroll" id="techChart"></div>
-      </div>
-      <div class="panel">
-        <h2>Skills used</h2>
-        <p class="hint">-- top 5 shown, scroll for more</p>
-        <div class="bar-chart-scroll" id="skillChart"></div>
-      </div>
-    </div>
 
     <div class="grid" id="grid"></div>
   </section>
@@ -293,21 +229,10 @@ var PROJECTS = [
 (function(){
   var grid    = document.getElementById('grid');
   var catBar  = document.getElementById('catBar');
-  var techBar = document.getElementById('techBar');
   var note    = document.getElementById('filterNote');
   var statsEl  = document.getElementById('stats');
-  var techEl   = document.getElementById('techChart');
-  var skillEl  = document.getElementById('skillChart');
-
-  // tags that are concrete tools/languages/platforms — everything else
-  // in a project's `tech` list is treated as a skill/technique.
-  var TOOL_TAGS = {
-    "Claude":1, "SQL":1, "MySQL":1, "Apache Spark":1, "Microsoft Azure":1,
-    "Python":1, "Jupyter Notebook":1
-  };
 
   var activeCat  = 'All';
-  var activeTech = null;
 
   function uniq(arr){ return arr.filter(function(v,i){ return arr.indexOf(v) === i; }); }
   function esc(s){
@@ -316,12 +241,10 @@ var PROJECTS = [
   }
 
   var allCats  = uniq(PROJECTS.map(function(p){ return p.category; }));
-  var allTech  = uniq(PROJECTS.reduce(function(a,p){ return a.concat(p.tech); }, []));
 
   function visible(){
     return PROJECTS.filter(function(p){
       if (activeCat !== 'All' && p.category !== activeCat) return false;
-      if (activeTech && p.tech.indexOf(activeTech) === -1) return false;
       return true;
     });
   }
@@ -337,16 +260,6 @@ var PROJECTS = [
       b.onclick = function(){ activeCat = c; render(); };
       catBar.appendChild(b);
     });
-
-    techBar.innerHTML = '';
-    allTech.forEach(function(t){
-      var b = document.createElement('button');
-      b.type = 'button';
-      b.className = 'chip' + (t === activeTech ? ' on' : '');
-      b.textContent = t;
-      b.onclick = function(){ activeTech = (activeTech === t) ? null : t; render(); };
-      techBar.appendChild(b);
-    });
   }
 
   // ---------- stats ----------
@@ -358,44 +271,12 @@ var PROJECTS = [
       [list.length, 'Projects'],
       [techCount,   'Tools used'],
       [catCount,    'Categories'],
-      [live,        'Live online']
+      [live,        'Live demo']
     ];
     statsEl.innerHTML = data.map(function(d){
       return '<div class="stat"><span class="stat-num">' + d[0] +
              '</span><span class="stat-label">' + d[1] + '</span></div>';
     }).join('');
-  }
-
-  // ---------- tools / skills bar charts ----------
-  function renderBarChart(el, list, isTool){
-    var counts = {};
-    list.forEach(function(p){
-      p.tech.forEach(function(t){
-        if (!!TOOL_TAGS[t] !== isTool) return;
-        counts[t] = (counts[t] || 0) + 1;
-      });
-    });
-    var rows = Object.keys(counts).map(function(k){ return [k, counts[k]]; })
-                     .sort(function(a,b){ return b[1] - a[1] || a[0].localeCompare(b[0]); });
-
-    if (!rows.length){
-      el.innerHTML = '<p class="hint">Nothing matches this filter.</p>';
-      return;
-    }
-    var max = rows[0][1];
-    el.innerHTML = rows.map(function(r){
-      return '<div class="bar-row">' +
-        '<span class="bar-name" title="' + esc(r[0]) + '">' + esc(r[0]) + '</span>' +
-        '<span class="bar-track"><span class="bar-fill" data-w="' +
-          Math.round((r[1]/max)*100) + '"></span></span>' +
-        '<span class="bar-val">' + r[1] + '</span></div>';
-    }).join('');
-
-    requestAnimationFrame(function(){
-      Array.prototype.forEach.call(el.querySelectorAll('.bar-fill'), function(el){
-        el.style.width = el.getAttribute('data-w') + '%';
-      });
-    });
   }
 
   // ---------- cards ----------
@@ -430,13 +311,10 @@ var PROJECTS = [
     var list = visible();
     buildChips();
     renderStats(list);
-    renderBarChart(techEl, list, true);
-    renderBarChart(skillEl, list, false);
     renderCards(list);
 
     var bits = [];
     if (activeCat !== 'All') bits.push(activeCat);
-    if (activeTech) bits.push('using ' + activeTech);
     note.textContent = bits.length
       ? 'Showing ' + list.length + ' project' + (list.length === 1 ? '' : 's') + ' — ' + bits.join(', ')
       : 'Showing all ' + list.length + ' projects';

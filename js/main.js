@@ -129,7 +129,8 @@ var SITE = {
     [{t:'SELECT ',c:'kw'},{t:'name, role, location, status',c:''}],
     [{t:'FROM ',c:'kw'},{t:'candidates',c:''}],
     [{t:'WHERE ',c:'kw'},{t:'FIND_IN_SET',c:'fn'},{t:'(',c:''},{t:"'SQL'",c:'str'},{t:', skills)',c:''}],
-    [{t:'  AND ',c:'kw'},{t:'FIND_IN_SET',c:'fn'},{t:'(',c:''},{t:"'Python'",c:'str'},{t:', skills)',c:''}],
+    [{t:'  AND ',c:'kw'},{t:'FIND_IN_SET',c:'fn'},{t:'(',c:''},{t:"'Excel'",c:'str'},{t:', skills)',c:''}],
+    [{t:'  AND ',c:'kw'},{t:'FIND_IN_SET',c:'fn'},{t:'(',c:''},{t:"'Power BI'",c:'str'},{t:', skills)',c:''}],
     [{t:'  AND ',c:'kw'},{t:'degree_class = ',c:''},{t:"'First Class Honours'",c:'str'}],
     [{t:'LIMIT ',c:'kw'},{t:'1;',c:''}]
   ];

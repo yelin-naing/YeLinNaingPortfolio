@@ -729,7 +729,7 @@
   .qbar-val{font-size:11px; color:var(--code-muted); text-align:right;}
 
   .proj-body{min-width:0;}
-  .proj-head{display:flex; align-items:baseline; gap:12px; margin-bottom:12px;}
+  .proj-head{display:flex; align-items:baseline; gap:12px;}
   .proj-idx{color:var(--ink-muted); font-size:13px; flex:0 0 auto;}
   .proj-title{
     font-family:'Space Grotesk',sans-serif; font-size:20px; margin:0; line-height:1.3;

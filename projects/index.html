@@ -163,49 +163,19 @@
 
     <div class="grid" id="grid">
     <article class="proj" data-category="Data Analysis">
+      <div class="proj-head">
+        <span class="proj-idx mono">01</span>
+        <h3 class="proj-title">World Life Expectancy — SQL analysis</h3>
+      </div>
+
       <div class="proj-figure">
-        <div class="qcard">
-          <div class="qcard-bar mono"><span class="qdot"></span>worldLifeEDA.sql</div>
-          <pre class="qcard-sql mono"><span class="cm">-- Developed vs Developing</span>
-<span class="kw">SELECT</span> Status,
-  <span class="fn">ROUND</span>(<span class="fn">AVG</span>(Lifeexpectancy),1) <span class="kw">AS</span> avgLifeExp,
-  <span class="fn">ROUND</span>(<span class="fn">AVG</span>(AdultMortality),1) <span class="kw">AS</span> avgAdultMort
-<span class="kw">FROM</span> worldlifexpectancy
-<span class="kw">GROUP BY</span> Status
-<span class="kw">ORDER BY</span> avgLifeExp <span class="kw">DESC</span>;</pre>
-          <div class="qcard-out">
-            <p class="qcard-out-label mono">avg life expectancy (years)</p>
-            <div class="qbar-row">
-              <span class="qbar-name mono">Developed</span>
-              <span class="qbar-track"><span class="qbar-fill" style="--w:96%"></span></span>
-              <span class="qbar-val mono">79.2</span>
-            </div>
-            <div class="qbar-row">
-              <span class="qbar-name mono">Developing</span>
-              <span class="qbar-track"><span class="qbar-fill" style="--w:81%"></span></span>
-              <span class="qbar-val mono">66.8</span>
-            </div>
-            <p class="qcard-out-label mono">avg adult mortality (per 1,000)</p>
-            <div class="qbar-row">
-              <span class="qbar-name mono">Developed</span>
-              <span class="qbar-track"><span class="qbar-fill alt" style="--w:44%"></span></span>
-              <span class="qbar-val mono">79.7</span>
-            </div>
-            <div class="qbar-row">
-              <span class="qbar-name mono">Developing</span>
-              <span class="qbar-track"><span class="qbar-fill alt" style="--w:100%"></span></span>
-              <span class="qbar-val mono">182.1</span>
-            </div>
-          </div>
-        </div>
-        <p class="proj-caption">One of seven questions answered in MySQL, on the cleaned dataset.</p>
+        <button class="figbtn" type="button" data-viewer="/img/projects/world-life-expectancy-map.png" data-viewer-title="World life expectancy by country, 2021 — World Bank data">
+          <img src="/img/projects/world-life-expectancy-map.png" alt="World map shaded by life expectancy by country in 2021, from green (highest) to red (lowest)" loading="lazy" width="1600" height="843">
+        </button>
+        <p class="proj-caption">World Bank life expectancy by country, 2021 — the shape of the dataset behind the analysis.</p>
       </div>
 
       <div class="proj-body">
-        <div class="proj-head">
-          <span class="proj-idx mono">01</span>
-          <h3 class="proj-title">World Life Expectancy — SQL analysis</h3>
-        </div>
         <div class="proj-cta">
           <a class="repo-btn" href="https://github.com/yelin-naing/world-life-expectancy-analysis" target="_blank" rel="noopener">
             <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
@@ -237,6 +207,11 @@
 
     <!-- 02 -->
     <article class="proj" data-category="Data Analysis">
+      <div class="proj-head">
+        <span class="proj-idx mono">02</span>
+        <h3 class="proj-title">UK Crime — big data analysis</h3>
+      </div>
+
       <div class="proj-figure">
         <button class="figbtn" type="button" data-viewer="/img/projects/uk-crime-1.png" data-viewer-title="Monthly burglary count with trend — UK Crime analysis">
           <img src="/img/projects/uk-crime-1.png" alt="Line chart of monthly UK burglary counts from 2011 to 2021 with a 12-month rolling mean, showing a steady fall and a sharp drop after the March 2020 lockdown" loading="lazy" width="1932" height="656">
@@ -256,10 +231,6 @@
       </div>
 
       <div class="proj-body">
-        <div class="proj-head">
-          <span class="proj-idx mono">02</span>
-          <h3 class="proj-title">UK Crime — big data analysis</h3>
-        </div>
         <div class="proj-cta">
           <a class="repo-btn" href="https://github.com/yelin-naing/uk-crime-bigdata-analysis" target="_blank" rel="noopener">
             <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
@@ -291,6 +262,11 @@
 
     <!-- 03 -->
     <article class="proj" data-category="Web App">
+      <div class="proj-head">
+        <span class="proj-idx mono">03</span>
+        <h3 class="proj-title">CandidView — CV screening that explains itself</h3>
+      </div>
+
       <div class="proj-figure">
         <button class="figbtn" type="button" data-viewer="/img/projects/candidview.png" data-viewer-title="CandidView — live site">
           <img src="/img/projects/candidview.png" alt="Screenshot of the CandidView home page, headed &quot;Sort and explain. Humans decide.&quot;" loading="lazy" width="1400" height="700">
@@ -299,10 +275,6 @@
       </div>
 
       <div class="proj-body">
-        <div class="proj-head">
-          <span class="proj-idx mono">03</span>
-          <h3 class="proj-title">CandidView — CV screening that explains itself</h3>
-        </div>
         <div class="proj-cta">
           <a class="repo-btn" href="https://github.com/yelin-naing/CandidView" target="_blank" rel="noopener">
             <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>

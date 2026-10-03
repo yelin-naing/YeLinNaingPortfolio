@@ -424,43 +424,75 @@
   .see-more-note{font-size:12.5px; color:var(--ink-muted); margin-top:10px;}
 
   /* ===== CREDENTIALS =====
-     Certificates, languages and the CV used to be three full sections with
-     three headings and three sets of cards. On a phone that was a lot of
-     scrolling for supporting detail, so they share one compact section. */
-  .cred-grid{
-    display:grid; grid-template-columns:1fr 1fr; gap:34px; align-items:start;
+     Certificates and languages each sit in their own card grid (auto-fit +
+     minmax, so the column count adapts without extra breakpoints), with a
+     highlighted CV strip underneath. */
+  .cred-block{margin-top:30px;}
+  .cred-block:first-of-type{margin-top:0;}
+  .cred-sub{margin:0 0 14px; font-size:11.5px;}
+
+  .cert-grid, .lang-grid{
+    list-style:none; margin:0; padding:0; align-items:stretch;
   }
-  .cred-head{
-    font-size:11px; text-transform:uppercase; letter-spacing:0.09em;
-    color:var(--ink-muted); font-weight:500; margin:0 0 4px;
-    padding-bottom:8px; border-bottom:1px solid var(--grid);
+  .cert-grid{
+    display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); gap:16px;
   }
-  .cred-list{list-style:none; margin:0; padding:0;}
-  .cred-item{
-    display:flex; align-items:flex-start; justify-content:space-between; gap:14px;
-    padding:12px 0; border-bottom:1px solid var(--grid);
+  .lang-grid{
+    display:grid; grid-template-columns:repeat(auto-fit, minmax(280px,1fr)); gap:16px;
   }
-  .cred-main{display:flex; flex-direction:column; gap:2px; min-width:0;}
-  .cred-name{font-size:14.5px; line-height:1.4; color:var(--ink);}
-  .cred-meta{font-size:12.5px; color:var(--ink-muted); line-height:1.45;}
-  .cred-item-soon .cred-name{color:var(--ink-muted);}
-  .cred-link{
+
+  .cert-card, .lang-card{
+    display:flex; flex-direction:column; min-width:0; height:100%;
+    border:1px solid var(--grid); border-radius:12px;
+    background:var(--surface); padding:20px 22px;
+  }
+  @media (prefers-reduced-motion:no-preference){
+    .cert-card, .lang-card{transition:border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;}
+  }
+  .cert-card:hover, .lang-card:hover{
+    border-color:var(--green); transform:translateY(-2px);
+    box-shadow:0 14px 28px -22px var(--shadow-card);
+  }
+
+  .cert-card-top{display:flex; flex-wrap:wrap; align-items:center; gap:6px; margin-bottom:12px;}
+  .cert-tag{
+    font-family:'JetBrains Mono',monospace; font-size:10.5px; text-transform:uppercase;
+    letter-spacing:0.04em; color:var(--ink-muted); background:var(--paper);
+    border:1px solid var(--grid); padding:3px 8px; border-radius:5px; white-space:nowrap;
+  }
+  .cert-name{font-size:15px; line-height:1.4; color:var(--ink); margin:0 0 16px;}
+  .cert-link{
     font-size:12.5px; font-weight:600; color:var(--green);
-    text-decoration:none; white-space:nowrap; flex:0 0 auto; padding-top:1px;
+    text-decoration:none; margin-top:auto; align-self:flex-start;
   }
-  .cred-link:hover{text-decoration:underline;}
+  .cert-link:hover{text-decoration:underline;}
+
+  /* in-progress certificate: dashed border and a muted pill instead of a link */
+  .cert-card-soon{border-style:dashed; background:var(--paper);}
+  .cert-card-soon .cert-name{color:var(--ink-muted); margin-bottom:12px;}
+  .cert-card-soon:hover{border-color:var(--grid); box-shadow:none;}
+  .cert-pill{
+    font-family:'JetBrains Mono',monospace; font-size:10.5px; text-transform:uppercase;
+    letter-spacing:0.04em; color:var(--ink-muted); background:var(--surface);
+    border:1px solid var(--grid); padding:3px 10px; border-radius:999px;
+    white-space:nowrap; margin-top:auto; align-self:flex-start;
+  }
+  .certs-all{margin:16px 0 0;}
+
+  .lang-card-top{display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:8px;}
+  .lang-name{font-family:'Space Grotesk',sans-serif; font-size:16px; font-weight:600;}
+  .lang-desc{font-size:13.5px; color:var(--ink-muted); line-height:1.5; margin:0;}
   .cred-badge{
     font-family:'JetBrains Mono',monospace; font-size:10.5px; text-transform:uppercase;
     letter-spacing:0.04em; color:var(--green); background:var(--green-soft);
     padding:3px 8px; border-radius:5px; white-space:nowrap; flex:0 0 auto;
   }
-  .certs-all{margin:12px 0 0;}
 
-  /* CV: a strip rather than a full-width banner section */
+  /* CV: a highlighted, full-width strip rather than another card in the grid */
   .cv-strip{
     display:flex; align-items:center; justify-content:space-between;
     gap:20px; flex-wrap:wrap; margin-top:30px;
-    border:1px solid var(--grid); border-radius:var(--radius);
+    border:1px solid var(--grid); border-left:3px solid var(--green); border-radius:12px;
     padding:20px 24px; background:var(--paper);
   }
   .cv-strip-copy{min-width:0;}
@@ -948,7 +980,6 @@
     .bar-row{grid-template-columns:64px 1fr 66px; gap:8px;}
     .builder{padding:16px;}
     .chip{font-size:12px; padding:6px 12px;}
-    .cred-grid{grid-template-columns:1fr; gap:26px;}
     .cv-strip{padding:18px; gap:16px;}
     .cv-strip .cv-btn{width:100%; justify-content:center;}
   }

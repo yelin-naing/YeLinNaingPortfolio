@@ -428,8 +428,8 @@ var SITE = {
       if (!url || url === '#') return;
       if (!isViewable(url)) return;   // external link → let it open normally
       e.preventDefault();
-      var row = el.closest('.cred-item');
-      var name = row ? (row.querySelector('.cred-name') || {}).textContent : null;
+      var row = el.closest('.cert-card');
+      var name = row ? (row.querySelector('.cert-name') || {}).textContent : null;
       open(url, name || 'Certificate');
     });
   });

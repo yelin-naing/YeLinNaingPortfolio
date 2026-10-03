@@ -76,6 +76,18 @@
   }
   :root[data-theme="light"]{color-scheme:light;}
 
+  /* Smooth light/dark crossfade. The toggle wraps its attribute change in
+     document.startViewTransition() (with a plain, instant fallback where
+     that API or reduced-motion rules it out) — this just paces the fade
+     it produces instead of the browser's default snap-quick timing. */
+  @media (prefers-reduced-motion: no-preference){
+    ::view-transition-old(root),
+    ::view-transition-new(root){
+      animation-duration:0.45s;
+      animation-timing-function:ease;
+    }
+  }
+
   /* The portrait and chart screenshots are bright white rectangles against a
      dark page; take the glare off without washing out the detail. */
   @media (prefers-color-scheme: dark){
@@ -667,20 +679,13 @@
     color:var(--ink-muted); margin:10px 0 0;
   }
 
-  /* a figure you can click to enlarge */
+  /* a static figure frame — not interactive, no hover/click animation */
   .figbtn, .figthumb{
-    display:block; width:100%; padding:0; cursor:zoom-in; line-height:0;
+    display:block; width:100%; padding:0; line-height:0;
     background:var(--surface); border:1px solid var(--grid); border-radius:var(--radius);
     overflow:hidden;
   }
   .figbtn img, .figthumb img{width:100%; height:auto; display:block;}
-  @media (prefers-reduced-motion: no-preference){
-    .figbtn, .figthumb{transition:border-color 0.22s ease, transform 0.22s ease, box-shadow 0.22s ease;}
-  }
-  .figbtn:hover, .figthumb:hover{
-    border-color:var(--green); transform:translateY(-2px);
-    box-shadow:0 14px 28px -22px var(--shadow-strong);
-  }
   .fig-thumbs{display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-top:8px;}
   .figthumb{height:62px;}
   .figthumb img{height:100%; object-fit:cover; object-position:top left;}

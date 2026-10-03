@@ -461,11 +461,20 @@ var SITE = {
       current() === 'dark' ? 'Switch to light theme' : 'Switch to dark theme');
   }
 
-  btn.addEventListener('click', function(){
-    var next = current() === 'dark' ? 'light' : 'dark';
+  function applyTheme(next){
     root.setAttribute('data-theme', next);
     try { localStorage.setItem('theme', next); } catch(e){}
     label();
+  }
+
+  btn.addEventListener('click', function(){
+    var next = current() === 'dark' ? 'light' : 'dark';
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!reduce && document.startViewTransition){
+      document.startViewTransition(function(){ applyTheme(next); });
+    } else {
+      applyTheme(next);
+    }
   });
 
   // follow the OS while the visitor hasn't chosen for themselves

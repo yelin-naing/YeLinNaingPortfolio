@@ -78,33 +78,6 @@
   h1{font-family:'Space Grotesk',sans-serif; font-size:clamp(28px,5vw,38px); margin:0 0 14px;}
   .sub{color:var(--ink-muted); max-width:62ch; margin:0; font-size:16.5px;}
 
-  /* Stat strip: one compact line. As four bordered tiles with 30px numbers
-     this read as a dashboard and pushed the actual projects below the fold. */
-  .stats{
-    display:flex; flex-wrap:wrap; gap:7px 20px;
-    margin-top:20px; padding-top:16px; border-top:1px solid var(--grid);
-  }
-  .stat{display:inline-flex; align-items:baseline; gap:6px;}
-  .stat-num{
-    font-family:'Space Grotesk',sans-serif; font-size:16px; font-weight:600; line-height:1;
-  }
-  .stat-label{
-    font-family:'JetBrains Mono',monospace; font-size:11px; text-transform:uppercase;
-    letter-spacing:0.07em; color:var(--ink-muted);
-  }
-
-  /* filters */
-  .filter-bar{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:6px;}
-  .chip{
-    font-family:'JetBrains Mono',monospace; font-size:12.5px; color:var(--ink);
-    border:1px solid var(--grid); background:var(--surface); border-radius:999px;
-    padding:7px 14px; cursor:pointer; line-height:1.2;
-    transition:background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
-  }
-  .chip:hover{border-color:var(--green);}
-  .chip.on{background:var(--green); border-color:var(--green); color:var(--surface);}
-  .filter-note{font-size:12.5px; color:var(--ink-muted); margin:0 0 22px;}
-
   /* The case studies are full-width and stack; the shared stylesheet styles
      them (.proj, .qcard, .pwr, .tags, .repo-btn). */
   .grid{display:block;}
@@ -152,15 +125,10 @@
   <section class="lead">
     <p class="eyebrow">-- table: projects</p>
     <h1>Everything I've built</h1>
-    <p class="sub">Each project below is real work with code behind it. Filter by category to explore the work.</p>
-
-    <div class="stats" id="stats"></div>
+    <p class="sub">Each project below is real work with code behind it.</p>
   </section>
 
   <section>
-    <div class="filter-bar" id="catBar"></div>
-    <p class="filter-note" id="filterNote">Showing all projects</p>
-
     <div class="grid" id="grid">
     <article class="proj" data-category="Data Analysis">
       <div class="proj-head">
@@ -169,9 +137,9 @@
       </div>
 
       <div class="proj-figure">
-        <button class="figbtn" type="button" data-viewer="/img/projects/world-life-expectancy-map.png" data-viewer-title="World life expectancy by country, 2021 — World Bank data">
+        <div class="figbtn">
           <img src="/img/projects/world-life-expectancy-map.png" alt="World map shaded by life expectancy by country in 2021, from green (highest) to red (lowest)" loading="lazy" width="1600" height="843">
-        </button>
+        </div>
         <p class="proj-caption">World Bank life expectancy by country, 2021 — the shape of the dataset behind the analysis.</p>
       </div>
 
@@ -213,21 +181,10 @@
       </div>
 
       <div class="proj-figure">
-        <button class="figbtn" type="button" data-viewer="/img/projects/uk-crime-1.png" data-viewer-title="Monthly burglary count with trend — UK Crime analysis">
-          <img src="/img/projects/uk-crime-1.png" alt="Line chart of monthly UK burglary counts from 2011 to 2021 with a 12-month rolling mean, showing a steady fall and a sharp drop after the March 2020 lockdown" loading="lazy" width="1932" height="656">
-        </button>
-        <div class="fig-thumbs">
-          <button class="figthumb" type="button" data-viewer="/img/projects/uk-crime-2.png" data-viewer-title="SARIMA burglary forecast — UK Crime analysis">
-            <img src="/img/projects/uk-crime-2.png" alt="SARIMA forecast chart for future burglary rates" loading="lazy">
-          </button>
-          <button class="figthumb" type="button" data-viewer="/img/projects/uk-crime-3.png" data-viewer-title="Firearms rate by police force — UK Crime analysis">
-            <img src="/img/projects/uk-crime-3.png" alt="Bar chart of firearms incidents per 100,000 people by police force, with Merseyside highlighted in fourth place" loading="lazy">
-          </button>
-          <button class="figthumb" type="button" data-viewer="/img/projects/uk-crime-4.png" data-viewer-title="Firearms vs drug offences by police force — UK Crime analysis">
-            <img src="/img/projects/uk-crime-4.png" alt="Scatterplot of firearms offences against drug offences by police force with a fitted regression line" loading="lazy">
-          </button>
+        <div class="figbtn">
+          <img src="/img/projects/uk-crime-police-car.jpg" alt="Merseyside Police patrol car on a street in Liverpool city centre" loading="lazy" width="1500" height="1125">
         </div>
-        <p class="proj-caption">Charts produced in PySpark. Tap any one to enlarge.</p>
+        <p class="proj-caption">Photo: John Bradley, CC BY-SA 3.0 (Wikimedia Commons).</p>
       </div>
 
       <div class="proj-body">
@@ -268,10 +225,10 @@
       </div>
 
       <div class="proj-figure">
-        <button class="figbtn" type="button" data-viewer="/img/projects/candidview.png" data-viewer-title="CandidView — live site">
-          <img src="/img/projects/candidview.png" alt="Screenshot of the CandidView home page, headed &quot;Sort and explain. Humans decide.&quot;" loading="lazy" width="1400" height="700">
-        </button>
-        <p class="proj-caption">The live app, built over a hackathon weekend.</p>
+        <div class="figbtn">
+          <img src="/img/projects/candidview-hackathon.jpg" alt="Close-up of hands typing code on a laptop at a hackathon" loading="lazy" width="1024" height="683">
+        </div>
+        <p class="proj-caption">Photo: hackNY, CC BY-SA 2.0 (Flickr). Built over a hackathon weekend.</p>
       </div>
 
       <div class="proj-body">
@@ -316,76 +273,6 @@
 
 <script>
 (function(){
-  // The case studies are static HTML above — this only filters them and
-  // keeps the counts in step. Category comes from data-category on each
-  // <article>, so adding a project needs no changes here.
-  var grid    = document.getElementById('grid');
-  var catBar  = document.getElementById('catBar');
-  var note    = document.getElementById('filterNote');
-  var statsEl = document.getElementById('stats');
-  if (!grid || !catBar) return;
-
-  var projects = Array.prototype.slice.call(grid.querySelectorAll('.proj'));
-  var activeCat = 'All';
-
-  function uniq(a){ return a.filter(function(v,i){ return a.indexOf(v) === i; }); }
-  var allCats = uniq(projects.map(function(el){ return el.getAttribute('data-category'); }));
-
-  function visible(){
-    return projects.filter(function(el){
-      return activeCat === 'All' || el.getAttribute('data-category') === activeCat;
-    });
-  }
-
-  function buildChips(){
-    catBar.innerHTML = '';
-    ['All'].concat(allCats).forEach(function(c){
-      var b = document.createElement('button');
-      b.type = 'button';
-      b.className = 'chip' + (c === activeCat ? ' on' : '');
-      b.textContent = c;
-      b.onclick = function(){ activeCat = c; render(); };
-      catBar.appendChild(b);
-    });
-  }
-
-  function renderStats(list){
-    var tags = [];
-    list.forEach(function(el){
-      Array.prototype.forEach.call(el.querySelectorAll('.tag'), function(t){
-        tags.push(t.textContent.trim());
-      });
-    });
-    var live = list.filter(function(el){ return el.querySelector('.live-btn'); }).length;
-    var cats = uniq(list.map(function(el){ return el.getAttribute('data-category'); }));
-    var data = [
-      [list.length, 'Project' + (list.length === 1 ? '' : 's')],
-      [uniq(tags).length, 'Tools used'],
-      [cats.length, cats.length === 1 ? 'Category' : 'Categories'],
-      [live, 'Live demo']
-    ];
-    statsEl.innerHTML = data.map(function(d){
-      return '<div class="stat"><span class="stat-num">' + d[0] +
-             '</span><span class="stat-label">' + d[1] + '</span></div>';
-    }).join('');
-  }
-
-  function render(){
-    var list = visible();
-    projects.forEach(function(el){ el.hidden = list.indexOf(el) === -1; });
-    buildChips();
-    renderStats(list);
-    note.textContent = activeCat === 'All'
-      ? 'Showing all ' + list.length + ' projects'
-      : 'Showing ' + list.length + ' project' + (list.length === 1 ? '' : 's') + ' — ' + activeCat;
-  }
-
-  render();
-})();
-</script>
-
-<script>
-(function(){
   // ===== THEME TOGGLE =====
   // No stored value means "follow the OS", so the first click has to commit
   // to the opposite of whatever is actually showing, not a fixed default.
@@ -404,11 +291,20 @@
       current() === 'dark' ? 'Switch to light theme' : 'Switch to dark theme');
   }
 
-  btn.addEventListener('click', function(){
-    var next = current() === 'dark' ? 'light' : 'dark';
+  function applyTheme(next){
     root.setAttribute('data-theme', next);
     try { localStorage.setItem('theme', next); } catch(e){}
     label();
+  }
+
+  btn.addEventListener('click', function(){
+    var next = current() === 'dark' ? 'light' : 'dark';
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!reduce && document.startViewTransition){
+      document.startViewTransition(function(){ applyTheme(next); });
+    } else {
+      applyTheme(next);
+    }
   });
 
   // follow the OS while the visitor hasn't chosen for themselves
@@ -419,63 +315,6 @@
     else if (mq.addListener) mq.addListener(onChange);
   }
   label();
-})();
-</script>
-
-<!-- IMAGE VIEWER — the case-study figures are tap-to-enlarge, same as on the
-     home page. Styles come from the shared stylesheet. -->
-<div class="viewer" id="certViewer" role="dialog" aria-modal="true" aria-labelledby="viewerTitle" hidden>
-  <div class="viewer-backdrop" data-close></div>
-  <div class="viewer-panel">
-    <div class="viewer-bar">
-      <p class="viewer-title" id="viewerTitle">Figure</p>
-      <div class="viewer-actions">
-        <a class="viewer-btn" id="viewerOpen" href="#" target="_blank" rel="noopener">Open in new tab</a>
-        <button class="viewer-close" type="button" data-close aria-label="Close">&times;</button>
-      </div>
-    </div>
-    <div class="viewer-body" id="viewerBody"></div>
-  </div>
-</div>
-
-<script>
-(function(){
-  var box   = document.getElementById('certViewer');
-  var title = document.getElementById('viewerTitle');
-  var body  = document.getElementById('viewerBody');
-  var openL = document.getElementById('viewerOpen');
-  if (!box) return;
-  var lastFocus = null;
-
-  function open(url, label){
-    lastFocus = document.activeElement;
-    title.textContent = label || 'Figure';
-    openL.setAttribute('href', url);
-    body.innerHTML = '<img src="' + url + '" alt="' + (label || 'Figure') + '">';
-    box.hidden = false;
-    document.body.classList.add('viewer-open');
-    var c = box.querySelector('.viewer-close');
-    if (c) c.focus();
-  }
-  function close(){
-    box.hidden = true;
-    body.innerHTML = '';
-    document.body.classList.remove('viewer-open');
-    if (lastFocus && lastFocus.focus) lastFocus.focus();
-  }
-
-  document.addEventListener('click', function(e){
-    var trigger = e.target.closest('[data-viewer]');
-    if (trigger){
-      e.preventDefault();
-      open(trigger.getAttribute('data-viewer'), trigger.getAttribute('data-viewer-title'));
-      return;
-    }
-    if (e.target.closest('[data-close]')) close();
-  });
-  document.addEventListener('keydown', function(e){
-    if (e.key === 'Escape' && !box.hidden) close();
-  });
 })();
 </script>
 

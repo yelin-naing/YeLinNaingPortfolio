@@ -131,8 +131,7 @@ var SITE = {
     [{t:'WHERE ',c:'kw'},{t:'FIND_IN_SET',c:'fn'},{t:'(',c:''},{t:"'SQL'",c:'str'},{t:', skills)',c:''}],
     [{t:'  AND ',c:'kw'},{t:'FIND_IN_SET',c:'fn'},{t:'(',c:''},{t:"'Excel'",c:'str'},{t:', skills)',c:''}],
     [{t:'  AND ',c:'kw'},{t:'FIND_IN_SET',c:'fn'},{t:'(',c:''},{t:"'Power BI'",c:'str'},{t:', skills)',c:''}],
-    [{t:'  AND ',c:'kw'},{t:'degree_class = ',c:''},{t:"'First Class Honours'",c:'str'}],
-    [{t:'LIMIT ',c:'kw'},{t:'1;',c:''}]
+    [{t:'  AND ',c:'kw'},{t:'degree_class = ',c:''},{t:"'First Class Honours'",c:'str'}]
   ];
 
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;

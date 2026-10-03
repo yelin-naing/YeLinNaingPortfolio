@@ -650,14 +650,15 @@
   }
 
   /* ===== PROJECTS =====
-     Two cards across: each .proj stacks its figure above the write-up so a
-     fixed-width figure doesn't fight a half-width column for space. */
+     Three cards across: each .proj stacks its figure above the write-up so a
+     fixed-width figure doesn't fight a narrow column for space. */
   #grid{
-    display:grid; grid-template-columns:1fr 1fr; gap:32px; align-items:start;
+    display:grid; grid-template-columns:repeat(3,1fr); gap:28px; align-items:start;
   }
   .proj{
-    display:grid; grid-template-columns:1fr; gap:20px; align-items:start;
-    padding:24px; border:1px solid var(--grid); border-radius:var(--radius);
+    display:flex; flex-direction:column; gap:20px;
+    padding:22px; border:1px solid var(--grid); border-radius:var(--radius);
+    min-width:0; height:100%;
   }
 
   .proj-figure{min-width:0;}
@@ -923,7 +924,10 @@
     header.site{position:sticky;}
     .nav-inner{position:relative;}
   }
-  /* project cards stack to one per row once two columns stop earning their keep */
+  /* project cards drop to two per row, then one, as the columns run out of room */
+  @media (max-width:1060px){
+    #grid{grid-template-columns:1fr 1fr;}
+  }
   @media (max-width:820px){
     #grid{grid-template-columns:1fr; gap:22px;}
     .proj-figure{max-width:520px;}

@@ -31,7 +31,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <!-- The site stylesheet carries the case-study styles (.proj, .qcard, .pwr).
      It loads first so the page-specific rules below still override it. -->
-<link rel="stylesheet" href="/css/style.css?v=8">
+<link rel="stylesheet" href="/css/style.css?v=9">
 <style>
   /* Palette comes from the shared stylesheet so dark mode reaches this page
      too; only the wider measure is page-specific. Wide enough that three
@@ -160,6 +160,7 @@
           <div class="pwr-item">
             <dt>Work</dt>
             <dd>Cleaned it in MySQL: <code>ROW_NUMBER</code> to find and remove 3 duplicates, a self join to fill 8 blank status labels, and adjacent-year interpolation for 2 missing values. Then answered seven questions with CTEs, window functions and <code>CASE</code>.</dd>
+            <!-- [PLACEHOLDER: one line about the checks run while cleaning (specifics to be supplied)] -->
           </div>
           <div class="pwr-item">
             <dt>Result</dt>
@@ -203,7 +204,7 @@
           </div>
           <div class="pwr-item">
             <dt>Work</dt>
-            <dd>Processed a 65-million-row police dataset with Apache Spark on an Azure VM — tested on a sample first, then ran the full load. Normalised by population, fitted a SARIMA forecast, and ran correlation and regression in Spark MLlib.</dd>
+            <dd>Approached it like a test: stated each claim, checked it against the data, and recorded whether it held up. Processed a 65-million-row police dataset with Apache Spark on an Azure VM — tested on a sample first, then ran the full load. Normalised by population, fitted a SARIMA forecast, and ran correlation and regression in Spark MLlib.</dd>
           </div>
           <div class="pwr-item">
             <dt>Result</dt>
@@ -212,7 +213,7 @@
         </dl>
 
         <div class="tags">
-          <span class="tag">Apache Spark</span><span class="tag">Azure</span><span class="tag">Python</span><span class="tag">Big Data</span><span class="tag">SARIMA</span><span class="tag">Jupyter Notebook</span>
+          <span class="tag">Apache Spark</span><span class="tag">Azure</span><span class="tag">Python</span><span class="tag">Big Data</span><span class="tag">SARIMA</span><span class="tag">Jupyter Notebook</span><span class="tag">Testing</span>
         </div>
       </div>
     </article>
@@ -250,6 +251,7 @@
           <div class="pwr-item">
             <dt>Work</dt>
             <dd>Built with a team at the CBC Spring 2026 Hackathon. Matches a CV against the job description semantically rather than by keyword, and attaches a plain-English reason to every score.</dd>
+            <!-- [PLACEHOLDER: testing line for CandidView (add only if one is supplied)] -->
           </div>
           <div class="pwr-item">
             <dt>Result</dt>
@@ -262,6 +264,48 @@
         </div>
       </div>
     </article>
+
+    <!-- [PLACEHOLDER: QA project, hidden until the content is supplied.
+         To publish: fill in the [BRACKETS], then delete this comment's opening and closing lines.
+    <article class="proj" data-category="Testing">
+      <div class="proj-head">
+        <span class="proj-idx mono">04</span>
+        <h3 class="proj-title">[PROJECT NAME]</h3>
+      </div>
+
+      <div class="proj-figure">
+        <div class="figbtn">
+          <img src="/img/projects/[IMAGE].png" alt="[DESCRIBE THE IMAGE]" loading="lazy">
+        </div>
+        <p class="proj-caption">[CAPTION]</p>
+      </div>
+
+      <div class="proj-body">
+        <div class="proj-cta">
+          <a class="repo-btn" href="[REPO URL]" target="_blank" rel="noopener">View repository</a>
+        </div>
+
+        <dl class="pwr">
+          <div class="pwr-item">
+            <dt>Problem</dt>
+            <dd>[WHAT WAS UNDER TEST, AND WHY]</dd>
+          </div>
+          <div class="pwr-item">
+            <dt>Work</dt>
+            <dd>[HOW IT WAS TESTED: test cases, approach, tools]</dd>
+          </div>
+          <div class="pwr-item">
+            <dt>Result</dt>
+            <dd>[WHAT WAS FOUND: bugs raised, coverage, outcome]</dd>
+          </div>
+        </dl>
+
+        <div class="tags">
+          <span class="tag">Testing</span><span class="tag">[TOOL]</span>
+        </div>
+      </div>
+    </article>
+    -->
     </div>
   </section>
 

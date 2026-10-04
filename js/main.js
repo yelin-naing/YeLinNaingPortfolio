@@ -5,7 +5,10 @@
    ============================================================ */
 var SITE = {
   linkedin: "",                    // e.g. "https://linkedin.com/in/ye-lin-naing"
-  cv:       "./YeLinNaing(Leo).pdf",  // put the PDF next to this file, or "" to hide the button
+  // Each CV appears twice (hero and Credentials). Put the PDF next to this
+  // file, or "" to hide both of its buttons.
+  cvData:   "./YeLinNaing-DataAnalyst-CV.pdf",
+  cvQa:     "./YeLinNaing-QA-CV.pdf",
 
   // Certificates. Each can be a hosted link OR a local file you drop in a
   // /certificates folder next to this page, e.g. "./certificates/ccai-2026.pdf"
@@ -49,15 +52,10 @@ var SITE = {
     else allWrap.style.display = 'none';
   }
 
-  var cv = document.getElementById('cvBtn');
-  if (cv){
-    if (SITE.cv) cv.setAttribute('href', SITE.cv);
-    else {
-      cv.style.display = 'none';
-      var note = document.querySelector('.cv-note');
-      if (note) note.textContent = 'CV available on request.';
-    }
-  }
+  wire(document.getElementById('heroCvData'), SITE.cvData);
+  wire(document.getElementById('cvBtnData'),  SITE.cvData);
+  wire(document.getElementById('heroCvQa'),   SITE.cvQa);
+  wire(document.getElementById('cvBtnQa'),    SITE.cvQa);
 })();
 (function(){
   // ===== NAVIGATION =====

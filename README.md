@@ -17,7 +17,8 @@ js/mascot3d.js          optional 3D mascot; the inline SVG lion is the fallback
 img/projects/           project screenshots and charts
 certificates/           certificate PDFs
 profile.jpg             hero photo
-YeLinNaing(Leo).pdf     CV
+YeLinNaing-DataAnalyst-CV.pdf   Data Analyst CV
+YeLinNaing-QA-CV.pdf            QA Tester CV (to be uploaded)
 CNAME                   custom domain for GitHub Pages
 ```
 
@@ -27,7 +28,8 @@ CNAME                   custom domain for GitHub Pages
 
 ```js
 var SITE = {
-  cv:       "./YeLinNaing(Leo).pdf",
+  cvData:   "./YeLinNaing-DataAnalyst-CV.pdf",
+  cvQa:     "./YeLinNaing-QA-CV.pdf",
   cert1:    "./certificates/YeLinNaingGoogleDataAnalytics.pdf",
   cert2:    "./certificates/Ye Lin Naing - MySQL for Data Analytics Certificate.pdf",
   certsAll: ""   // optional folder or Drive link

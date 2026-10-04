@@ -31,7 +31,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <!-- The site stylesheet carries the case-study styles (.proj, .qcard, .pwr).
      It loads first so the page-specific rules below still override it. -->
-<link rel="stylesheet" href="/css/style.css?v=9">
+<link rel="stylesheet" href="/css/style.css?v=10">
 <style>
   /* Palette comes from the shared stylesheet so dark mode reaches this page
      too; only the wider measure is page-specific. Wide enough that three
@@ -70,6 +70,7 @@
   /* intro */
   section{padding:44px 0;}
   .lead{padding-top:52px; padding-bottom:0;}
+  .lead .role-filter{margin-top:24px;}
   .lead + section{padding-top:26px;}
   .eyebrow{
     font-size:12.5px; text-transform:uppercase; letter-spacing:0.08em;
@@ -123,14 +124,24 @@
 <main class="wrap">
 
   <section class="lead">
-    <p class="eyebrow">-- table: projects</p>
-    <h1>Everything I've built</h1>
+    <h1>Projects</h1>
     <p class="sub">Each project below is real work with code behind it.</p>
+
+    <!-- ROLE FILTER: same control as the home page (js/role-filter.js) -->
+    <div class="role-filter" id="roleFilter" hidden>
+      <span class="role-filter-label mono" id="roleFilterLabel">Highlight for</span>
+      <div class="role-tabs" role="radiogroup" aria-labelledby="roleFilterLabel">
+        <button type="button" class="role-tab" role="radio" aria-checked="true" tabindex="0" data-role="all">All</button>
+        <button type="button" class="role-tab" role="radio" aria-checked="false" tabindex="-1" data-role="data">Data Analyst</button>
+        <button type="button" class="role-tab" role="radio" aria-checked="false" tabindex="-1" data-role="qa">QA Tester</button>
+      </div>
+      <p class="role-filter-note mono" id="roleFilterNote" aria-live="polite"></p>
+    </div>
   </section>
 
   <section>
     <div class="grid" id="grid">
-    <article class="proj" data-category="Data Analysis">
+    <article class="proj" data-category="Data Analysis" data-roles="data">
       <div class="proj-head">
         <span class="proj-idx mono">01</span>
         <h3 class="proj-title">World Life Expectancy — SQL analysis</h3>
@@ -175,7 +186,7 @@
     </article>
 
     <!-- 02 -->
-    <article class="proj" data-category="Data Analysis">
+    <article class="proj" data-category="Data Analysis" data-roles="data qa">
       <div class="proj-head">
         <span class="proj-idx mono">02</span>
         <h3 class="proj-title">UK Crime — big data analysis</h3>
@@ -219,7 +230,7 @@
     </article>
 
     <!-- 03 -->
-    <article class="proj" data-category="Web App">
+    <article class="proj" data-category="Web App" data-roles="">
       <div class="proj-head">
         <span class="proj-idx mono">03</span>
         <h3 class="proj-title">CandidView — CV screening that explains itself</h3>
@@ -267,7 +278,7 @@
 
     <!-- [PLACEHOLDER: QA project, hidden until the content is supplied.
          To publish: fill in the [BRACKETS], then delete this comment's opening and closing lines.
-    <article class="proj" data-category="Testing">
+    <article class="proj" data-category="Testing" data-roles="qa">
       <div class="proj-head">
         <span class="proj-idx mono">04</span>
         <h3 class="proj-title">[PROJECT NAME]</h3>
@@ -315,6 +326,7 @@
   <p>Built by Ye Lin Naing — <a href="/">back to the portfolio</a></p>
 </footer>
 
+<script src="/js/role-filter.js?v=1" defer></script>
 <script>
 (function(){
   // ===== THEME TOGGLE =====

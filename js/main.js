@@ -118,99 +118,6 @@ var SITE = {
   }
 })();
 (function(){
-  // ===== ABOUT: the query types itself, but only once it's on screen =====
-  // Nothing above the fold waits on this, so the hero paints immediately.
-  // Real MySQL, and the SELECT list matches the columns in the result table
-  // below. FIND_IN_SET matches a whole item in a comma-separated skills
-  // column, so 'SQL' doesn't get a false hit from 'MySQL' the way LIKE would.
-  var lines = [
-    [{t:'SELECT ',c:'kw'},{t:'name, role, location, status',c:''}],
-    [{t:'FROM ',c:'kw'},{t:'candidates',c:''}],
-    [{t:'WHERE ',c:'kw'},{t:'FIND_IN_SET',c:'fn'},{t:'(',c:''},{t:"'SQL'",c:'str'},{t:', skills)',c:''}],
-    [{t:'  AND ',c:'kw'},{t:'FIND_IN_SET',c:'fn'},{t:'(',c:''},{t:"'Excel'",c:'str'},{t:', skills)',c:''}],
-    [{t:'  AND ',c:'kw'},{t:'FIND_IN_SET',c:'fn'},{t:'(',c:''},{t:"'Power BI'",c:'str'},{t:', skills)',c:''}],
-    [{t:'  AND ',c:'kw'},{t:'degree_class = ',c:''},{t:"'First Class Honours'",c:'str'}]
-  ];
-
-  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var els = [1,2,3,4,5,6].map(function(n){ return document.getElementById('l'+n); });
-  var results = document.getElementById('results');
-  var resultMeta = document.getElementById('resultMeta');
-  var selectionWrap = document.getElementById('selectionWrap');
-
-  function renderLineHTML(parts){
-    return parts.map(function(p){
-      return p.c ? '<span class="'+p.c+'">'+p.t+'</span>' : p.t;
-    }).join('');
-  }
-
-  function showResults(){
-    resultMeta.classList.add('show');
-    setTimeout(function(){
-      results.classList.add('show');
-      selectionWrap.classList.add('show');
-    }, reduce ? 0 : 150);
-  }
-
-  // run `fn` the first time the code box scrolls into view
-  function whenVisible(fn){
-    var box = document.getElementById('codebox');
-    if (!box || !('IntersectionObserver' in window)){ fn(); return; }
-    var io = new IntersectionObserver(function(entries){
-      if (entries.some(function(e){ return e.isIntersecting; })){
-        io.disconnect();
-        fn();
-      }
-    }, {threshold:0.25});
-    io.observe(box);
-  }
-
-  if (reduce) {
-    els.forEach(function(el, i){ el.innerHTML = renderLineHTML(lines[i]); });
-    whenVisible(showResults);
-    return;
-  }
-
-  var lineIndex = 0, charIndex = 0;
-  var cursor = document.createElement('span');
-  cursor.id = 'cursor';
-  cursor.textContent = ' ';
-
-  function flatten(parts){
-    var out = [];
-    parts.forEach(function(p){ for (var i=0;i<p.t.length;i++) out.push({ch:p.t[i], c:p.c}); });
-    return out;
-  }
-
-  function typeNext(){
-    if (lineIndex >= lines.length){
-      cursor.remove();
-      showResults();
-      return;
-    }
-    var el = els[lineIndex];
-    var flat = flatten(lines[lineIndex]);
-    if (charIndex === 0) el.innerHTML = '';
-    if (charIndex < flat.length){
-      var seg = flat[charIndex];
-      var span = document.createElement('span');
-      if (seg.c) span.className = seg.c;
-      span.textContent = seg.ch;
-      el.appendChild(span);
-      el.appendChild(cursor);
-      charIndex++;
-      setTimeout(typeNext, 14);
-    } else {
-      cursor.remove();
-      lineIndex++;
-      charIndex = 0;
-      setTimeout(typeNext, 120);
-    }
-  }
-  whenVisible(function(){ setTimeout(typeNext, 220); });
-})();
-
-(function(){
   // scroll progress + nav shadow
   var bar = document.getElementById('scrollProgress');
   var nav = document.querySelector('header.site');
@@ -238,8 +145,15 @@ var SITE = {
     var io = new IntersectionObserver(function(entries){
       entries.forEach(function(entry){
         if (entry.isIntersecting){
-          entry.target.classList.add('in');
-          io.unobserve(entry.target);
+          var el = entry.target;
+          el.classList.add('in');
+          io.unobserve(el);
+          // The stagger delay is only for the entrance. Left in place it would
+          // also hold back later changes, like the role filter's dimming.
+          el.addEventListener('transitionend', function clear(){
+            el.style.transitionDelay = '';
+            el.removeEventListener('transitionend', clear);
+          });
         }
       });
     }, {threshold:0.12, rootMargin:'0px 0px -60px 0px'});

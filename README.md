@@ -12,7 +12,8 @@ to behave exactly as they do in production.
 index.html              the portfolio itself
 projects.html           "See all projects" dashboard, with filters and charts
 css/style.css           all styling for index.html (projects.html is self-contained)
-js/main.js              nav, scroll reveals, role matcher, image viewer
+js/main.js              nav, scroll reveals, image viewer
+js/role-filter.js       All / Data Analyst / QA Tester highlight (home + /projects/)
 js/mascot3d.js          optional 3D mascot; the inline SVG lion is the fallback
 img/projects/           project screenshots and charts
 certificates/           certificate PDFs

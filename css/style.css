@@ -233,7 +233,8 @@
   .wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px;}
   section{padding:44px 0;}
   .eyebrow{
-    font-size:12.5px; text-transform:uppercase; letter-spacing:0.08em;
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px; text-transform:uppercase; letter-spacing:0.08em;
     color:var(--green); font-weight:600; margin:0 0 14px;
   }
 
@@ -297,13 +298,47 @@
   }
   .hero-photo img{width:100%; height:100%; object-fit:cover; display:block;}
 
+  /* two-line snippet: a query, then the check that proves it */
+  .hero-snippet{
+    padding:12px 4px; margin:0 0 26px; text-align:left;
+    box-shadow:0 10px 26px -16px var(--shadow-strong);
+  }
+  .hero-snippet .code-line{font-size:13px; line-height:1.8;}
+  .hero-snippet .line-content{padding-left:16px;}
+  .pass{color:var(--code-green); font-weight:600;}
+
+  /* ===== ROLE FILTER ===== */
+  .role-filter{
+    display:flex; flex-wrap:wrap; align-items:center; gap:10px 14px;
+    padding:18px 0 4px; border-top:1px solid var(--grid);
+  }
+  .role-filter-label{font-size:12px; color:var(--ink-muted); text-transform:uppercase; letter-spacing:0.08em;}
+  .role-tabs{
+    display:inline-flex; padding:3px; gap:2px;
+    background:var(--paper); border:1px solid var(--grid); border-radius:10px;
+  }
+  .role-tab{
+    font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:14px;
+    color:var(--ink-muted); background:transparent; border:0; border-radius:7px;
+    padding:8px 16px; cursor:pointer; white-space:nowrap;
+  }
+  .role-tab:hover{color:var(--ink);}
+  .role-tab[aria-checked="true"]{
+    background:var(--surface); color:var(--green);
+    box-shadow:0 1px 3px var(--shadow-soft);
+  }
+  @media (prefers-reduced-motion: no-preference){
+    .role-tab{transition:background 0.2s ease, color 0.2s ease;}
+  }
+  .role-filter-note{
+    flex:1 1 100%; margin:0; min-height:1.6em;
+    font-size:12px; color:var(--ink-muted);
+  }
+
   .section-lede{
     color:var(--ink-muted); max-width:62ch; margin:-6px 0 26px; font-size:15.5px;
   }
 
-  .filetab{
-    font-size:12.5px; color:var(--ink-muted); margin-bottom:8px; padding-left:4px;
-  }
   .code-box{
     background:var(--code-bg); color:var(--code-text);
     border-radius:var(--radius);
@@ -324,73 +359,13 @@
   .str{color:var(--code-amber);}
   .cm{color:var(--code-muted);}
   .fn{color:var(--code-fn);}
-  #cursor{display:inline-block; width:8px; background:var(--code-green); margin-left:2px;}
-  @media (prefers-reduced-motion: no-preference){
-    #cursor{animation:blink 1s step-end infinite;}
-  }
-  @keyframes blink{50%{opacity:0;}}
-
-  .results{
-    margin-top:18px;
-    border:1px solid var(--grid); border-radius:var(--radius);
-    background:var(--surface); overflow:hidden;
-    opacity:0; transform:translateY(6px);
-  }
-  .results.show{
-    opacity:1; transform:translateY(0);
-  }
-  @media (prefers-reduced-motion: no-preference){
-    .results{transition:opacity 0.5s ease, transform 0.5s ease;}
-  }
-  .results table{width:100%; border-collapse:collapse;}
-  .results th{
-    text-align:left; font-family:'JetBrains Mono',monospace; font-size:11.5px;
-    text-transform:uppercase; letter-spacing:0.06em; color:var(--ink-muted);
-    padding:12px 16px; border-bottom:1px solid var(--grid); background:var(--green-soft);
-  }
-  .results td{
-    padding:16px; font-size:15.5px; border-bottom:none; vertical-align:top;
-  }
-  .results td strong{font-family:'Space Grotesk',sans-serif; font-size:18px;}
-
-  .result-meta{
-    font-size:12.5px; color:var(--ink-muted); margin:14px 0 0; padding-left:2px;
-    opacity:0; transform:translateY(4px);
-  }
-  .result-meta.show{opacity:1; transform:translateY(0);}
-  @media (prefers-reduced-motion: no-preference){
-    .result-meta{transition:opacity 0.4s ease, transform 0.4s ease;}
-  }
-  .selection-wrap{position:relative;}
-  .selection-wrap.show::before{
-    content:''; position:absolute; inset:-5px; border-radius:calc(var(--radius) + 5px);
-    pointer-events:none;
-    background-image:
-      linear-gradient(90deg, var(--green) 50%, transparent 50%),
-      linear-gradient(90deg, var(--green) 50%, transparent 50%),
-      linear-gradient(0deg, var(--green) 50%, transparent 50%),
-      linear-gradient(0deg, var(--green) 50%, transparent 50%);
-    background-repeat:repeat-x, repeat-x, repeat-y, repeat-y;
-    background-size:8px 2px, 8px 2px, 2px 8px, 2px 8px;
-    background-position:0 0, 0 100%, 0 0, 100% 0;
-  }
-  @media (prefers-reduced-motion: no-preference){
-    .selection-wrap.show::before{animation:marching 0.8s linear infinite;}
-  }
-  @keyframes marching{to{background-position:8px 0, -8px 100%, 0 -8px, 100% 8px;}}
-
   /* about */
   h2.section-title{
     font-family:'Space Grotesk',sans-serif; font-size:28px; margin:0 0 18px;
   }
-  .about-grid{
-    display:grid; grid-template-columns:1fr; gap:30px; align-items:start;
+  .about-meta{
+    font-size:13px; color:var(--green); margin:0 0 18px; letter-spacing:0.01em;
   }
-  /* Grid and flex children default to min-width:auto, so a `white-space:pre`
-     code line can push this column wider than the screen — and because the
-     column grows, the code box's own overflow-x never engages. min-width:0
-     lets it shrink back to the container and scroll (or wrap) instead. */
-  .about-query{margin-top:4px; min-width:0;}
   .avatar-fallback{
     display:none; align-items:center; justify-content:center;
     width:100%; height:100%; font-family:'Space Grotesk',sans-serif;
@@ -399,40 +374,35 @@
   .about-text{max-width:62ch; color:var(--ink); font-size:16.5px;}
   .about-text + .about-text{margin-top:12px;}
 
-  /* schema table (skills) */
-  .schema{
-    width:100%; border-collapse:collapse; margin-top:8px;
-    table-layout:fixed;
+  /* ===== SKILLS: two groups side by side, stacked on a phone ===== */
+  .skill-groups{
+    display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:20px; align-items:start;
   }
-  .schema thead th{
-    font-family:'JetBrains Mono',monospace; font-size:11.5px; text-transform:uppercase;
-    letter-spacing:0.06em; color:var(--ink-muted); text-align:left;
-    padding:10px 14px; border-bottom:1px solid var(--ink);
+  .skill-group{
+    border:1px solid var(--grid); border-radius:12px;
+    background:var(--surface); padding:20px 22px 8px;
   }
-  .schema tbody td{
-    padding:14px; border-bottom:1px solid var(--grid); font-size:15px; vertical-align:top;
-    overflow-wrap:break-word;
+  .skill-group-title{
+    font-family:'Space Grotesk',sans-serif; font-size:18px; margin:0 0 6px;
   }
-  /* hover accent drawn with an inset shadow on the first cell — no positioned
-     rows, which is what was throwing the column widths out of alignment */
-  .schema tbody td:first-child{box-shadow:inset 0 0 0 0 var(--green);}
-  @media (prefers-reduced-motion: no-preference){
-    .schema tbody td{transition:background 0.25s ease;}
-    .schema tbody td:first-child{transition:background 0.25s ease, box-shadow 0.25s ease;}
+  .skill-list{list-style:none; margin:0; padding:0;}
+  .skill{padding:12px 0; border-top:1px solid var(--grid);}
+  .skill:first-child{border-top:0;}
+  .skill-head{display:flex; align-items:baseline; justify-content:space-between; gap:12px;}
+  .skill-name{font-weight:600; font-size:15px;}
+  .skill-level{
+    display:inline-flex; align-items:center; gap:8px; flex:0 0 auto;
+    font-size:11.5px; color:var(--ink-muted);
   }
-  .schema tbody tr:hover td{background:var(--green-soft);}
-  .schema tbody tr:hover td:first-child{box-shadow:inset 3px 0 0 0 var(--green);}
-  .col-no{width:52px;}
-  .col-field{width:148px;}
-  .col-type{width:172px;}
-  .field-name{font-family:'JetBrains Mono',monospace; font-weight:600; font-size:14.5px;}
-  .field-type{
-    font-family:'JetBrains Mono',monospace; font-size:12.5px; color:var(--green);
-    background:var(--green-soft); padding:3px 8px; border-radius:5px; white-space:nowrap;
-  }
-  .field-desc{color:var(--ink-muted);}
-  .field-no{
-    font-family:'JetBrains Mono',monospace; font-size:12.5px; color:var(--ink-muted);
+  /* three-step meter: Learning fills one, Working two, Strong three */
+  .meter{display:inline-flex; gap:3px;}
+  .meter i{display:block; width:12px; height:5px; border-radius:2px; background:var(--grid);}
+  .skill[data-level="1"] .meter i:nth-child(-n+1),
+  .skill[data-level="2"] .meter i:nth-child(-n+2),
+  .skill[data-level="3"] .meter i{background:var(--green);}
+  .skill-desc{margin:4px 0 0; font-size:14px; color:var(--ink-muted); line-height:1.55;}
+  .skill-key{
+    font-size:11.5px; color:var(--ink-muted); margin:16px 0 0; line-height:1.7;
   }
 
   .see-more{margin-top:28px; text-align:center;}
@@ -452,7 +422,7 @@
     list-style:none; margin:0; padding:0; align-items:stretch;
   }
   .cert-grid{
-    display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); gap:16px;
+    display:grid; grid-template-columns:repeat(auto-fit, minmax(280px,1fr)); gap:16px;
   }
   .lang-grid{
     display:grid; grid-template-columns:repeat(auto-fit, minmax(280px,1fr)); gap:16px;
@@ -569,34 +539,6 @@
   .verdict-list li.yes .mark{color:var(--green);}
   .verdict-list li.no .mark{color:var(--amber);}
 
-  /* skills chart */
-  .chart-wrap{margin-top:36px;}
-  .chart-label{
-    font-size:12.5px; color:var(--ink-muted); margin:0 0 16px; padding-left:2px;
-  }
-  .bar-row{
-    display:grid; grid-template-columns:96px 1fr 74px; align-items:center; gap:14px;
-    margin-bottom:14px;
-  }
-  .bar-name{font-size:13px; color:var(--ink);}
-  .bar-track{
-    height:8px; background:var(--grid); border-radius:4px; overflow:hidden;
-  }
-  .bar-fill{
-    height:100%; width:0; background:var(--green); border-radius:4px;
-  }
-  @media (prefers-reduced-motion: no-preference){
-    .bar-fill{transition:width 1s cubic-bezier(.16,1,.3,1);}
-  }
-  .chart-wrap.in .bar-fill{width:var(--w);}
-  @media (prefers-reduced-motion: reduce){
-    .bar-fill{width:var(--w) !important;}
-  }
-  .bar-pct{font-size:11.5px; color:var(--ink-muted); text-align:right;}
-  .chart-key{
-    font-size:11.5px; color:var(--ink-muted); margin:16px 0 0; line-height:1.7;
-  }
-
   /* cv download button */
   .cv-btn{
     display:inline-flex; align-items:center; gap:10px;
@@ -661,6 +603,15 @@
     text-decoration:none; margin-top:12px;
   }
   .pcard-more:hover{text-decoration:underline;}
+
+  /* role filter: matching work keeps full strength, the rest steps back */
+  @media (prefers-reduced-motion: no-preference){
+    .pcard, .proj, .skill{
+      transition:opacity 0.3s ease, border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+    }
+  }
+  .role-dim, .reveal.in.role-dim{opacity:0.38;}
+  .pcard.role-match, .proj.role-match{border-color:var(--green);}
   @media (max-width:860px){
     .pgrid{grid-template-columns:1fr 1fr;}
   }
@@ -821,7 +772,7 @@
   .edu-row:hover{background:var(--surface);}
   .edu-row:hover .edu-badge{transform:scale(1.06);}
   .edu-inst{font-family:'Space Grotesk',sans-serif; font-size:19px;}
-  .edu-detail{color:var(--ink-muted); font-size:14.5px;}
+  .edu-detail{font-family:'JetBrains Mono',monospace; color:var(--ink-muted); font-size:12.5px;}
   .edu-badge{
     font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--green);
     background:var(--green-soft); padding:4px 10px; border-radius:5px;
@@ -892,7 +843,7 @@
   }
   .exp-row:hover{background:var(--paper);}
   .exp-title{font-family:'Space Grotesk',sans-serif; font-size:19px; margin:0 0 4px;}
-  .exp-meta{color:var(--ink-muted); font-size:14px; margin:0 0 12px;}
+  .exp-meta{font-family:'JetBrains Mono',monospace; color:var(--ink-muted); font-size:12.5px; margin:0 0 12px;}
   .exp-points{margin:0; padding-left:18px;}
   .exp-points li{font-size:15px; color:var(--ink); margin-bottom:6px;}
   .exp-points li::marker{color:var(--green);}
@@ -902,11 +853,21 @@
   }
   /* footer / contact */
   footer{padding:44px 0 64px;}
-  .contact-results a{
-    text-decoration:none; color:var(--code-green); font-weight:500;
+  .contact-list{list-style:none; margin:0; padding:0; max-width:560px;}
+  .contact-item{
+    display:grid; grid-template-columns:20px 76px 1fr; align-items:center; gap:14px;
+    padding:14px 4px; border-bottom:1px solid var(--grid);
+    text-decoration:none; color:var(--ink);
   }
-  .contact-results a:hover{text-decoration:underline;}
-  .contact-results .code-line .line-content{color:var(--code-text);}
+  .contact-list li:first-child .contact-item{border-top:1px solid var(--grid);}
+  .contact-icon{display:flex; color:var(--green);}
+  .contact-icon svg{width:18px; height:18px;}
+  .contact-label{font-size:11.5px; text-transform:uppercase; letter-spacing:0.06em; color:var(--ink-muted);}
+  .contact-value{font-weight:500; overflow-wrap:anywhere;}
+  @media (prefers-reduced-motion: no-preference){
+    .contact-value{transition:color 0.2s ease;}
+  }
+  .contact-item:hover .contact-value{color:var(--green);}
   .foot-note{
     margin-top:28px; font-size:13px; color:var(--ink-muted); text-align:center;
   }
@@ -971,34 +932,13 @@
     .code-line{font-size:12px; white-space:pre-wrap; overflow-wrap:break-word;}
     .line-no{width:24px; padding-right:10px;}
     .line-content{padding-right:10px; min-width:0;}
-    .results table, .results thead, .results tbody, .results th, .results td, .results tr{display:block;}
-    .results thead{display:none;}
-    .results td{border-bottom:1px solid var(--grid);}
-    .results td:before{
-      content:attr(data-label); display:block; font-family:'JetBrains Mono',monospace;
-      font-size:11px; text-transform:uppercase; color:var(--ink-muted); margin-bottom:4px;
-    }
-    /* The stacked-card fallback turned each skill into eight lines (a label
-       and a value per cell), making this table alone a fifth of the page on
-       a phone. Lay each skill out as name + type on one row with the note
-       underneath, and drop the row number — it carries no information. */
-    .schema thead, .schema colgroup{display:none;}
-    .schema{table-layout:auto;}
-    .schema, .schema tbody{display:block; width:100%;}
-    .schema tbody td:first-child, .schema tbody tr:hover td:first-child{box-shadow:none;}
-    .schema tbody tr:hover td{background:transparent;}
-    .schema tr{
-      display:grid; grid-template-columns:1fr auto; gap:5px 10px;
-      align-items:baseline; padding:12px 0; border-bottom:1px solid var(--grid);
-    }
-    /* must out-specify the base `.schema tbody td` rule, or its padding and
-       row border survive and draw lines through the middle of each card */
-    .schema tbody td{display:block; padding:0; border-bottom:none;}
-    .schema tbody td:before{display:none;}
-    .schema tbody td:nth-child(1){display:none;}
-    .schema tbody td:nth-child(3){text-align:right;}
-    .schema tbody td:nth-child(4){grid-column:1 / -1;}
-    .bar-row{grid-template-columns:80px 1fr 66px; gap:8px;}
+    .skill-groups{grid-template-columns:1fr;}
+    .skill-group{padding:18px 18px 6px;}
+    .role-filter{justify-content:center; text-align:center;}
+    .role-tabs{display:grid; grid-template-columns:repeat(3,1fr); width:100%;}
+    .role-tab{padding:9px 6px; font-size:13.5px;}
+    .contact-item{grid-template-columns:20px 1fr; gap:2px 12px;}
+    .contact-icon{grid-row:span 2;}
     .builder{padding:16px;}
     .chip{font-size:12px; padding:6px 12px;}
     .cv-strip{padding:18px; gap:16px;}

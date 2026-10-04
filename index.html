@@ -86,13 +86,6 @@
         <h1 class="hero-name">Ye Lin Naing (Leo) <span class="hero-dash">—</span> <span class="hero-role">Data&nbsp;Analyst &amp;&nbsp;QA&nbsp;Tester</span></h1>
         <p class="hero-stack mono">SQL · Excel · Power BI · Software Testing · Newcastle,&nbsp;UK</p>
 
-        <!-- Both roles in two lines: the query from the World Life Expectancy
-             clean-up (all 8 blank Status labels were filled), then the check. -->
-        <div class="code-box mono hero-snippet">
-          <div class="code-line"><span class="line-content"><span class="kw">SELECT</span> <span class="fn">COUNT</span>(*) <span class="kw">FROM</span> worldlifexpectancy <span class="kw">WHERE</span> Status = <span class="str">''</span>;</span></div>
-          <div class="code-line"><span class="line-content"><span class="kw">assert</span> blank_status == 0 &nbsp;<span class="pass">✓ passed</span></span></div>
-        </div>
-
         <div class="hero-actions">
           <a class="btn btn-primary" href="#projects">
             View projects
@@ -138,7 +131,7 @@
   <!-- PROJECTS -->
   <section id="projects">
     <h2 class="section-title reveal">Projects</h2>
-    <p class="section-lede reveal">Three projects, newest analysis first. Each one has the code behind it on GitHub.</p>
+    <p class="section-lede reveal">Two projects, newest analysis first. Each one has the code behind it on GitHub.</p>
 
     <!-- 01 -->
     <div class="pgrid">
@@ -179,24 +172,6 @@
         </div>
       </article>
 
-      <article class="pcard reveal" data-roles="">
-        <a class="pcard-thumb" href="/projects/" aria-label="CandidView — full case study">
-          <img src="./img/projects/candidview.png" alt="Screenshot of the CandidView home page" loading="lazy" width="1400" height="700">
-        </a>
-        <div class="pcard-body">
-          <div class="pcard-head">
-            <h3>CandidView</h3>
-            <span class="cat-badge mono">Web App</span>
-          </div>
-          <p class="pcard-result">An AI CV screener that explains every match instead of rejecting on keywords. Built with a team over a hackathon weekend.</p>
-          <!-- [PLACEHOLDER: testing line for CandidView (add only if one is supplied)] -->
-          <div class="pcard-links">
-            <a class="repo-btn" href="https://github.com/yelin-naing/CandidView" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>View repository</a>
-            <a class="live-btn" href="https://candid-view.vercel.app/" target="_blank" rel="noopener">Open live app &#8599;</a>
-          </div>
-          <a class="pcard-more" href="/projects/">Full case study &rarr;</a>
-        </div>
-      </article>
 
       <!-- [PLACEHOLDER: QA project, hidden until the content is supplied.
            To publish: fill in the [BRACKETS], then delete this comment's opening and closing lines.

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DS0Z04BKD5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-DS0Z04BKD5');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>World Life Expectancy — SQL Analysis | Ye Lin Naing</title>
+<meta name="description" content="Case study: cleaning a 2,941-row global life expectancy dataset in MySQL and answering seven questions about life expectancy, wealth and health.">
+<meta name="author" content="Ye Lin Naing">
+<link rel="canonical" href="https://yelinn.com/projects/world-life-expectancy/">
+<meta name="theme-color" content="#FAFAF7">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Ye Lin Naing">
+<meta property="og:url" content="https://yelinn.com/projects/world-life-expectancy/">
+<meta property="og:title" content="World Life Expectancy — SQL Analysis | Ye Lin Naing">
+<meta property="og:description" content="Case study: cleaning a 2,941-row global life expectancy dataset in MySQL and answering seven questions about life expectancy, wealth and health.">
+<meta property="og:image" content="https://yelinn.com/profile.jpg">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="World Life Expectancy — SQL Analysis | Ye Lin Naing">
+<meta name="twitter:description" content="Case study: cleaning a 2,941-row global life expectancy dataset in MySQL and answering seven questions about life expectancy, wealth and health.">
+<meta name="twitter:image" content="https://yelinn.com/profile.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<!-- ?v= is bumped when the stylesheet or script changes, so returning
+     visitors don't pair new HTML with a cached old file. -->
+<link rel="stylesheet" href="/css/style.css?v=11">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <nav class="container nav" aria-label="Main">
+    <a class="brand" href="/">Ye Lin Naing</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>Menu
+    </button>
+    <ul class="nav-links" id="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/projects/" aria-current="page">Projects</a></li>
+        <li><a href="/#about">About</a></li>
+        <li><a href="/#skills">Skills</a></li>
+        <li><a href="/#experience">Experience</a></li>
+        <li><a href="/#education">Education</a></li>
+        <li><a href="/#certifications">Certifications</a></li>
+        <li><a href="/#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="main">
+  <div class="container page-head">
+    <p class="breadcrumb"><a href="/projects/">&larr; All projects</a></p>
+    <p class="meta-label">Data Analysis · SQL</p>
+    <h1>World Life Expectancy — SQL Analysis</h1>
+    <p class="lede">Cleaning a global health dataset in MySQL, then using it to answer seven questions about how life expectancy changed between 2007 and 2022.</p>
+  </div>
+
+  <div class="container case-layout">
+    <article class="case-body">
+      <h2 id="overview">Overview</h2>
+      <p>A SQL-only project in MySQL. I started with a raw global health dataset, found and fixed the problems that would have distorted the results, and then used the cleaned data to answer seven questions about life expectancy, wealth and health.</p>
+
+      <h2 id="question">The questions</h2>
+      <ol>
+        <li>Which countries have the highest and lowest life expectancy?</li>
+        <li>Is global life expectancy improving over time?</li>
+        <li>How do developed and developing countries compare?</li>
+        <li>Which countries improved the most over the period?</li>
+        <li>Do wealthier countries live longer?</li>
+        <li>Did any countries see a sudden year-on-year change?</li>
+        <li>Does average BMI relate to life expectancy?</li>
+      </ol>
+
+      <h2 id="dataset">Dataset</h2>
+      <p>The World Life Expectancy dataset from the AnalystBuilder SQL course: 2,941 rows covering 193 countries from 2007 to 2022. Each row is one country in one year, with life expectancy, GDP, adult mortality, years of schooling, average BMI and a Developed or Developing status.</p>
+      <p class="note">This is a teaching dataset rather than an official statistics release, so the figures below describe this data and should not be quoted as official national statistics.</p>
+
+      <h2 id="tools">Tools</h2>
+      <p>MySQL, using window functions (<code>ROW_NUMBER</code>, <code>LAG</code>), common table expressions, self joins, subqueries, <code>CASE</code> statements and aggregate functions.</p>
+
+      <h2 id="method">Data preparation and method</h2>
+      <p>I checked the raw table for three kinds of problem before running any analysis.</p>
+      <h3>1. Duplicate records</h3>
+      <p>Some country and year combinations appeared more than once, which would double-count those years. I numbered the rows within each country–year pair and deleted every row after the first, which removed 3 duplicates. I then compared the row count against a backup copy of the table to confirm that only those rows had gone.</p>
+<pre class="code-block"><code>DELETE FROM worldlifexpectancy
+WHERE Row_ID IN (
+  SELECT Row_ID FROM (
+    SELECT Row_ID,
+           ROW_NUMBER() OVER (PARTITION BY CONCAT(Country, Year)
+                              ORDER BY CONCAT(Country, Year)) AS row_num
+    FROM worldlifexpectancy
+  ) AS numbered
+  WHERE row_num &gt; 1
+);</code></pre>
+      <h3>2. Missing status labels</h3>
+      <p>Eight rows had no Developed or Developing label. A country's status doesn't change from year to year in this data, so I used a self join to copy the label from the same country's other rows.</p>
+      <h3>3. Missing life expectancy values</h3>
+      <p>Two rows had no life expectancy figure. Rather than delete them or use an overall average, I estimated each one as the midpoint of the same country's previous and following years, again with a self join.</p>
+      <h3>Analysis</h3>
+      <p>With the data cleaned, I wrote one or more queries for each question: averages by country and year, a comparison by status, the change between each country's first and last year, and year-on-year changes using <code>LAG</code> to spot sudden jumps or drops.</p>
+
+      <h2 id="findings">Key findings</h2>
+      <figure class="figure">
+        <figure class="mini-chart" aria-label="Bar chart of average life expectancy in years: developed countries 79.2, developing countries 66.8, global average 66.8 in 2007 and 71.6 in 2022.">
+    <p class="mini-chart-title">Average life expectancy (years)</p>
+    <div class="bar-row"><span class="bar-label">Developed countries</span><span class="bar-track"><span class="bar-fill" style="--w:93.2%"></span></span><span class="bar-value">79.2</span></div>
+    <div class="bar-row"><span class="bar-label">Developing countries</span><span class="bar-track"><span class="bar-fill alt" style="--w:78.6%"></span></span><span class="bar-value">66.8</span></div>
+    <div class="bar-row"><span class="bar-label">Global average, 2007</span><span class="bar-track"><span class="bar-fill alt" style="--w:78.6%"></span></span><span class="bar-value">66.8</span></div>
+    <div class="bar-row"><span class="bar-label">Global average, 2022</span><span class="bar-track"><span class="bar-fill" style="--w:84.2%"></span></span><span class="bar-value">71.6</span></div>
+    <figcaption class="mini-chart-note">From my SQL output. Bars start at zero.</figcaption>
+  </figure>
+      </figure>
+      <div class="finding"><strong>Life expectancy rose overall</strong><p>The global average went from 66.8 years in 2007 to 71.6 years in 2022. There is a clear dip in 2020, which lines up with the COVID-19 pandemic.</p></div>
+      <div class="finding"><strong>A large gap between developed and developing countries</strong><p>Developed countries averaged 79.2 years against 66.8 for developing countries, with less than half the adult mortality rate.</p></div>
+      <div class="finding"><strong>Biggest improvement: Zimbabwe</strong><p>Zimbabwe gained 21 years of life expectancy over the period, the largest increase in the dataset. Japan and Sweden had the highest averages, at 82.5 years.</p></div>
+      <div class="finding"><strong>Wealth helps, up to a point</strong><p>Countries with higher average GDP tended to have longer life expectancy, but the gain flattened at higher income levels.</p></div>
+      <div class="finding"><strong>A pattern that needed a second look</strong><p>Countries with a higher average BMI also had longer life expectancy. Those countries also tended to be wealthier, so GDP is the more likely explanation than BMI itself.</p></div>
+
+      <div class="data-table-wrap">
+        <table class="data-table">
+          <caption>Developed and developing countries compared (averages across all years)</caption>
+          <thead><tr><th scope="col">Measure</th><th scope="col" class="num">Developed</th><th scope="col" class="num">Developing</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Life expectancy (years)</th><td class="num">79.2</td><td class="num">66.8</td></tr>
+            <tr><th scope="row">Adult mortality</th><td class="num">79.7</td><td class="num">182.1</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Why this matters</h3>
+      <p>The same routine — check for duplicates and gaps, record each fix, confirm the row counts, then compare groups — applies to any dataset a business reports from, such as sales or customer records. Cleaning first is what makes the comparisons trustworthy.</p>
+
+      <h2 id="limitations">Limitations and what I learned</h2>
+      <ul>
+        <li>The analysis is descriptive. The GDP and BMI patterns come from comparing averages, not from a statistical model, so they show associations rather than causes.</li>
+        <li>Two life expectancy values are estimates, and status labels were filled on the assumption that a country's status doesn't change.</li>
+        <li>The data comes from a course, so the results describe this dataset rather than official statistics.</li>
+      </ul>
+      <p>The main lesson was to treat cleaning as part of the analysis: keeping a backup and checking counts after every change made each fix easy to verify. The BMI result also taught me to look for a third factor before accepting a pattern at face value.</p>
+
+      <h2 id="links">Links</h2>
+      <ul>
+        <li><a href="https://github.com/yelin-naing/world-life-expectancy-analysis" target="_blank" rel="noopener">GitHub repository</a></li>
+        <li><a href="https://github.com/yelin-naing/world-life-expectancy-analysis/blob/main/worldLifeCleaning.sql" target="_blank" rel="noopener">Data cleaning queries (worldLifeCleaning.sql)</a></li>
+        <li><a href="https://github.com/yelin-naing/world-life-expectancy-analysis/blob/main/worldLifeEDA.sql" target="_blank" rel="noopener">Analysis queries (worldLifeEDA.sql)</a></li>
+      </ul>
+      <nav class="case-nav" aria-label="More projects">
+        <span></span>
+        <a class="card next" href="/projects/uk-crime/"><small>Next project &rarr;</small>UK Crime — Big Data Analysis</a>
+      </nav>
+    </article>
+
+    <aside class="card case-aside" aria-label="Project summary">
+      <dl class="facts">
+          <div><dt>Category</dt><dd>Data Analysis · SQL</dd></div>
+          <div><dt>Dataset</dt><dd>2,941 rows · 193 countries · 2007–2022</dd></div>
+          <div><dt>Tools</dt><dd>MySQL: window functions, CTEs, self joins, subqueries</dd></div>
+      </dl>
+      <a class="btn btn-primary" href="https://github.com/yelin-naing/world-life-expectancy-analysis" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>View on GitHub</a>
+    </aside>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <p>&copy; <span id="year">2026</span> Ye Lin Naing. All rights reserved.</p>
+    <ul class="footer-links">
+      <li><a href="https://github.com/yelin-naing" rel="noopener" target="_blank">GitHub</a></li>
+      <li><a href="https://www.linkedin.com/in/yelinnaing/" rel="noopener" target="_blank">LinkedIn</a></li>
+      <li><a href="mailto:yelinnaing.job@gmail.com">Email</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script src="/js/main.js?v=11" defer></script>
+</body>
+</html>

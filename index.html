@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-DS0Z04BKD5"></script>
 <script>
@@ -8,510 +8,357 @@
   gtag('js', new Date());
   gtag('config', 'G-DS0Z04BKD5');
 </script>
-<script>
-  // Applied before the page paints: a stored choice would otherwise arrive
-  // after first paint and flash the wrong theme.
-  (function(){
-    try{
-      var t = localStorage.getItem('theme');
-      if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t);
-    }catch(e){}
-  })();
-</script>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Data analyst and QA tester in Newcastle upon Tyne. SQL, Excel, Power BI, data validation and software testing. First Class Honours in Computing. Open to data analyst and QA roles in the UK.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ye Lin Naing — Data Analyst Portfolio</title>
+<meta name="description" content="Ye Lin Naing is a Computing graduate (First Class Honours, Northumbria University) looking for entry-level data analyst and BI analyst roles. SQL, Python and big data projects with code on GitHub.">
 <meta name="author" content="Ye Lin Naing">
-<meta name="theme-color" content="#12171C">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect x='6' y='6' width='88' height='88' rx='20' fill='%23000000'/%3E%3Crect x='23' y='56' width='15' height='26' rx='3' fill='%23FFFFFF'/%3E%3Crect x='43' y='40' width='15' height='42' rx='3' fill='%23FFFFFF'/%3E%3Crect x='63' y='22' width='15' height='60' rx='3' fill='%23FFFFFF'/%3E%3C/svg%3E">
 <link rel="canonical" href="https://yelinn.com/">
+<meta name="theme-color" content="#FAFAF7">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="Ye Lin Naing">
 <meta property="og:url" content="https://yelinn.com/">
-<meta property="og:title" content="Ye Lin Naing (Leo) — Data Analyst &amp; QA Tester">
-<meta property="og:description" content="Data analyst and QA tester in Newcastle upon Tyne. SQL, Excel, Power BI, data validation and software testing. First Class Honours in Computing. Open to data analyst and QA roles in the UK.">
+<meta property="og:title" content="Ye Lin Naing — Data Analyst Portfolio">
+<meta property="og:description" content="Ye Lin Naing is a Computing graduate (First Class Honours, Northumbria University) looking for entry-level data analyst and BI analyst roles. SQL, Python and big data projects with code on GitHub.">
 <meta property="og:image" content="https://yelinn.com/profile.jpg">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Ye Lin Naing — Data Analyst Portfolio">
+<meta name="twitter:description" content="Ye Lin Naing is a Computing graduate (First Class Honours, Northumbria University) looking for entry-level data analyst and BI analyst roles. SQL, Python and big data projects with code on GitHub.">
 <meta name="twitter:image" content="https://yelinn.com/profile.jpg">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Ye Lin Naing (Leo) — Data Analyst &amp; QA Tester">
-<meta name="twitter:description" content="Data analyst and QA tester in Newcastle upon Tyne. SQL, Excel, Power BI, data validation and software testing. First Class Honours in Computing. Open to data analyst and QA roles in the UK.">
-<title>Ye Lin Naing (Leo) — Data Analyst &amp; QA Tester</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<!-- ?v= is bumped whenever css/style.css or js/main.js changes structurally.
-     Without it, a returning visitor pairs the new HTML with a cached old
-     stylesheet and gets an unstyled page until their cache expires. -->
-<link rel="stylesheet" href="css/style.css?v=10">
-<!-- Scroll reveals are JS-driven. Without JS, show everything rather than
-     leaving a recruiter staring at an empty page. -->
-<noscript><style>.reveal{opacity:1 !important; transform:none !important;}</style></noscript>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<!-- ?v= is bumped when the stylesheet or script changes, so returning
+     visitors don't pair new HTML with a cached old file. -->
+<link rel="stylesheet" href="/css/style.css?v=11">
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 
-<div class="scroll-progress" id="scrollProgress"></div>
-
-<header class="site">
-  <div class="nav-inner">
-    <a class="logo mono" href="#top">YeLinN.</a>
-
-    <nav class="nav-links" id="navLinks" aria-label="Sections">
-      <a href="#projects">Projects</a>
-      <a href="#about">About</a>
-      <a href="#skills">Skills</a>
-      <a href="#experience">Experience</a>
-      <a href="#credentials">Credentials</a>
-      <a href="#contact">Contact</a>
-    </nav>
-
-    <div class="nav-right">
-      <span class="status-pill"><span class="dot"></span>Available now</span>
-<button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to dark theme">
-        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
-        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
-      </button>
-      <button class="nav-toggle" id="navToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </div>
+<header class="site-header">
+  <nav class="container nav" aria-label="Main">
+    <a class="brand" href="/">Ye Lin Naing</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>Menu
+    </button>
+    <ul class="nav-links" id="nav-links">
+        <li><a href="/" aria-current="page">Home</a></li>
+        <li><a href="/projects/">Projects</a></li>
+        <li><a href="/#about">About</a></li>
+        <li><a href="/#skills">Skills</a></li>
+        <li><a href="/#experience">Experience</a></li>
+        <li><a href="/#education">Education</a></li>
+        <li><a href="/#certifications">Certifications</a></li>
+        <li><a href="/#contact">Contact</a></li>
+    </ul>
+  </nav>
 </header>
 
-<main class="wrap" id="top">
+<main id="main">
 
-  <!-- HERO -->
-  <section class="hero-intro">
-    <div class="hero-grid">
-      <div class="hero-copy">
-        <p class="hero-status mono"><span class="dot"></span>Open to data analyst &amp; QA roles</p>
-        <h1 class="hero-name">Ye Lin Naing (Leo) <span class="hero-dash">—</span> <span class="hero-role">Data&nbsp;Analyst &amp;&nbsp;QA&nbsp;Tester</span></h1>
-        <p class="hero-stack mono">SQL · Excel · Power BI · Software Testing · Newcastle,&nbsp;UK</p>
-
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="#projects">
-            View projects
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </a>
-          <div class="hero-cv">
-            <a class="btn btn-ghost" id="heroCvData" href="./YeLinNaing-DataAnalyst-CV.pdf" download>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-              Data Analyst CV
-            </a>
-            <a class="btn btn-ghost" id="heroCvQa" href="./YeLinNaing-QA-CV.pdf" download>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-              QA Tester CV
-            </a>
-          </div>
+  <!-- HOME -->
+  <section class="hero" id="home" aria-labelledby="hero-title">
+    <div class="container hero-grid">
+      <div>
+        <h1 id="hero-title">Ye Lin Naing</h1>
+        <p class="hero-role">Entry-Level Data Analyst | BI Analyst</p>
+        <p class="hero-intro">Computing graduate with a foundation in SQL, Excel and Power BI. I enjoy exploring datasets, identifying meaningful patterns and turning analytical findings into clear, useful insights. I am building practical projects to strengthen my data analysis and business intelligence skills.</p>
+        <ul class="hero-facts">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Newcastle upon Tyne, United Kingdom</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg><span>Open to entry-level data analytics and business intelligence opportunities in the UK and Southeast Asia, including relocation.</span></li>
+        </ul>
+        <div class="btn-row">
+          <a class="btn btn-primary" href="#projects">View My Projects</a>
+          <a class="btn btn-secondary" href="/YeLinNaing-DataAnalyst-CV.pdf" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download My CV <span class="visually-hidden">(PDF)</span></a>
         </div>
-
-        <!-- <ul class="hero-proof">
-          <li>First Class Honours BSc (Hons) Computing — Northumbria University</li>
-          <li>Right to work in the UK — no visa sponsorship needed</li>
-        </ul> -->
+        <div class="hero-links">
+          <a class="icon-link" href="https://github.com/yelin-naing" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>GitHub</a>
+          <a class="icon-link" href="https://www.linkedin.com/in/yelinnaing/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>LinkedIn</a>
+        </div>
       </div>
-
       <div class="hero-photo">
-        <img src="./profile.jpg" alt="Photo of Ye Lin Naing (Leo)" width="260" height="260" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="avatar-fallback">LN</div>
+        <img src="/profile.jpg" alt="Ye Lin Naing wearing a graduation gown" width="698" height="698">
       </div>
     </div>
   </section>
-
-  <!-- ROLE FILTER: highlights matching [data-roles] items, dims the rest.
-       Hidden until js/role-filter.js runs, so it never shows up dead. -->
-  <div class="role-filter" id="roleFilter" hidden>
-    <span class="role-filter-label mono" id="roleFilterLabel">Highlight for</span>
-    <div class="role-tabs" role="radiogroup" aria-labelledby="roleFilterLabel">
-      <button type="button" class="role-tab" role="radio" aria-checked="true" tabindex="0" data-role="all">All</button>
-      <button type="button" class="role-tab" role="radio" aria-checked="false" tabindex="-1" data-role="data">Data Analyst</button>
-      <button type="button" class="role-tab" role="radio" aria-checked="false" tabindex="-1" data-role="qa">QA Tester</button>
-    </div>
-    <p class="role-filter-note mono" id="roleFilterNote" aria-live="polite"></p>
-  </div>
 
   <!-- PROJECTS -->
-  <section id="projects">
-    <h2 class="section-title reveal">Projects</h2>
-    <p class="section-lede reveal">Two projects, newest analysis first. Each one has the code behind it on GitHub.</p>
-
-    <!-- 01 -->
-    <div class="pgrid">
-
-      <article class="pcard reveal" data-roles="data">
-        <a class="pcard-thumb pcard-thumb-sql" href="/projects/" aria-label="World Life Expectancy — full case study">
-          <span class="mono"><b>SELECT</b> Status,<br>  <b>ROUND</b>(<b>AVG</b>(Lifeexpectancy),1)<br><b>FROM</b> worldlifexpectancy</span>
-          <span class="pcard-thumb-nums mono"><i>79.2</i> developed &nbsp;·&nbsp; <i>66.8</i> developing</span>
-        </a>
-        <div class="pcard-body">
-          <div class="pcard-head">
-            <h3>World Life Expectancy</h3>
-            <span class="cat-badge mono">Data Analysis</span>
-          </div>
-          <p class="pcard-result">Cleaned 2,941 rows in MySQL, then answered seven questions. Life expectancy rose 66.8 &rarr; 71.6 years; developed countries average 79.2 against 66.8.</p>
-          <!-- [PLACEHOLDER: one line about the checks run while cleaning (specifics to be supplied)] -->
-          <div class="pcard-links">
-            <a class="repo-btn" href="https://github.com/yelin-naing/world-life-expectancy-analysis" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>View repository</a>
-          </div>
-          <a class="pcard-more" href="/projects/">Full case study &rarr;</a>
-        </div>
-      </article>
-
-      <article class="pcard reveal" data-roles="data qa">
-        <a class="pcard-thumb" href="/projects/" aria-label="UK Crime — full case study">
-          <img src="./img/projects/uk-crime-1.png" alt="Line chart of monthly UK burglary counts from 2011 to 2021 showing a steady fall" loading="lazy" width="1932" height="656">
-        </a>
-        <div class="pcard-body">
-          <div class="pcard-head">
-            <h3>UK Crime</h3>
-            <span class="cat-badges"><span class="cat-badge mono">Data Analysis</span><span class="cat-badge mono">Testing</span></span>
-          </div>
-          <p class="pcard-result">Tested three public claims against a 65-million-row police dataset in Spark. Two refuted: burglary fell about 50%, and Merseyside ranks 4th, not 1st. Approached it like a test: stated each claim, checked it against the data, and recorded whether it held up.</p>
-          <div class="pcard-links">
-            <a class="repo-btn" href="https://github.com/yelin-naing/uk-crime-bigdata-analysis" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>View repository</a>
-          </div>
-          <a class="pcard-more" href="/projects/">Full case study &rarr;</a>
-        </div>
-      </article>
-
-
-      <!-- [PLACEHOLDER: QA project, hidden until the content is supplied.
-           To publish: fill in the [BRACKETS], then delete this comment's opening and closing lines.
-      <article class="pcard reveal" data-roles="qa">
-        <a class="pcard-thumb" href="/projects/" aria-label="[PROJECT NAME] — full case study">
-          <img src="./img/projects/[IMAGE].png" alt="[DESCRIBE THE IMAGE]" loading="lazy">
-        </a>
-        <div class="pcard-body">
-          <div class="pcard-head">
-            <h3>[PROJECT NAME]</h3>
-            <span class="cat-badge mono">Testing</span>
-          </div>
-          <p class="pcard-result">[ONE OR TWO LINES: what was tested, how, and what was found]</p>
-          <div class="pcard-links">
-            <a class="repo-btn" href="[REPO URL]" target="_blank" rel="noopener">View repository</a>
-          </div>
-          <a class="pcard-more" href="/projects/">Full case study &rarr;</a>
-        </div>
-      </article>
-      -->
-
+  <section class="section" id="projects" aria-labelledby="projects-title">
+    <div class="container">
+      <div class="section-head">
+        <h2 id="projects-title">Featured projects</h2>
+        <p>Two data projects, each with its code on GitHub. The case studies explain the question, the method, what the data showed and the limitations.</p>
+      </div>
+      <div class="project-grid">
+<article class="card project-card">
+  <div class="project-thumb chart-thumb">
+  <figure class="mini-chart" aria-label="Bar chart of average life expectancy in years: developed countries 79.2, developing countries 66.8, global average 66.8 in 2007 and 71.6 in 2022.">
+    <p class="mini-chart-title">Average life expectancy (years)</p>
+    <div class="bar-row"><span class="bar-label">Developed countries</span><span class="bar-track"><span class="bar-fill" style="--w:93.2%"></span></span><span class="bar-value">79.2</span></div>
+    <div class="bar-row"><span class="bar-label">Developing countries</span><span class="bar-track"><span class="bar-fill alt" style="--w:78.6%"></span></span><span class="bar-value">66.8</span></div>
+    <div class="bar-row"><span class="bar-label">Global average, 2007</span><span class="bar-track"><span class="bar-fill alt" style="--w:78.6%"></span></span><span class="bar-value">66.8</span></div>
+    <div class="bar-row"><span class="bar-label">Global average, 2022</span><span class="bar-track"><span class="bar-fill" style="--w:84.2%"></span></span><span class="bar-value">71.6</span></div>
+    <figcaption class="mini-chart-note">From my SQL output. Bars start at zero.</figcaption>
+  </figure>
+</div>
+  <div class="project-body">
+    <p class="meta-label">Data Analysis · SQL</p>
+    <h3><a href="/projects/world-life-expectancy/">World Life Expectancy — SQL Analysis</a></h3>
+    <dl class="project-facts">
+      <div><dt>Question</dt><dd>How has life expectancy changed across 193 countries between 2007 and 2022, and which factors is it linked to?</dd></div>
+      <div><dt>What I did</dt><dd>Cleaned 2,941 rows in MySQL — removed 3 duplicate records, filled 8 missing status labels and estimated 2 missing values — then answered seven questions with SQL.</dd></div>
+      <div><dt>What I found</dt><dd>The global average rose from 66.8 to 71.6 years, with a dip in 2020. Developed countries averaged 79.2 years against 66.8 for developing countries.</dd></div>
+    </dl>
+    <ul class="tag-list" aria-label="Tools used"><li class="tag">MySQL</li><li class="tag">Window functions</li><li class="tag">CTEs</li><li class="tag">Self joins</li><li class="tag">Data cleaning</li></ul>
+    <div class="project-links">
+      <a class="arrow-link" href="/projects/world-life-expectancy/">View case study &rarr;</a>
+      <a class="icon-link" href="https://github.com/yelin-naing/world-life-expectancy-analysis" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>GitHub repository</a>
     </div>
-
-
-    <div class="see-more reveal">
-      <a class="cv-btn" href="/projects/">
-        See all projects
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-      </a>
-      <p class="see-more-note">Full project list with an interactive breakdown</p>
+  </div>
+</article>
+<article class="card project-card">
+  <a class="project-thumb" href="/projects/uk-crime/" tabindex="-1" aria-hidden="true">
+  <img src="/img/projects/uk-crime-1.png" alt="" width="1932" height="656" loading="lazy">
+</a>
+  <div class="project-body">
+    <p class="meta-label">Data Analysis · Big Data</p>
+    <h3><a href="/projects/uk-crime/">UK Crime — Big Data Analysis</a></h3>
+    <dl class="project-facts">
+      <div><dt>Question</dt><dd>Do three widely repeated claims about UK crime hold up when tested against 65 million police records?</dd></div>
+      <div><dt>What I did</dt><dd>Processed the records with Apache Spark on an Azure virtual machine, joined them with ONS population data, and used time-series forecasting, correlation and regression.</dd></div>
+      <div><dt>What I found</dt><dd>Burglary fell by about half between 2011 and 2021, so the claim that it was rising did not hold. Merseyside ranked 5th, not 1st, on the weapons-offence rate used as a firearms measure.</dd></div>
+    </dl>
+    <ul class="tag-list" aria-label="Tools used"><li class="tag">Apache Spark (PySpark)</li><li class="tag">Azure</li><li class="tag">Python</li><li class="tag">Spark MLlib</li><li class="tag">SARIMA</li></ul>
+    <div class="project-links">
+      <a class="arrow-link" href="/projects/uk-crime/">View case study &rarr;</a>
+      <a class="icon-link" href="https://github.com/yelin-naing/uk-crime-bigdata-analysis" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>GitHub repository</a>
+    </div>
+  </div>
+</article>
+      </div>
+      <p class="section-foot"><a class="arrow-link" href="/projects/">View all projects &rarr;</a></p>
     </div>
   </section>
 
-  <!-- ROLE MATCH -->
-  <!-- <section id="match">
-    <p class="eyebrow reveal">-- try it yourself</p>
-    <h2 class="section-title reveal">Check if I match your role</h2>
-    <p class="section-lede reveal">Pick what your role needs. The query builds itself, and the result tells you where I stand.</p>
-
-    <div class="builder reveal">
-      <div class="chip-row" id="chipRow">
-        <button class="chip" type="button" data-key="sql">SQL</button>
-        <button class="chip" type="button" data-key="excel">Excel</button>
-        <button class="chip" type="button" data-key="powerbi">Power BI</button>
-        <button class="chip" type="button" data-key="python">Python</button>
-        <button class="chip" type="button" data-key="azure">Azure</button>
-        <button class="chip" type="button" data-key="git">Git</button>
-        <button class="chip" type="button" data-key="degree">Degree in Computing</button>
-        <button class="chip" type="button" data-key="onsite">Based in North East UK</button>
-        <button class="chip" type="button" data-key="nosponsor">No visa sponsorship needed</button>
-        <button class="chip" type="button" data-key="tableau">Tableau</button>
-        <button class="chip" type="button" data-key="senior">5+ years experience</button>
-      </div>
-
-      <div class="code-box mono builder-query">
-        <div class="code-line"><span class="line-no">1</span><span class="line-content"><span class="kw">SELECT</span> * <span class="kw">FROM</span> yelinnaing</span></div>
-        <div class="code-line"><span class="line-no">2</span><span class="line-content" id="whereLine"><span class="cm">-- pick a requirement above to start</span></span></div>
-      </div>
-
-      <div class="verdict" id="verdict">
-        <div class="verdict-head">
-          <span class="verdict-icon" id="verdictIcon">–</span>
-          <span class="verdict-text" id="verdictText">No requirements selected yet</span>
-        </div>
-        <ul class="verdict-list" id="verdictList"></ul>
+  <!-- ABOUT -->
+  <section class="section" id="about" aria-labelledby="about-title">
+    <div class="container">
+      <div class="section-head"><h2 id="about-title">About</h2></div>
+      <div class="prose">
+        <p>I'm Ye Lin Naing (Leo), a Computing graduate from Northumbria University, where I completed a BSc (Hons) in Computing with First Class Honours in July 2026. Before that I studied for a Higher National Diploma in Computing at YOUTH International College in Yangon, Myanmar.</p>
+        <p>I'm interested in the practical side of data: taking a messy dataset, checking it carefully, asking a clear question of it and explaining the answer so that someone can act on it. My projects so far have used SQL, Python and Apache Spark, and I'm working towards the Microsoft Power BI Data Analyst (PL-300) certification to build my business intelligence skills.</p>
+        <p>I'm at the start of my professional data career and I'm looking for an entry-level role where I can keep learning from an experienced team. I'm based in Newcastle upon Tyne and open to relocating within the UK or to Southeast Asia. I speak English fluently and Burmese as my first language.</p>
       </div>
     </div>
-  </section> -->
-
-  <!-- ABOUT -->
-  <section id="about">
-    <h2 class="section-title reveal">About</h2>
-    <p class="about-meta mono reveal">Data Analyst &amp; QA Tester · Newcastle, UK · Open to work</p>
-    <p class="about-text reveal">I'm originally from Myanmar (Burma) and now based in Newcastle upon Tyne, United Kingdom. I like working with data — cleaning it, querying it and turning it into something people can actually use to make a decision — and I like finding what's wrong with it, whether that's an error in a dataset or a bug in an app. Either way, I check before I trust a result. SQL, Excel and Power BI are my main tools, I've used Python, Apache Spark and Azure on larger projects, and I'm studying for the ISTQB Foundation Level certificate in software testing.</p>
-    <p class="about-text reveal">I graduated from Northumbria University in July 2026 and I'm now applying for data analyst and QA roles while building real projects to back it up. I'm open to relocating within the UK or Southeast Asia for the right role.</p>
   </section>
 
   <!-- SKILLS -->
-  <section id="skills">
-    <h2 class="section-title reveal">Skills</h2>
-    <div class="skill-groups">
-      <div class="skill-group reveal">
-        <h3 class="skill-group-title">Data Analysis</h3>
+  <section class="section" id="skills" aria-labelledby="skills-title">
+    <div class="container">
+      <div class="section-head">
+        <h2 id="skills-title">Skills</h2>
+        <p>Grouped by area, with a note on where I've used each one.</p>
+      </div>
+      <div class="skill-grid">
+      <div class="card skill-card">
+        <h3>Data Analysis</h3>
         <ul class="skill-list">
-        <li class="skill" data-roles="data" data-level="3">
-          <div class="skill-head">
-            <span class="skill-name">SQL</span>
-            <span class="skill-level mono"><span class="meter" aria-hidden="true"><i></i><i></i><i></i></span>Strong</span>
-          </div>
-          <p class="skill-desc">Joins, window functions, CTEs, conditional aggregation — practiced on HackerRank and LeetCode.</p>
-        </li>
-        <li class="skill" data-roles="data" data-level="3">
-          <div class="skill-head">
-            <span class="skill-name">Excel</span>
-            <span class="skill-level mono"><span class="meter" aria-hidden="true"><i></i><i></i><i></i></span>Strong</span>
-          </div>
-          <p class="skill-desc">Pivot tables, INDIRECT, spill ranges, running totals.</p>
-        </li>
-        <li class="skill" data-roles="data" data-level="2">
-          <div class="skill-head">
-            <span class="skill-name">Power BI</span>
-            <span class="skill-level mono"><span class="meter" aria-hidden="true"><i></i><i></i><i></i></span>Working</span>
-          </div>
-          <p class="skill-desc">Interactive dashboards and reports; working toward the PL-300 certification.</p>
-        </li>
-        <li class="skill" data-roles="data qa" data-level="2">
-          <div class="skill-head">
-            <span class="skill-name">Git</span>
-            <span class="skill-level mono"><span class="meter" aria-hidden="true"><i></i><i></i><i></i></span>Working</span>
-          </div>
-          <p class="skill-desc">Day-to-day workflow across all projects.</p>
-        </li>
-        <li class="skill" data-roles="data" data-level="1">
-          <div class="skill-head">
-            <span class="skill-name">Azure</span>
-            <span class="skill-level mono"><span class="meter" aria-hidden="true"><i></i><i></i><i></i></span>Learning</span>
-          </div>
-          <p class="skill-desc">Provisioning and managing VMs for data workloads.</p>
-        </li>
-        <li class="skill" data-roles="data" data-level="1">
-          <div class="skill-head">
-            <span class="skill-name">Python</span>
-            <span class="skill-level mono"><span class="meter" aria-hidden="true"><i></i><i></i><i></i></span>Learning</span>
-          </div>
-          <p class="skill-desc">Data cleaning and analysis scripts.</p>
-        </li>
-        <li class="skill" data-roles="data" data-level="1">
-          <div class="skill-head">
-            <span class="skill-name">Apache Spark</span>
-            <span class="skill-level mono"><span class="meter" aria-hidden="true"><i></i><i></i><i></i></span>Learning</span>
-          </div>
-          <p class="skill-desc">Large-scale data processing on a cloud VM.</p>
-        </li>
+          <li>
+            <div class="skill-head"><span class="skill-name">SQL (MySQL)</span><span class="status status-done">Used in projects</span></div>
+            <p class="skill-desc">Joins, window functions, CTEs, self joins and <code>CASE</code>. Used in World Life Expectancy; also practised on HackerRank and LeetCode.</p>
+          </li>
+          <li>
+            <div class="skill-head"><span class="skill-name">Excel</span><span class="status">Working knowledge</span></div>
+            <p class="skill-desc">Pivot tables, <code>INDIRECT</code>, spill ranges and running totals.</p>
+          </li>
+          <li>
+            <div class="skill-head"><span class="skill-name">Exploratory data analysis</span><span class="status status-done">Used in projects</span></div>
+            <p class="skill-desc">Turning a broad topic into specific questions and answering them with summaries, comparisons and trends. Used in both case studies.</p>
+          </li>
+          <li>
+            <div class="skill-head"><span class="skill-name">Data cleaning and validation</span><span class="status status-done">Used in projects</span></div>
+            <p class="skill-desc">Finding duplicates, filling or estimating missing values and checking row counts before relying on results. Used in World Life Expectancy.</p>
+          </li>
+          <li>
+            <div class="skill-head"><span class="skill-name">Statistical analysis</span><span class="status status-done">Used in projects</span></div>
+            <p class="skill-desc">Pearson and Spearman correlation, linear regression and SARIMA time-series forecasting. Used in UK Crime.</p>
+          </li>
         </ul>
       </div>
-
-      <div class="skill-group reveal">
-        <h3 class="skill-group-title">Testing &amp; Quality</h3>
+      <div class="card skill-card">
+        <h3>Business Intelligence</h3>
         <ul class="skill-list">
-        <li class="skill" data-roles="data qa" data-level="1">
-          <div class="skill-head">
-            <span class="skill-name">Data validation</span>
-            <span class="skill-level mono"><span class="meter" aria-hidden="true"><i></i><i></i><i></i></span>Learning</span>
-          </div>
-          <p class="skill-desc">Checking for duplicates, missing values, outliers and inconsistent formats.</p>
-        </li>
-        <li class="skill" data-roles="qa" data-level="1">
-          <div class="skill-head">
-            <span class="skill-name">Software testing</span>
-            <span class="skill-level mono"><span class="meter" aria-hidden="true"><i></i><i></i><i></i></span>Learning</span>
-          </div>
-          <p class="skill-desc">Studying for ISTQB Foundation Level (CTFL): test design, test cases, bug reporting.</p>
-        </li>
-        <!-- [PLACEHOLDER: testing tools, to be added as they are learned] -->
+          <li>
+            <div class="skill-head"><span class="skill-name">Power BI</span><span class="status">Developing</span></div>
+            <p class="skill-desc">Studying for the PL-300 certification: data modelling, reports and dashboards.</p>
+          </li>
+          <li>
+            <div class="skill-head"><span class="skill-name">Data visualisation</span><span class="status status-done">Used in projects</span></div>
+            <p class="skill-desc">Line, bar and scatter charts in Matplotlib and Seaborn, each chosen to answer one question. Used in UK Crime.</p>
+          </li>
+          <li>
+            <div class="skill-head"><span class="skill-name">Reporting findings</span><span class="status status-done">Used in projects</span></div>
+            <p class="skill-desc">Writing results in plain English, with the method and its limitations stated. See both case studies.</p>
+          </li>
         </ul>
       </div>
+      <div class="card skill-card">
+        <h3>Additional Technical Skills</h3>
+        <ul class="skill-list">
+          <li>
+            <div class="skill-head"><span class="skill-name">Python</span><span class="status status-done">Used in projects</span></div>
+            <p class="skill-desc">pandas, NumPy, Matplotlib and statsmodels for data preparation, charts and forecasting. Used in UK Crime.</p>
+          </li>
+          <li>
+            <div class="skill-head"><span class="skill-name">Apache Spark</span><span class="status status-done">Used in projects</span></div>
+            <p class="skill-desc">Filtering, joining and aggregating 65 million rows with PySpark; correlation and regression in Spark MLlib. Used in UK Crime.</p>
+          </li>
+          <li>
+            <div class="skill-head"><span class="skill-name">Microsoft Azure</span><span class="status status-done">Used in projects</span></div>
+            <p class="skill-desc">Ran the full Spark workload on an Azure virtual machine. Used in UK Crime.</p>
+          </li>
+          <li>
+            <div class="skill-head"><span class="skill-name">Git and GitHub</span><span class="status status-done">Used in projects</span></div>
+            <p class="skill-desc">Version control and publishing for all of my projects.</p>
+          </li>
+          <li>
+            <div class="skill-head"><span class="skill-name">Relational databases</span><span class="status status-done">Used in projects</span></div>
+            <p class="skill-desc">MySQL tables and queries behind a web application (STRACK), and the Database Design &amp; Development module of my HND.</p>
+          </li>
+          <li>
+            <div class="skill-head"><span class="skill-name">Software testing</span><span class="status">Developing</span></div>
+            <p class="skill-desc">Studying for ISTQB Foundation Level (CTFL): test design, test cases and bug reporting.</p>
+          </li>
+        </ul>
+      </div>
+      </div>
+      <p class="skill-key"><strong>Used in projects</strong> — applied in work you can check on this site or GitHub. <strong>Working knowledge</strong> — used regularly, but not yet in a published project. <strong>Developing</strong> — currently learning.</p>
     </div>
-    <p class="skill-key mono reveal">Levels are self-assessed, by how much I've actually used each one. Strong = used regularly and independently · Working = used on real projects · Learning = used once, still building</p>
   </section>
 
   <!-- EXPERIENCE -->
-  <section id="experience">
-    <h2 class="section-title reveal">Experience</h2>
-
-    <div class="exp-row reveal">
-      <div class="exp-main">
-        <h3 class="exp-title">Crew Member — McDonald's, Blaydon</h3>
-        <p class="exp-meta">Gateshead, England · Nov 2025 – Present · alongside full-time study</p>
-        <ul class="exp-points">
-          <li>Worked front counter and kitchen through peak trading, where accuracy matters as much as speed.</li>
-          <li>Won Star of the Shift multiple times and was awarded Employee of the Month (May 2026) for consistency and pace under pressure.</li>
-          <li>Currently working toward Crew Trainer, which means training new starters on process and standards.</li>
-          <li>Held this alongside a full-time degree I finished with First Class Honours.</li>
-        </ul>
+  <section class="section" id="experience" aria-labelledby="experience-title">
+    <div class="container">
+      <div class="section-head">
+        <h2 id="experience-title">Experience</h2>
+        <p>I'm looking for my first professional data role. My work so far has been in busy hospitality settings, where accuracy, teamwork and reliability matter every shift.</p>
       </div>
+      <ol class="entry-list">
+        <li class="card entry">
+          <div class="entry-head"><h3>Kitchen Porter</h3><span class="entry-date">Sep 2026 – Present</span></div>
+          <p class="entry-org">Flat Iron · Newcastle upon Tyne</p>
+          <p class="entry-detail">My current role while I look for an entry-level data position.</p>
+        </li>
+        <li class="card entry">
+          <div class="entry-head"><h3>Crew Member</h3><span class="entry-date">Nov 2025 – Sep 2026</span></div>
+          <p class="entry-org">McDonald's · Blaydon, Gateshead</p>
+          <ul>
+            <li>Served customers across drive-thru, dine-in and delivery in a consistently high-volume restaurant.</li>
+            <li>Worked with a team of 8 to 10 staff at peak times, moving between stations as priorities changed.</li>
+            <li>Trained new crew members on food preparation, safety rules and customer service.</li>
+            <li>Named Star of the Shift several times and Employee of the Month (May 2026).</li>
+            <li>Worked alongside the final year of my full-time degree.</li>
+          </ul>
+        </li>
+        <li class="card entry">
+          <div class="entry-head"><h3>Graphic Designer</h3><span class="entry-date">Dec 2024 – Apr 2025</span></div>
+          <p class="entry-org">YOUTH Student Activities Team · Yangon, Myanmar</p>
+          <ul>
+            <li>Designed posters, social media posts, banners and flyers for student events using Canva.</li>
+            <li>Worked with the events team to deliver designs on time and in line with each event's theme.</li>
+          </ul>
+        </li>
+      </ol>
     </div>
-
-    <div class="exp-row reveal">
-      <div class="exp-main">
-        <h3 class="exp-title">Graphic Designer — YOUTH Student Activities Team</h3>
-        <p class="exp-meta">Yangon, Myanmar · Dec 2024 – Apr 2025</p>
-        <ul class="exp-points">
-          <li>Designed posters, social media posts, banners and flyers for student events using Canva, supporting the full event promotion cycle.</li>
-          <li>Created visual content that received <strong>100+ reactions</strong> and <strong>30+ shares</strong>, increasing student awareness and participation.</li>
-          <li>Worked closely with a team to deliver designs on time, making sure all content matched the event theme and message.</li>
-        </ul>
-      </div>
-    </div>
-
-    <p class="exp-note">No data or testing role yet — that's what I'm looking for. What this job gave me is the habit of getting details right when it's busy, which is most of what analysis actually is.</p>
   </section>
 
   <!-- EDUCATION -->
-  <section id="education">
-    <h2 class="section-title reveal">Education</h2>
-    <div class="edu-row reveal">
-      <div>
-        <div class="edu-inst">BSc (Hons) Computing — Northumbria University</div>
-        <div class="edu-detail">Graduated July 2026</div>
-      </div>
-      <span class="edu-badge">First Class Honours</span>
-    </div>
-    <div class="edu-row reveal">
-      <div>
-        <div class="edu-inst">Higher National Diploma in Computing — YOUTH International College</div>
-        <div class="edu-detail">Graduated July 2025</div>
-      </div>
-      <span class="edu-badge">First Class Honours</span>
+  <section class="section" id="education" aria-labelledby="education-title">
+    <div class="container">
+      <div class="section-head"><h2 id="education-title">Education</h2></div>
+      <ol class="entry-list">
+        <li class="card entry">
+          <div class="entry-head"><h3>BSc (Hons) Computing</h3><span class="entry-date">Graduated July 2026</span></div>
+          <p class="entry-org">Northumbria University · Newcastle upon Tyne, United Kingdom</p>
+          <p class="entry-detail">Relevant modules: Big Data; Data Security and Governance; Computing Group Project; Contemporary Methods of Software Development.</p>
+          <span class="status status-done">First Class Honours</span>
+        </li>
+        <li class="card entry">
+          <div class="entry-head"><h3>Higher National Diploma in Computing</h3><span class="entry-date">Completed June 2025</span></div>
+          <p class="entry-org">YOUTH International College · Yangon, Myanmar</p>
+          <p class="entry-detail">Relevant modules: Database Design &amp; Development; Machine Learning; Cloud Computing; Business Process Support. Won first prize at the YIC IoT Project Contest 2025.</p>
+          <span class="status status-done">Distinction in all modules</span>
+        </li>
+      </ol>
     </div>
   </section>
 
-  <!-- CREDENTIALS: certificates, languages and the CV, kept compact -->
-  <section id="credentials">
-    <h2 class="section-title reveal">Credentials</h2>
-
-    <div class="cred-block reveal">
-      <p class="eyebrow cred-sub">Certificates</p>
+  <!-- CERTIFICATIONS -->
+  <section class="section" id="certifications" aria-labelledby="certifications-title">
+    <div class="container">
+      <div class="section-head"><h2 id="certifications-title">Certifications</h2></div>
       <ul class="cert-grid">
-        <li class="cert-card">
-          <div class="cert-card-top">
-            <span class="cert-tag">Google — Coursera</span>
-            <span class="cert-tag">2025</span>
-          </div>
-          <p class="cert-name">Google Data Analytics Professional Certificate</p>
-          <a class="cert-link" id="certLink1" href="#" target="_blank" rel="noopener noreferrer">View ↗</a>
-        </li>
-        <li class="cert-card">
-          <div class="cert-card-top">
-            <span class="cert-tag">Maven Analytics</span>
-            <span class="cert-tag">2026</span>
-          </div>
-          <p class="cert-name">MySQL for Data Analytics</p>
-          <a class="cert-link" id="certLink2" href="#" target="_blank" rel="noopener noreferrer">View ↗</a>
-        </li>
-        <li class="cert-card cert-card-soon">
-          <div class="cert-card-top">
-            <span class="cert-tag">Microsoft</span>
-          </div>
-          <p class="cert-name">Microsoft Power BI (PL-300)</p>
-          <span class="cert-pill">In progress</span>
-        </li>
-        <li class="cert-card cert-card-soon">
-          <div class="cert-card-top">
-            <span class="cert-tag">ISTQB</span>
-          </div>
-          <p class="cert-name">ISTQB — Certified Tester Foundation Level (CTFL)</p>
-          <span class="cert-pill">In progress</span>
-        </li>
+      <li class="card cert">
+        <h3>Google Data Analytics Professional Certificate</h3>
+        <p class="cert-issuer">Google, via Coursera</p>
+        <div class="cert-foot"><span class="status status-done">Completed 2025</span><a href="/certificates/YeLinNaingGoogleDataAnalytics.pdf" target="_blank" rel="noopener">View certificate (PDF)</a></div>
+      </li>
+      <li class="card cert">
+        <h3>MySQL for Data Analytics</h3>
+        <p class="cert-issuer">Maven Analytics</p>
+        <div class="cert-foot"><span class="status status-done">Completed 2026</span><a href="/certificates/Ye%20Lin%20Naing%20-%20MySQL%20for%20Data%20Analytics%20Certificate.pdf" target="_blank" rel="noopener">View certificate (PDF)</a></div>
+      </li>
+      <li class="card cert">
+        <h3>Introduction to Big Data</h3>
+        <p class="cert-issuer">University of California San Diego</p>
+        <div class="cert-foot"><span class="status status-done">Completed 2024</span></div>
+      </li>
+      <li class="card cert">
+        <h3>Microsoft Certified: Power BI Data Analyst Associate (PL-300)</h3>
+        <p class="cert-issuer">Microsoft</p>
+        <div class="cert-foot"><span class="status">In progress</span></div>
+      </li>
+      <li class="card cert">
+        <h3>ISTQB Certified Tester Foundation Level (CTFL)</h3>
+        <p class="cert-issuer">ISTQB</p>
+        <div class="cert-foot"><span class="status">In progress</span></div>
+      </li>
       </ul>
-      <p class="certs-all" id="certsAllWrap">
-        <a class="cert-link" id="certsAllBtn" href="#" target="_blank" rel="noopener noreferrer">View all certificates ↗</a>
-      </p>
-    </div>
-
-    <div class="cred-block reveal">
-      <p class="eyebrow cred-sub">Languages</p>
-      <ul class="lang-grid">
-        <li class="lang-card">
-          <div class="lang-card-top">
-            <span class="lang-name">English</span>
-            <span class="cred-badge">Fluent</span>
-          </div>
-          <p class="lang-desc">Degree taught and assessed in English; daily use at work.</p>
-        </li>
-        <li class="lang-card">
-          <div class="lang-card-top">
-            <span class="lang-name">Burmese</span>
-            <span class="cred-badge">Native</span>
-          </div>
-          <p class="lang-desc">Mother tongue.</p>
-        </li>
-      </ul>
-    </div>
-
-    <div class="cv-strip reveal" id="cv">
-      <div class="cv-strip-copy">
-        <p class="cv-strip-title">Want the full picture?</p>
-        <p class="cv-strip-note">Full work history, references, and more detail than fits on this page. PDF · updated September 2026.</p>
-      </div>
-      <div class="cv-strip-actions">
-        <a class="cv-btn" id="cvBtnData" href="./YeLinNaing-DataAnalyst-CV.pdf" download>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          Data Analyst CV
-        </a>
-        <a class="cv-btn" id="cvBtnQa" href="./YeLinNaing-QA-CV.pdf" download>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          QA Tester CV
-        </a>
-      </div>
     </div>
   </section>
 
   <!-- CONTACT -->
-  <footer id="contact">
-    <h2 class="section-title reveal">Contact</h2>
-    <ul class="contact-list reveal">
-      <li>
-        <a class="contact-item" href="mailto:yelinnaing.job@gmail.com">
-          <span class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><polyline points="3 7 12 13 21 7"/></svg></span>
-          <span class="contact-label mono">Email</span>
-          <span class="contact-value">yelinnaing.job@gmail.com</span>
-        </a>
-      </li>
-      <li>
-        <a class="contact-item" href="https://www.linkedin.com/in/yelinnaing/" target="_blank" rel="noopener">
-          <span class="contact-icon"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg></span>
-          <span class="contact-label mono">LinkedIn</span>
-          <span class="contact-value">linkedin.com/in/yelinnaing</span>
-        </a>
-      </li>
-      <li>
-        <a class="contact-item" href="https://github.com/yelin-naing" target="_blank" rel="noopener">
-          <span class="contact-icon"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></span>
-          <span class="contact-label mono">GitHub</span>
-          <span class="contact-value">github.com/yelin-naing</span>
-        </a>
-      </li>
-    </ul>
-    <p class="foot-note">Built by Ye Lin Naing — updated October 2026.</p>
-  </footer>
+  <section class="section" id="contact" aria-labelledby="contact-title">
+    <div class="container">
+      <div class="card contact-panel">
+        <div>
+          <h2 id="contact-title">Let's Connect</h2>
+          <p>I'm open to entry-level data analytics and business intelligence opportunities. Feel free to view my projects or get in touch.</p>
+          <a class="btn btn-secondary" href="/YeLinNaing-DataAnalyst-CV.pdf" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download My CV <span class="visually-hidden">(PDF)</span></a>
+        </div>
+        <ul class="contact-list">
+          <li><a class="icon-link" href="mailto:yelinnaing.job@gmail.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><polyline points="3 7 12 13 21 7"/></svg>yelinnaing.job@gmail.com</a></li>
+          <li><a class="icon-link" href="https://www.linkedin.com/in/yelinnaing/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>linkedin.com/in/yelinnaing</a></li>
+          <li><a class="icon-link" href="https://github.com/yelin-naing" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>github.com/yelin-naing</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
 </main>
 
-<script src="js/main.js?v=10" defer></script>
-<script src="js/role-filter.js?v=1" defer></script>
-
-<!-- IMAGE / CERTIFICATE VIEWER -->
-<div class="viewer" id="certViewer" role="dialog" aria-modal="true" aria-labelledby="viewerTitle" hidden>
-  <div class="viewer-backdrop" data-close></div>
-  <div class="viewer-panel">
-    <div class="viewer-bar">
-      <p class="viewer-title" id="viewerTitle">Certificate</p>
-      <div class="viewer-actions">
-        <a class="viewer-btn" id="viewerOpen" href="#" target="_blank" rel="noopener">Open in new tab</a>
-        <a class="viewer-btn" id="viewerDownload" href="#" download>Download</a>
-        <button class="viewer-close" type="button" data-close aria-label="Close">&times;</button>
-      </div>
-    </div>
-    <div class="viewer-body" id="viewerBody"></div>
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <p>&copy; <span id="year">2026</span> Ye Lin Naing. All rights reserved.</p>
+    <ul class="footer-links">
+      <li><a href="https://github.com/yelin-naing" rel="noopener" target="_blank">GitHub</a></li>
+      <li><a href="https://www.linkedin.com/in/yelinnaing/" rel="noopener" target="_blank">LinkedIn</a></li>
+      <li><a href="mailto:yelinnaing.job@gmail.com">Email</a></li>
+    </ul>
   </div>
-</div>
+</footer>
+
+<script src="/js/main.js?v=11" defer></script>
 </body>
 </html>

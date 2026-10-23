@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DS0Z04BKD5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-DS0Z04BKD5');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UK Crime — Big Data Analysis | Ye Lin Naing</title>
+<meta name="description" content="Case study: testing three claims about UK crime against 65 million police records with Apache Spark on Azure, using rates per 100,000 people, SARIMA forecasting and correlation.">
+<meta name="author" content="Ye Lin Naing">
+<link rel="canonical" href="https://yelinn.com/projects/uk-crime/">
+<meta name="theme-color" content="#FAFAF7">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Ye Lin Naing">
+<meta property="og:url" content="https://yelinn.com/projects/uk-crime/">
+<meta property="og:title" content="UK Crime — Big Data Analysis | Ye Lin Naing">
+<meta property="og:description" content="Case study: testing three claims about UK crime against 65 million police records with Apache Spark on Azure, using rates per 100,000 people, SARIMA forecasting and correlation.">
+<meta property="og:image" content="https://yelinn.com/profile.jpg">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="UK Crime — Big Data Analysis | Ye Lin Naing">
+<meta name="twitter:description" content="Case study: testing three claims about UK crime against 65 million police records with Apache Spark on Azure, using rates per 100,000 people, SARIMA forecasting and correlation.">
+<meta name="twitter:image" content="https://yelinn.com/profile.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<!-- ?v= is bumped when the stylesheet or script changes, so returning
+     visitors don't pair new HTML with a cached old file. -->
+<link rel="stylesheet" href="/css/style.css?v=11">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <nav class="container nav" aria-label="Main">
+    <a class="brand" href="/">Ye Lin Naing</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>Menu
+    </button>
+    <ul class="nav-links" id="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/projects/" aria-current="page">Projects</a></li>
+        <li><a href="/#about">About</a></li>
+        <li><a href="/#skills">Skills</a></li>
+        <li><a href="/#experience">Experience</a></li>
+        <li><a href="/#education">Education</a></li>
+        <li><a href="/#certifications">Certifications</a></li>
+        <li><a href="/#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="main">
+  <div class="container page-head">
+    <p class="breadcrumb"><a href="/projects/">&larr; All projects</a></p>
+    <p class="meta-label">Data Analysis · Big Data</p>
+    <h1>UK Crime — Big Data Analysis</h1>
+    <p class="lede">Testing three claims about crime in the UK against 65 million police records, using Apache Spark on Microsoft Azure.</p>
+  </div>
+
+  <div class="container case-layout">
+    <article class="case-body">
+      <h2 id="overview">Overview</h2>
+      <p>I tested three widely repeated claims about crime in the UK against the full police record of 65 million crimes. The dataset was too large for spreadsheet tools, so I built the pipeline in Apache Spark, tested it on a sample, and ran it on the full data on an Azure virtual machine.</p>
+
+      <h2 id="question">The questions</h2>
+      <ol>
+        <li>Are burglary rates steadily increasing over time?</li>
+        <li>Does Liverpool (Merseyside) have the highest rate of firearms incidents in the UK?</li>
+        <li>Are firearms offences strongly linked to drug-related crime?</li>
+      </ol>
+
+      <h2 id="dataset">Datasets</h2>
+      <ul>
+        <li><strong>Police crime records:</strong> UK Home Office street-level crime data from data.police.uk, 65,078,250 records with monthly data from December 2010 to May 2021.</li>
+        <li><strong>Population:</strong> Office for National Statistics population figures for 34,753 small areas (LSOAs), from the 2011 Census.</li>
+      </ul>
+      <p>The raw data isn't in the repository because of its size; both sources are publicly available.</p>
+
+      <h2 id="tools">Tools</h2>
+      <p>Apache Spark (PySpark) on a Microsoft Azure virtual machine, Spark MLlib for correlation and regression, statsmodels for the stationarity test and SARIMA forecast, and pandas, Matplotlib and Seaborn in a Jupyter notebook.</p>
+
+      <h2 id="method">Data preparation and method</h2>
+      <p>I loaded the crime data into Spark with an explicit schema, checked the columns and date range, and listed the 16 crime categories. I kept only the three I needed: Burglary, Possession of weapons and Drugs.</p>
+      <h3>Claim 1: burglary over time</h3>
+      <p>I counted burglaries per month and plotted them with a 12-month rolling average. An augmented Dickey–Fuller test showed the series wasn't stationary, so I tried detrending and seasonal differencing before fitting a SARIMA model, chosen by grid search on the lowest AIC (123.29). The model was trained on data up to December 2019 and used to forecast 2020.</p>
+      <h3>Claim 2: firearms by area</h3>
+      <p>The data doesn't record which weapon was involved. As the closest available measure, I counted <em>Possession of weapons</em> offences where the offender was sent to prison (10,416 of 283,189 records), on the basis that illegal firearms are more likely than other weapons to lead to a prison sentence. I joined the small-area population figures to each police force and calculated a rate per 100,000 people, so large and small forces could be compared fairly.</p>
+      <h3>Claim 3: weapons and drugs</h3>
+      <p>For each of 45 police force areas I counted all Possession of weapons and all Drugs offences, then measured the relationship with Pearson and Spearman correlation in Spark MLlib and fitted a linear regression on an 80/20 train–test split.</p>
+
+      <h2 id="findings">Key findings</h2>
+      <div class="finding"><strong>Claim 1 — not supported</strong><p>Burglary fell from about 42,000 a month in 2011 to about 20,000 a month in 2021, roughly half, with a sharp drop after the first COVID-19 lockdown in March 2020. The forecast didn't point to a rise either.</p></div>
+      <figure class="figure">
+        <img src="/img/projects/uk-crime-1.png" alt="Line chart of monthly burglary counts in the UK police data from December 2010 to May 2021, with a 12-month rolling average that falls steadily and drops sharply in 2020." width="1932" height="656" loading="lazy">
+        <figcaption>Monthly burglary counts with a 12-month rolling average.</figcaption>
+      </figure>
+      <figure class="figure">
+        <img src="/img/projects/uk-crime-2.png" alt="Line chart of the transformed burglary series from 2012 to 2021, with the SARIMA forecast for 2020 and a shaded uncertainty band." width="1768" height="922" loading="lazy">
+        <figcaption>SARIMA forecast for 2020. The series has been detrended and seasonally differenced, so the vertical axis shows the transformed values rather than raw counts.</figcaption>
+      </figure>
+
+      <div class="finding"><strong>Claim 2 — not supported</strong><p>Merseyside ranked 5th, at 22.3 incidents per 100,000 people. West Yorkshire was highest at 23.3, followed by Humberside, Cleveland and Northumbria. The top five are within about one incident per 100,000 of each other, so the ranking is close.</p></div>
+      <figure class="figure">
+        <img src="/img/projects/uk-crime-3.png" alt="Horizontal bar chart of the firearms measure per 100,000 people for the top 15 police forces. West Yorkshire is highest; Merseyside, highlighted in orange, is fifth." width="1628" height="862" loading="lazy">
+        <figcaption>Rate per 100,000 people for the 15 highest police forces, with Merseyside highlighted. "Firearms" here means Possession of weapons offences that led to a prison sentence.</figcaption>
+      </figure>
+
+      <div class="finding"><strong>Claim 3 — supported, as an association</strong><p>Across 45 force areas, weapons and drug offence counts were strongly related: Pearson 0.917 and Spearman 0.883. The regression predicted about 0.10 more weapons offences for each additional drug offence. This shows the two rise and fall together; it doesn't show that one causes the other.</p></div>
+      <figure class="figure">
+        <img src="/img/projects/uk-crime-4.png" alt="Scatter plot of weapons offences against drug offences for each police force, with a rising regression line. The Metropolitan Police area is a far outlier at the top right; Merseyside is highlighted in orange." width="1492" height="838" loading="lazy">
+        <figcaption>Weapons offences against drug offences by police force, with the regression line. The y-axis counts all Possession of weapons offences.</figcaption>
+      </figure>
+
+      <h3>Why this matters</h3>
+      <p>Claims like these shape where attention and resources go. Checking them against the full record, and comparing areas by rate rather than raw totals, is the kind of evidence a decision-maker needs before acting on a headline.</p>
+
+      <h2 id="limitations">Limitations and what I learned</h2>
+      <ul>
+        <li>The firearms measure is a stand-in. Weapon type isn't recorded, so prison outcomes for Possession of weapons will include some non-firearm cases and miss firearms cases still awaiting an outcome.</li>
+        <li>Population figures come from the 2011 Census while the crime data runs to 2021, so the rates per 100,000 are approximate.</li>
+        <li>Claim 3 compares raw counts, not rates. Larger forces record more of every crime, so force size explains part of the correlation, and London is a strong outlier.</li>
+        <li>None of the transformations fully passed the stationarity test, so the forecast should be read as supporting evidence rather than a precise prediction.</li>
+        <li>Drug and weapons offences are mostly recorded when police find them, so these figures partly reflect police activity, not only how much crime happens.</li>
+        <li>The data includes crime locations, which raises privacy concerns; anonymising locations to the nearest road would reduce that risk.</li>
+      </ul>
+      <p>The biggest lessons were to normalise by population before comparing areas, to be explicit when a measure is only an approximation, and to keep correlation and causation separate when writing up a result.</p>
+
+      <h2 id="links">Links</h2>
+      <ul>
+        <li><a href="https://github.com/yelin-naing/uk-crime-bigdata-analysis" target="_blank" rel="noopener">GitHub repository</a></li>
+        <li><a href="https://github.com/yelin-naing/uk-crime-bigdata-analysis/blob/main/UKPoliceCrimeBigDataProject.ipynb" target="_blank" rel="noopener">Jupyter notebook with the full analysis</a></li>
+      </ul>
+      <nav class="case-nav" aria-label="More projects">
+        <a class="card prev" href="/projects/world-life-expectancy/"><small>&larr; Previous project</small>World Life Expectancy — SQL Analysis</a>
+        <span></span>
+      </nav>
+    </article>
+
+    <aside class="card case-aside" aria-label="Project summary">
+      <dl class="facts">
+          <div><dt>Category</dt><dd>Data Analysis · Big Data</dd></div>
+          <div><dt>Dataset</dt><dd>65 million police records, Dec 2010 – May 2021</dd></div>
+          <div><dt>Tools</dt><dd>PySpark, Spark MLlib, Azure, Python, statsmodels</dd></div>
+      </dl>
+      <a class="btn btn-primary" href="https://github.com/yelin-naing/uk-crime-bigdata-analysis" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>View on GitHub</a>
+    </aside>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <p>&copy; <span id="year">2026</span> Ye Lin Naing. All rights reserved.</p>
+    <ul class="footer-links">
+      <li><a href="https://github.com/yelin-naing" rel="noopener" target="_blank">GitHub</a></li>
+      <li><a href="https://www.linkedin.com/in/yelinnaing/" rel="noopener" target="_blank">LinkedIn</a></li>
+      <li><a href="mailto:yelinnaing.job@gmail.com">Email</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script src="/js/main.js?v=11" defer></script>
+</body>
+</html>

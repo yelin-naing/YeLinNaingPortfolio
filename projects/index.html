@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-DS0Z04BKD5"></script>
 <script>
@@ -8,325 +8,150 @@
   gtag('js', new Date());
   gtag('config', 'G-DS0Z04BKD5');
 </script>
-<script>
-  // Applied before the page paints: a stored choice would otherwise arrive
-  // after first paint and flash the wrong theme.
-  (function(){
-    try{
-      var t = localStorage.getItem('theme');
-      if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t);
-    }catch(e){}
-  })();
-</script>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Every project by Ye Lin Naing (Leo) — an interactive breakdown of the tools, categories and work behind each build.">
-<meta name="theme-color" content="#12171C">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect x='6' y='6' width='88' height='88' rx='20' fill='%23000000'/%3E%3Crect x='23' y='56' width='15' height='26' rx='3' fill='%23FFFFFF'/%3E%3Crect x='43' y='40' width='15' height='42' rx='3' fill='%23FFFFFF'/%3E%3Crect x='63' y='22' width='15' height='60' rx='3' fill='%23FFFFFF'/%3E%3C/svg%3E">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Projects — Ye Lin Naing</title>
+<meta name="description" content="Data analysis projects by Ye Lin Naing: SQL data cleaning and analysis of world life expectancy, and a big data analysis of 65 million UK police records with Apache Spark.">
+<meta name="author" content="Ye Lin Naing">
 <link rel="canonical" href="https://yelinn.com/projects/">
+<meta name="theme-color" content="#FAFAF7">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Ye Lin Naing">
 <meta property="og:url" content="https://yelinn.com/projects/">
-<title>Projects — Ye Lin Naing (Leo)</title>
+<meta property="og:title" content="Projects — Ye Lin Naing">
+<meta property="og:description" content="Data analysis projects by Ye Lin Naing: SQL data cleaning and analysis of world life expectancy, and a big data analysis of 65 million UK police records with Apache Spark.">
+<meta property="og:image" content="https://yelinn.com/profile.jpg">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Projects — Ye Lin Naing">
+<meta name="twitter:description" content="Data analysis projects by Ye Lin Naing: SQL data cleaning and analysis of world life expectancy, and a big data analysis of 65 million UK police records with Apache Spark.">
+<meta name="twitter:image" content="https://yelinn.com/profile.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<!-- The site stylesheet carries the case-study styles (.proj, .qcard, .pwr).
-     It loads first so the page-specific rules below still override it. -->
-<link rel="stylesheet" href="/css/style.css?v=10">
-<style>
-  /* Palette comes from the shared stylesheet so dark mode reaches this page
-     too; only the wider measure is page-specific. Wide enough that three
-     project cards across don't squeeze the code/figures inside them. */
-  :root{--maxw:1200px;}
-  *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{
-    margin:0; background:var(--page); color:var(--ink);
-    font-family:'Inter',sans-serif; font-size:16px; line-height:1.6;
-  }
-  a{color:inherit;}
-  :focus-visible{outline:2px solid var(--green); outline-offset:2px;}
-  .mono{font-family:'JetBrains Mono',monospace;}
-  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px;}
-
-  /* header */
-  header.site{
-    position:sticky; top:0; z-index:10;
-    background:var(--nav-bg); backdrop-filter:blur(6px);
-    border-bottom:1px solid var(--grid);
-  }
-  .nav-inner{
-    max-width:var(--maxw); margin:0 auto; padding:16px 24px;
-    display:flex; align-items:center; justify-content:space-between; gap:16px;
-  }
-  .nav-right{display:flex; align-items:center; gap:14px;}
-  .logo{font-family:'JetBrains Mono',monospace; font-weight:600; font-size:14px; text-decoration:none;}
-  .back-link{
-    display:inline-flex; align-items:center; gap:7px;
-    font-size:13.5px; color:var(--ink-muted); text-decoration:none;
-  }
-  .back-link:hover{color:var(--green);}
-  .back-link svg{width:15px; height:15px;}
-
-  /* intro */
-  section{padding:44px 0;}
-  .lead{padding-top:52px; padding-bottom:0;}
-  .lead .role-filter{margin-top:24px;}
-  .lead + section{padding-top:26px;}
-  .eyebrow{
-    font-size:12.5px; text-transform:uppercase; letter-spacing:0.08em;
-    color:var(--green); font-weight:600; margin:0 0 14px;
-  }
-  h1{font-family:'Space Grotesk',sans-serif; font-size:clamp(28px,5vw,38px); margin:0 0 14px;}
-  .sub{color:var(--ink-muted); max-width:62ch; margin:0; font-size:16.5px;}
-
-  /* The case studies are full-width and stack; the shared stylesheet styles
-     them (.proj, .qcard, .pwr, .tags, .repo-btn). */
-  .grid{display:block;}
-  .grid .proj:first-of-type{border-top:1px solid var(--grid);}
-  .empty{
-    text-align:center; padding:40px; color:var(--ink-muted);
-    border:1px dashed var(--grid); border-radius:var(--radius);
-  }
-
-  footer{
-    padding:36px 0 60px; border-top:1px solid var(--grid); margin-top:20px;
-    text-align:center; color:var(--ink-muted); font-size:13.5px;
-  }
-  footer a{color:var(--green); font-weight:600; text-decoration:none;}
-
-  @media (max-width:640px){
-    section{padding:32px 0;}
-    .lead{padding-top:36px;}
-  }
-  @media (prefers-reduced-motion: reduce){
-    *{transition:none !important;}
-  }
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<!-- ?v= is bumped when the stylesheet or script changes, so returning
+     visitors don't pair new HTML with a cached old file. -->
+<link rel="stylesheet" href="/css/style.css?v=11">
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 
-<header class="site">
-  <div class="nav-inner">
-    <a class="logo" href="/">YeLinN.</a>
-    <div class="nav-right">
-      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to dark theme">
-        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
-        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
-      </button>
-      <a class="back-link" href="/">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
-      Back to portfolio
-      </a>
-    </div>
-  </div>
+<header class="site-header">
+  <nav class="container nav" aria-label="Main">
+    <a class="brand" href="/">Ye Lin Naing</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>Menu
+    </button>
+    <ul class="nav-links" id="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/projects/" aria-current="page">Projects</a></li>
+        <li><a href="/#about">About</a></li>
+        <li><a href="/#skills">Skills</a></li>
+        <li><a href="/#experience">Experience</a></li>
+        <li><a href="/#education">Education</a></li>
+        <li><a href="/#certifications">Certifications</a></li>
+        <li><a href="/#contact">Contact</a></li>
+    </ul>
+  </nav>
 </header>
 
-<main class="wrap">
-
-  <section class="lead">
+<main id="main">
+  <div class="container page-head">
     <h1>Projects</h1>
-    <p class="sub">Each project below is real work with code behind it.</p>
+    <p class="lede">Practical data analysis work, each with its code on GitHub. Open a case study for the full method, findings and limitations.</p>
+  </div>
 
-    <!-- ROLE FILTER: same control as the home page (js/role-filter.js) -->
-    <div class="role-filter" id="roleFilter" hidden>
-      <span class="role-filter-label mono" id="roleFilterLabel">Highlight for</span>
-      <div class="role-tabs" role="radiogroup" aria-labelledby="roleFilterLabel">
-        <button type="button" class="role-tab" role="radio" aria-checked="true" tabindex="0" data-role="all">All</button>
-        <button type="button" class="role-tab" role="radio" aria-checked="false" tabindex="-1" data-role="data">Data Analyst</button>
-        <button type="button" class="role-tab" role="radio" aria-checked="false" tabindex="-1" data-role="qa">QA Tester</button>
+  <section class="section" aria-labelledby="data-projects">
+    <div class="container">
+      <h2 class="visually-hidden" id="data-projects">Data analysis projects</h2>
+      <div class="project-grid">
+<article class="card project-card">
+  <div class="project-thumb chart-thumb">
+  <figure class="mini-chart" aria-label="Bar chart of average life expectancy in years: developed countries 79.2, developing countries 66.8, global average 66.8 in 2007 and 71.6 in 2022.">
+    <p class="mini-chart-title">Average life expectancy (years)</p>
+    <div class="bar-row"><span class="bar-label">Developed countries</span><span class="bar-track"><span class="bar-fill" style="--w:93.2%"></span></span><span class="bar-value">79.2</span></div>
+    <div class="bar-row"><span class="bar-label">Developing countries</span><span class="bar-track"><span class="bar-fill alt" style="--w:78.6%"></span></span><span class="bar-value">66.8</span></div>
+    <div class="bar-row"><span class="bar-label">Global average, 2007</span><span class="bar-track"><span class="bar-fill alt" style="--w:78.6%"></span></span><span class="bar-value">66.8</span></div>
+    <div class="bar-row"><span class="bar-label">Global average, 2022</span><span class="bar-track"><span class="bar-fill" style="--w:84.2%"></span></span><span class="bar-value">71.6</span></div>
+    <figcaption class="mini-chart-note">From my SQL output. Bars start at zero.</figcaption>
+  </figure>
+</div>
+  <div class="project-body">
+    <p class="meta-label">Data Analysis · SQL</p>
+    <h3><a href="/projects/world-life-expectancy/">World Life Expectancy — SQL Analysis</a></h3>
+    <dl class="project-facts">
+      <div><dt>Problem</dt><dd>How has life expectancy changed across 193 countries between 2007 and 2022, and which factors is it linked to?</dd></div>
+      <div><dt>Approach</dt><dd>Data cleaning with window functions and self joins, followed by exploratory queries using CTEs, <code>LAG</code> and <code>CASE</code>.</dd></div>
+      <div><dt>Outcome</dt><dd>The global average rose from 66.8 to 71.6 years, with a dip in 2020. Developed countries averaged 79.2 years against 66.8 for developing countries.</dd></div>
+    </dl>
+    <ul class="tag-list" aria-label="Tools used"><li class="tag">MySQL</li><li class="tag">Window functions</li><li class="tag">CTEs</li><li class="tag">Self joins</li><li class="tag">Data cleaning</li></ul>
+    <div class="project-links">
+      <a class="arrow-link" href="/projects/world-life-expectancy/">View case study &rarr;</a>
+      <a class="icon-link" href="https://github.com/yelin-naing/world-life-expectancy-analysis" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>GitHub repository</a>
+    </div>
+  </div>
+</article>
+<article class="card project-card">
+  <a class="project-thumb" href="/projects/uk-crime/" tabindex="-1" aria-hidden="true">
+  <img src="/img/projects/uk-crime-1.png" alt="" width="1932" height="656" loading="lazy">
+</a>
+  <div class="project-body">
+    <p class="meta-label">Data Analysis · Big Data</p>
+    <h3><a href="/projects/uk-crime/">UK Crime — Big Data Analysis</a></h3>
+    <dl class="project-facts">
+      <div><dt>Problem</dt><dd>Do three widely repeated claims about UK crime hold up when tested against 65 million police records?</dd></div>
+      <div><dt>Approach</dt><dd>A PySpark pipeline to filter and aggregate the records, rates per 100,000 people, a SARIMA forecast, and correlation and regression in Spark MLlib.</dd></div>
+      <div><dt>Outcome</dt><dd>Burglary fell by about half between 2011 and 2021, so the claim that it was rising did not hold. Merseyside ranked 5th, not 1st, on the weapons-offence rate used as a firearms measure.</dd></div>
+    </dl>
+    <ul class="tag-list" aria-label="Tools used"><li class="tag">Apache Spark (PySpark)</li><li class="tag">Azure</li><li class="tag">Python</li><li class="tag">Spark MLlib</li><li class="tag">SARIMA</li></ul>
+    <div class="project-links">
+      <a class="arrow-link" href="/projects/uk-crime/">View case study &rarr;</a>
+      <a class="icon-link" href="https://github.com/yelin-naing/uk-crime-bigdata-analysis" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>GitHub repository</a>
+    </div>
+  </div>
+</article>
       </div>
-      <p class="role-filter-note mono" id="roleFilterNote" aria-live="polite"></p>
     </div>
   </section>
 
-  <section>
-    <div class="grid" id="grid">
-    <article class="proj" data-category="Data Analysis" data-roles="data">
-      <div class="proj-head">
-        <span class="proj-idx mono">01</span>
-        <h3 class="proj-title">World Life Expectancy — SQL analysis</h3>
+  <section class="section" aria-labelledby="other-work">
+    <div class="container">
+      <div class="section-head">
+        <h2 id="other-work">Other work</h2>
+        <p>A software project that shows the database side of my skills.</p>
       </div>
-
-      <div class="proj-figure">
-        <div class="figbtn">
-          <img src="/img/projects/world-life-expectancy-map.png" alt="World map shaded by life expectancy by country in 2021, from green (highest) to red (lowest)" loading="lazy" width="1600" height="843">
-        </div>
-        <p class="proj-caption">World Bank life expectancy by country, 2021 — the shape of the dataset behind the analysis.</p>
+      <div class="project-grid">
+        <article class="card project-card">
+          <div class="project-body">
+            <p class="meta-label">Web Application · Database</p>
+            <h3>STRACK — Student Performance Tracking System</h3>
+            <dl class="project-facts">
+              <div><dt>Problem</dt><dd>Students and lecturers need one place to follow grades, attendance and learning progress.</dd></div>
+              <div><dt>Approach</dt><dd>A React front end and PHP back end over a MySQL database, with dashboards and charts for students and lecturers.</dd></div>
+              <div><dt>Outcome</dt><dd>A working web application with performance tracking, analytics views and gamification features such as badges and leaderboards.</dd></div>
+            </dl>
+            <ul class="tag-list" aria-label="Tools used"><li class="tag">MySQL</li><li class="tag">PHP</li><li class="tag">React</li></ul>
+            <div class="project-links">
+              <a class="icon-link" href="https://github.com/yelin-naing/STRACK" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>GitHub repository</a>
+            </div>
+          </div>
+        </article>
       </div>
-
-      <div class="proj-body">
-        <div class="proj-cta">
-          <a class="repo-btn" href="https://github.com/yelin-naing/world-life-expectancy-analysis" target="_blank" rel="noopener">
-            <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
-            View repository
-          </a>
-          <span class="proj-cta-note mono">SQL · 3 files</span>
-        </div>
-
-        <dl class="pwr">
-          <div class="pwr-item">
-            <dt>Problem</dt>
-            <dd>A 2,941-row global health dataset — 193 countries, 2007 to 2022 — with duplicate rows, missing Developed/Developing labels and gaps in life expectancy. Not usable as it stood.</dd>
-          </div>
-          <div class="pwr-item">
-            <dt>Work</dt>
-            <dd>Cleaned it in MySQL: <code>ROW_NUMBER</code> to find and remove 3 duplicates, a self join to fill 8 blank status labels, and adjacent-year interpolation for 2 missing values. Then answered seven questions with CTEs, window functions and <code>CASE</code>.</dd>
-            <!-- [PLACEHOLDER: one line about the checks run while cleaning (specifics to be supplied)] -->
-          </div>
-          <div class="pwr-item">
-            <dt>Result</dt>
-            <dd>Global life expectancy rose from 66.8 to 71.6 years, with a clear 2020 dip. Developed countries average 79.2 years against 66.8, and less than half the adult mortality. Zimbabwe improved most, gaining 21 years.</dd>
-          </div>
-        </dl>
-
-        <div class="tags">
-          <span class="tag">SQL</span><span class="tag">MySQL</span><span class="tag">Data Cleaning</span><span class="tag">Window Functions</span><span class="tag">EDA</span>
-        </div>
-      </div>
-    </article>
-
-    <!-- 02 -->
-    <article class="proj" data-category="Data Analysis" data-roles="data qa">
-      <div class="proj-head">
-        <span class="proj-idx mono">02</span>
-        <h3 class="proj-title">UK Crime — big data analysis</h3>
-      </div>
-
-      <div class="proj-figure">
-        <div class="figbtn">
-          <img src="/img/projects/uk-crime-police-car.jpg" alt="Merseyside Police patrol car on a street in Liverpool city centre" loading="lazy" width="1500" height="1125">
-        </div>
-        <p class="proj-caption">Photo: John Bradley, CC BY-SA 3.0 (Wikimedia Commons).</p>
-      </div>
-
-      <div class="proj-body">
-        <div class="proj-cta">
-          <a class="repo-btn" href="https://github.com/yelin-naing/uk-crime-bigdata-analysis" target="_blank" rel="noopener">
-            <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
-            View repository
-          </a>
-          <span class="proj-cta-note mono">Jupyter notebook · 4 charts</span>
-        </div>
-
-        <dl class="pwr">
-          <div class="pwr-item">
-            <dt>Problem</dt>
-            <dd>Three claims about crime in the UK, none of them tested against the full record: burglary is rising, Liverpool has the worst firearms rate, and firearms offences track drug offences.</dd>
-          </div>
-          <div class="pwr-item">
-            <dt>Work</dt>
-            <dd>Approached it like a test: stated each claim, checked it against the data, and recorded whether it held up. Processed a 65-million-row police dataset with Apache Spark on an Azure VM — tested on a sample first, then ran the full load. Normalised by population, fitted a SARIMA forecast, and ran correlation and regression in Spark MLlib.</dd>
-          </div>
-          <div class="pwr-item">
-            <dt>Result</dt>
-            <dd>Two claims refuted, one confirmed. Burglary <strong>fell about 50%</strong> in ten years, from ~42,000 a month to ~20,000. Merseyside ranks <strong>4th</strong> per 100,000, not 1st. Firearms and drug offences correlate at <strong>r = 0.92</strong>.</dd>
-          </div>
-        </dl>
-
-        <div class="tags">
-          <span class="tag">Apache Spark</span><span class="tag">Azure</span><span class="tag">Python</span><span class="tag">Big Data</span><span class="tag">SARIMA</span><span class="tag">Jupyter Notebook</span><span class="tag">Testing</span>
-        </div>
-      </div>
-    </article>
-
-
-    <!-- [PLACEHOLDER: QA project, hidden until the content is supplied.
-         To publish: fill in the [BRACKETS], then delete this comment's opening and closing lines.
-    <article class="proj" data-category="Testing" data-roles="qa">
-      <div class="proj-head">
-        <span class="proj-idx mono">03</span>
-        <h3 class="proj-title">[PROJECT NAME]</h3>
-      </div>
-
-      <div class="proj-figure">
-        <div class="figbtn">
-          <img src="/img/projects/[IMAGE].png" alt="[DESCRIBE THE IMAGE]" loading="lazy">
-        </div>
-        <p class="proj-caption">[CAPTION]</p>
-      </div>
-
-      <div class="proj-body">
-        <div class="proj-cta">
-          <a class="repo-btn" href="[REPO URL]" target="_blank" rel="noopener">View repository</a>
-        </div>
-
-        <dl class="pwr">
-          <div class="pwr-item">
-            <dt>Problem</dt>
-            <dd>[WHAT WAS UNDER TEST, AND WHY]</dd>
-          </div>
-          <div class="pwr-item">
-            <dt>Work</dt>
-            <dd>[HOW IT WAS TESTED: test cases, approach, tools]</dd>
-          </div>
-          <div class="pwr-item">
-            <dt>Result</dt>
-            <dd>[WHAT WAS FOUND: bugs raised, coverage, outcome]</dd>
-          </div>
-        </dl>
-
-        <div class="tags">
-          <span class="tag">Testing</span><span class="tag">[TOOL]</span>
-        </div>
-      </div>
-    </article>
-    -->
     </div>
   </section>
-
 </main>
 
-<footer>
-  <p>Built by Ye Lin Naing — <a href="/">back to the portfolio</a></p>
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <p>&copy; <span id="year">2026</span> Ye Lin Naing. All rights reserved.</p>
+    <ul class="footer-links">
+      <li><a href="https://github.com/yelin-naing" rel="noopener" target="_blank">GitHub</a></li>
+      <li><a href="https://www.linkedin.com/in/yelinnaing/" rel="noopener" target="_blank">LinkedIn</a></li>
+      <li><a href="mailto:yelinnaing.job@gmail.com">Email</a></li>
+    </ul>
+  </div>
 </footer>
 
-<script src="/js/role-filter.js?v=1" defer></script>
-<script>
-(function(){
-  // ===== THEME TOGGLE =====
-  // No stored value means "follow the OS", so the first click has to commit
-  // to the opposite of whatever is actually showing, not a fixed default.
-  var btn = document.getElementById('themeToggle');
-  if (!btn) return;
-  var root = document.documentElement;
-
-  function current(){
-    var set = root.getAttribute('data-theme');
-    if (set) return set;
-    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
-      ? 'dark' : 'light';
-  }
-  function label(){
-    btn.setAttribute('aria-label',
-      current() === 'dark' ? 'Switch to light theme' : 'Switch to dark theme');
-  }
-
-  function applyTheme(next){
-    root.setAttribute('data-theme', next);
-    try { localStorage.setItem('theme', next); } catch(e){}
-    label();
-  }
-
-  btn.addEventListener('click', function(){
-    var next = current() === 'dark' ? 'light' : 'dark';
-    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (!reduce && document.startViewTransition){
-      document.startViewTransition(function(){ applyTheme(next); });
-    } else {
-      applyTheme(next);
-    }
-  });
-
-  // follow the OS while the visitor hasn't chosen for themselves
-  if (window.matchMedia){
-    var mq = window.matchMedia('(prefers-color-scheme: dark)');
-    var onChange = function(){ if (!root.getAttribute('data-theme')) label(); };
-    if (mq.addEventListener) mq.addEventListener('change', onChange);
-    else if (mq.addListener) mq.addListener(onChange);
-  }
-  label();
-})();
-</script>
-
+<script src="/js/main.js?v=11" defer></script>
 </body>
 </html>

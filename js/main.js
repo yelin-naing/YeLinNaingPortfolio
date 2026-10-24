@@ -34,8 +34,8 @@
   // invisible. Without IntersectionObserver, or with reduced motion,
   // nothing is hidden at all.
   var REVEAL = [
-    '.section-head', '.section-foot', '.prose', '.contact-panel', '.skill-key',
-    '.project-card', '.skill-card', '.entry', '.cert'
+    '.section-head', '.section-foot', '.prose', '.contact-panel',
+    '.project-card', '.skill-group', '.entry', '.cert'
   ].join(',');
   var STAGGER_MS = 80;   // gap between items that enter together
   var STAGGER_MAX = 240;
@@ -74,6 +74,25 @@
       below.forEach(function(el){ el.classList.remove('reveal-pending'); });
     }, 1500);
   }
+
+  // ===== ANCHOR LINKS AND SMOOTH SCROLLING =====
+  // Arriving at /#skills jumps (not glides) to the section. When the web
+  // font swaps in, text above can re-wrap and push the section down, so
+  // re-align once, unless the visitor has already started scrolling. Only
+  // then is smooth scrolling switched on for clicks within the page.
+  var root = document.documentElement;
+  var fontsReady = document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve();
+  var target = null;
+  try { target = location.hash.length > 1 && document.getElementById(decodeURIComponent(location.hash.slice(1))); }
+  catch(e){ /* malformed fragment: nothing to align */ }
+  var userMoved = false;
+  ['wheel', 'touchstart', 'keydown', 'mousedown'].forEach(function(type){
+    window.addEventListener(type, function(){ userMoved = true; }, {once:true, passive:true});
+  });
+  fontsReady.then(function(){
+    if (target && !userMoved) target.scrollIntoView({block:'start'});
+    root.classList.add('smooth-scroll');
+  });
 
   // ===== FOOTER YEAR =====
   // The HTML carries a static year as a fallback; this keeps it current.

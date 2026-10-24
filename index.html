@@ -31,7 +31,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <!-- ?v= is bumped when the stylesheet or script changes, so returning
      visitors don't pair new HTML with a cached old file. -->
-<link rel="stylesheet" href="/css/style.css?v=12">
+<link rel="stylesheet" href="/css/style.css?v=13">
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -157,83 +157,43 @@
   <section class="section" id="skills" aria-labelledby="skills-title">
     <div class="container">
       <div class="section-head">
-        <h2 id="skills-title">Skills</h2>
-        <p>Grouped by area, with a note on where I've used each one.</p>
+        <h2 id="skills-title">Skills &amp; Tools</h2>
+        <p>What I use for analysis, and where you can see it in my projects.</p>
       </div>
-      <div class="skill-grid">
-      <div class="card skill-card">
-        <h3>Data Analysis</h3>
-        <ul class="skill-list">
-          <li>
-            <div class="skill-head"><span class="skill-name">SQL (MySQL)</span><span class="status status-done">Used in projects</span></div>
-            <p class="skill-desc">Joins, window functions, CTEs, self joins and <code>CASE</code>. Used in World Life Expectancy; also practised on HackerRank and LeetCode.</p>
-          </li>
-          <li>
-            <div class="skill-head"><span class="skill-name">Excel</span><span class="status">Working knowledge</span></div>
-            <p class="skill-desc">Pivot tables, <code>INDIRECT</code>, spill ranges and running totals.</p>
-          </li>
-          <li>
-            <div class="skill-head"><span class="skill-name">Exploratory data analysis</span><span class="status status-done">Used in projects</span></div>
-            <p class="skill-desc">Turning a broad topic into specific questions and answering them with summaries, comparisons and trends. Used in both case studies.</p>
-          </li>
-          <li>
-            <div class="skill-head"><span class="skill-name">Data cleaning and validation</span><span class="status status-done">Used in projects</span></div>
-            <p class="skill-desc">Finding duplicates, filling or estimating missing values and checking row counts before relying on results. Used in World Life Expectancy.</p>
-          </li>
-          <li>
-            <div class="skill-head"><span class="skill-name">Statistical analysis</span><span class="status status-done">Used in projects</span></div>
-            <p class="skill-desc">Pearson and Spearman correlation, linear regression and SARIMA time-series forecasting. Used in UK Crime.</p>
-          </li>
-        </ul>
+      <div class="skill-groups">
+        <article class="card skill-group">
+          <div class="skill-group-head">
+            <span class="skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><polyline points="8 13 10 10.5 12 12 14 9"/></svg></span>
+            <h3>Data Analysis</h3>
+          </div>
+          <ul class="skill-tags"><li class="skill-tag">SQL (MySQL)</li><li class="skill-tag">Excel</li><li class="skill-tag">Exploratory data analysis</li><li class="skill-tag">Data cleaning &amp; validation</li><li class="skill-tag">Statistical analysis</li></ul>
+          <p class="skill-note">Applied in <a href="/projects/world-life-expectancy/">World Life Expectancy</a> (SQL, cleaning) and <a href="/projects/uk-crime/">UK Crime</a> (correlation, regression, forecasting).</p>
+        </article>
+        <article class="card skill-group">
+          <div class="skill-group-head">
+            <span class="skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="4" y1="20" x2="20" y2="20"/><rect x="5" y="11" width="3" height="6" rx="0.5"/><rect x="10.5" y="7" width="3" height="10" rx="0.5"/><rect x="16" y="4" width="3" height="13" rx="0.5"/></svg></span>
+            <h3>Business Intelligence &amp; Visualisation</h3>
+          </div>
+          <ul class="skill-tags"><li class="skill-tag">Data visualisation</li><li class="skill-tag">Reporting findings</li><li class="skill-tag is-developing">Power BI<span class="visually-hidden"> (developing)</span></li><li class="skill-tag is-developing">Dashboard design<span class="visually-hidden"> (developing)</span></li></ul>
+          <p class="skill-note">Charts and written findings in <a href="/projects/uk-crime/">UK Crime</a>. Power BI and dashboard design are in progress as I work towards the PL-300 certification.</p>
+        </article>
+        <article class="card skill-group">
+          <div class="skill-group-head">
+            <span class="skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span>
+            <h3>Programming &amp; Big Data</h3>
+          </div>
+          <ul class="skill-tags"><li class="skill-tag">Python</li><li class="skill-tag">pandas</li><li class="skill-tag">NumPy</li><li class="skill-tag">Apache Spark</li><li class="skill-tag">Spark MLlib</li></ul>
+          <p class="skill-note">Used to process and analyse 65 million police records in <a href="/projects/uk-crime/">UK Crime</a>.</p>
+        </article>
+        <article class="card skill-group">
+          <div class="skill-group-head">
+            <span class="skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.66 3.58 3 8 3s8-1.34 8-3V5"/><path d="M4 11v6c0 1.66 3.58 3 8 3s8-1.34 8-3v-6"/></svg></span>
+            <h3>Platforms &amp; Databases</h3>
+          </div>
+          <ul class="skill-tags"><li class="skill-tag">Microsoft Azure</li><li class="skill-tag">Relational databases (MySQL)</li><li class="skill-tag">Git &amp; GitHub</li></ul>
+          <p class="skill-note">Azure ran the Spark workload for <a href="/projects/uk-crime/">UK Crime</a>; MySQL sits behind <a href="/projects/">STRACK</a>; all code is on <a href="https://github.com/yelin-naing" target="_blank" rel="noopener">GitHub</a>.</p>
+        </article>
       </div>
-      <div class="card skill-card">
-        <h3>Business Intelligence</h3>
-        <ul class="skill-list">
-          <li>
-            <div class="skill-head"><span class="skill-name">Power BI</span><span class="status">Developing</span></div>
-            <p class="skill-desc">Studying for the PL-300 certification: data modelling, reports and dashboards.</p>
-          </li>
-          <li>
-            <div class="skill-head"><span class="skill-name">Data visualisation</span><span class="status status-done">Used in projects</span></div>
-            <p class="skill-desc">Line, bar and scatter charts in Matplotlib and Seaborn, each chosen to answer one question. Used in UK Crime.</p>
-          </li>
-          <li>
-            <div class="skill-head"><span class="skill-name">Reporting findings</span><span class="status status-done">Used in projects</span></div>
-            <p class="skill-desc">Writing results in plain English, with the method and its limitations stated. See both case studies.</p>
-          </li>
-        </ul>
-      </div>
-      <div class="card skill-card">
-        <h3>Additional Technical Skills</h3>
-        <ul class="skill-list">
-          <li>
-            <div class="skill-head"><span class="skill-name">Python</span><span class="status status-done">Used in projects</span></div>
-            <p class="skill-desc">pandas, NumPy, Matplotlib and statsmodels for data preparation, charts and forecasting. Used in UK Crime.</p>
-          </li>
-          <li>
-            <div class="skill-head"><span class="skill-name">Apache Spark</span><span class="status status-done">Used in projects</span></div>
-            <p class="skill-desc">Filtering, joining and aggregating 65 million rows with PySpark; correlation and regression in Spark MLlib. Used in UK Crime.</p>
-          </li>
-          <li>
-            <div class="skill-head"><span class="skill-name">Microsoft Azure</span><span class="status status-done">Used in projects</span></div>
-            <p class="skill-desc">Ran the full Spark workload on an Azure virtual machine. Used in UK Crime.</p>
-          </li>
-          <li>
-            <div class="skill-head"><span class="skill-name">Git and GitHub</span><span class="status status-done">Used in projects</span></div>
-            <p class="skill-desc">Version control and publishing for all of my projects.</p>
-          </li>
-          <li>
-            <div class="skill-head"><span class="skill-name">Relational databases</span><span class="status status-done">Used in projects</span></div>
-            <p class="skill-desc">MySQL tables and queries behind a web application (STRACK), and the Database Design &amp; Development module of my HND.</p>
-          </li>
-          <li>
-            <div class="skill-head"><span class="skill-name">Software testing</span><span class="status">Developing</span></div>
-            <p class="skill-desc">Studying for ISTQB Foundation Level (CTFL): test design, test cases and bug reporting.</p>
-          </li>
-        </ul>
-      </div>
-      </div>
-      <p class="skill-key"><strong>Used in projects</strong> — applied in work you can check on this site or GitHub. <strong>Working knowledge</strong> — used regularly, but not yet in a published project. <strong>Developing</strong> — currently learning.</p>
     </div>
   </section>
 
@@ -359,6 +319,6 @@
   </div>
 </footer>
 
-<script src="/js/main.js?v=12" defer></script>
+<script src="/js/main.js?v=13" defer></script>
 </body>
 </html>

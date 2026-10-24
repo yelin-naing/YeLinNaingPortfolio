@@ -32,7 +32,13 @@
 }
 
 *,*::before,*::after{box-sizing:border-box;}
-html{scroll-behavior:smooth; scroll-padding-top:calc(var(--header-h) + 16px);}
+html{scroll-padding-top:calc(var(--header-h) + 16px);}
+/* Smooth scrolling for in-page links. js/main.js adds the class once fonts
+   have loaded, so arriving at /#skills jumps straight to the section
+   instead of gliding towards a position that the font swap then moves. */
+@media (prefers-reduced-motion: no-preference){
+  html.smooth-scroll{scroll-behavior:smooth;}
+}
 body{
   margin:0; background:var(--bg); color:var(--text);
   font-family:var(--font); font-size:17px; line-height:1.65;
@@ -119,9 +125,6 @@ code{font-family:var(--font-mono); font-size:0.88em; background:var(--code-bg); 
 .arrow-link{font-weight:600; text-decoration:none;}
 .arrow-link:hover{text-decoration:underline;}
 
-@media (prefers-reduced-motion: reduce){
-  html{scroll-behavior:auto;}
-}
 
 /* ===== SECTIONS ===== */
 .section{padding-block:72px;}
@@ -215,20 +218,32 @@ code{font-family:var(--font-mono); font-size:0.88em; background:var(--code-bg); 
 .prose{max-width:68ch;}
 .prose p:last-child{margin-bottom:0;}
 
-/* ===== SKILLS ===== */
-.skill-grid{display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:20px; align-items:start;}
-@media (max-width:960px){ .skill-grid{grid-template-columns:1fr 1fr;} }
-@media (max-width:640px){ .skill-grid{grid-template-columns:1fr;} }
-.skill-card{padding:22px 22px 10px;}
-.skill-card h3{font-size:18px; font-weight:700; margin-bottom:6px;}
-.skill-list{list-style:none;}
-.skill-list li{padding:12px 0; border-top:1px solid var(--border);}
-.skill-list li:first-child{border-top:0;}
-.skill-head{display:flex; flex-wrap:wrap; justify-content:space-between; align-items:baseline; gap:4px 10px;}
-.skill-name{font-weight:600; font-size:16px;}
-.skill-desc{margin:4px 0 0; font-size:14.5px; color:var(--muted); line-height:1.55;}
-.skill-key{margin-top:22px; font-size:14.5px; color:var(--muted); max-width:90ch;}
-.skill-key strong{color:var(--text); font-weight:600;}
+/* ===== SKILLS & TOOLS =====
+   Four groups of short tags. Visual grouping carries the structure; one
+   note per group points to the evidence. */
+.skill-groups{display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:20px;}
+@media (max-width:760px){ .skill-groups{grid-template-columns:1fr; gap:16px;} }
+.skill-group{display:flex; flex-direction:column; gap:16px; padding:22px 24px;}
+.skill-group-head{display:flex; align-items:center; gap:12px;}
+.skill-group h3{font-size:17px; font-weight:700;}
+.skill-icon{
+  display:inline-flex; align-items:center; justify-content:center; flex:0 0 auto;
+  width:36px; height:36px; border-radius:var(--radius);
+  background:var(--accent-soft); color:var(--accent);
+}
+.skill-icon svg{width:20px; height:20px;}
+.skill-tags{display:flex; flex-wrap:wrap; gap:8px; list-style:none;}
+.skill-tag{
+  font-size:14.5px; font-weight:500; line-height:1.3; color:var(--text);
+  background:var(--surface); border:1px solid var(--border-strong);
+  border-radius:6px; padding:6px 11px;
+}
+/* still being learned: quieter, dashed; the group note says so in words */
+.skill-tag.is-developing{border-style:dashed; color:var(--muted);}
+.skill-note{
+  margin:auto 0 0; padding-top:14px; border-top:1px solid var(--border);
+  font-size:14px; line-height:1.55; color:var(--muted);
+}
 
 /* ===== EXPERIENCE & EDUCATION (shared entry list) ===== */
 .entry-list{list-style:none; margin:0; padding:0; display:grid; gap:16px; max-width:840px;}

@@ -21,6 +21,12 @@
   --gutter:24px;
   --header-h:64px;
 
+  /* motion */
+  --ease-out:cubic-bezier(.2,.7,.2,1);
+  --dur-fast:180ms;      /* hover, press, focus */
+  --dur-reveal:450ms;    /* entrances */
+  --rise:14px;           /* how far entrances travel */
+
   --font:'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   --font-mono:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
@@ -113,9 +119,6 @@ code{font-family:var(--font-mono); font-size:0.88em; background:var(--code-bg); 
 .arrow-link{font-weight:600; text-decoration:none;}
 .arrow-link:hover{text-decoration:underline;}
 
-@media (prefers-reduced-motion: no-preference){
-  .btn, .nav-links a, .card{transition:background-color .2s ease, color .2s ease, border-color .2s ease;}
-}
 @media (prefers-reduced-motion: reduce){
   html{scroll-behavior:auto;}
 }
@@ -322,3 +325,83 @@ code{font-family:var(--font-mono); font-size:0.88em; background:var(--code-bg); 
 .not-found{padding-block:96px;}
 .not-found h1{font-size:clamp(32px, 5vw, 44px); font-weight:800; margin-bottom:14px;}
 .not-found p{color:var(--muted); max-width:56ch;}
+
+/* ============================================================
+   MOTION
+   Entrances use opacity + transform only, so they never move the
+   layout. Nothing waits on an animation: links work immediately
+   and content is never held hidden while it's on screen.
+   ============================================================ */
+
+/* --- Interaction feedback (colour changes apply in every motion mode) --- */
+.btn, .nav-links a, .card, .icon-link, .arrow-link, .tag, a{
+  transition:background-color var(--dur-fast) ease, color var(--dur-fast) ease,
+             border-color var(--dur-fast) ease, box-shadow var(--dur-fast) ease,
+             text-decoration-color var(--dur-fast) ease;
+}
+.btn-primary:active{background:#0B4F4A;}
+.btn-secondary:active{background:var(--code-bg);}
+.icon-link, .arrow-link{text-decoration-line:underline; text-decoration-color:transparent;}
+.icon-link:hover, .arrow-link:hover{text-decoration-color:currentColor;}
+.arrow{display:inline-block;}
+
+/* Cards: a lift and a soft shadow on hover, or while a link inside has
+   keyboard focus. Touch screens get no sticky hover state. */
+@media (hover:hover){
+  .project-card:hover{border-color:var(--border-strong); box-shadow:0 10px 24px -14px rgba(15,23,42,0.22);}
+  .case-nav a:hover{box-shadow:0 8px 20px -14px rgba(15,23,42,0.22);}
+}
+.project-card:focus-within{border-color:var(--border-strong); box-shadow:0 10px 24px -14px rgba(15,23,42,0.22);}
+
+@media (prefers-reduced-motion: no-preference){
+  .btn, .project-card, .case-nav a, .project-thumb img, .arrow{
+    transition:background-color var(--dur-fast) ease, color var(--dur-fast) ease,
+               border-color var(--dur-fast) ease, box-shadow 220ms ease,
+               transform 220ms var(--ease-out);
+  }
+  .btn:active{transform:translateY(1px);}
+  @media (hover:hover){
+    .project-card:hover, .case-nav a:hover{transform:translateY(-3px);}
+    .project-card:hover .project-thumb img{transform:scale(1.02);}
+    .project-card:hover .arrow, .arrow-link:hover .arrow, .case-nav a:hover .arrow{transform:translateX(3px);}
+    .arrow-link:hover .arrow-back, .case-nav a:hover .arrow-back{transform:translateX(-3px);}
+  }
+  .project-card:focus-within{transform:translateY(-3px);}
+  .arrow-link:focus-visible .arrow{transform:translateX(3px);}
+  .arrow-link:focus-visible .arrow-back{transform:translateX(-3px);}
+
+  /* --- Hero / page header entrance on load (pure CSS) ---
+     fill-mode "backwards" holds the start state only during each
+     element's delay, then hands the element back to its own styles. */
+  @keyframes rise-in{
+    from{opacity:0; transform:translateY(var(--rise));}
+    to{opacity:1; transform:none;}
+  }
+  .hero h1, .hero-role, .hero-intro, .hero-facts, .hero .btn-row, .hero-links, .hero-photo,
+  .page-head > *{
+    animation:rise-in var(--dur-reveal) var(--ease-out) backwards;
+  }
+  .hero h1, .page-head > :nth-child(1){animation-delay:0ms;}
+  .hero-role, .page-head > :nth-child(2){animation-delay:60ms;}
+  .hero-intro, .page-head > :nth-child(3){animation-delay:120ms;}
+  .hero-facts, .page-head > :nth-child(4){animation-delay:180ms;}
+  .hero .btn-row{animation-delay:240ms;}
+  .hero-links{animation-delay:300ms;}
+  .hero-photo{animation-delay:120ms;}
+
+  /* --- Scroll reveals (js/main.js adds these classes) ---
+     .reveal-pending is only ever set on elements that start below the
+     screen, so nothing visible is hidden. */
+  .reveal-pending{opacity:0;}
+  .reveal-in{animation:rise-in var(--dur-reveal) var(--ease-out) var(--reveal-delay, 0ms) backwards;}
+}
+
+/* Reduced motion: no travel, no lift, no scaling. Content appears as is;
+   colour and border feedback above still applies. */
+@media (prefers-reduced-motion: reduce){
+  *, *::before, *::after{animation:none !important; scroll-behavior:auto !important;}
+  .reveal-pending{opacity:1 !important;}
+}
+@media print{
+  .reveal-pending{opacity:1 !important;}
+}

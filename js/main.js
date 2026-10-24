@@ -1,5 +1,5 @@
-/* Shared by every page: the mobile menu and the footer year.
-   Everything else on the site is plain HTML and works without this file. */
+/* Shared by every page: the mobile menu, scroll reveals and the footer year.
+   The site is plain HTML and every page works fully without this file. */
 (function(){
   // ===== MOBILE MENU =====
   var toggle = document.querySelector('.nav-toggle');
@@ -25,6 +25,54 @@
     document.addEventListener('click', function(e){
       if (!links.contains(e.target) && !toggle.contains(e.target)) setOpen(false);
     });
+  }
+
+  // ===== SCROLL REVEALS =====
+  // Sections fade up once as they enter the screen. Only elements that
+  // start below the screen are hidden, and each is revealed as soon as
+  // any part of it scrolls into view, so nothing on screen is ever held
+  // invisible. Without IntersectionObserver, or with reduced motion,
+  // nothing is hidden at all.
+  var REVEAL = [
+    '.section-head', '.section-foot', '.prose', '.contact-panel', '.skill-key',
+    '.project-card', '.skill-card', '.entry', '.cert'
+  ].join(',');
+  var STAGGER_MS = 80;   // gap between items that enter together
+  var STAGGER_MAX = 240;
+
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reduce && 'IntersectionObserver' in window){
+    var below = Array.prototype.filter.call(document.querySelectorAll(REVEAL), function(el){
+      return el.getBoundingClientRect().top > window.innerHeight;
+    });
+    var heard = false;
+    var io = new IntersectionObserver(function(entries){
+      heard = true;
+      var batch = entries.filter(function(e){ return e.isIntersecting; })
+                         .map(function(e){ return e.target; });
+      // Items that arrive together (a row of cards) reveal in page order,
+      // a few milliseconds apart.
+      batch.sort(function(a, b){
+        return a.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_FOLLOWING ? -1 : 1;
+      });
+      batch.forEach(function(el, i){
+        io.unobserve(el);
+        el.style.setProperty('--reveal-delay', Math.min(i * STAGGER_MS, STAGGER_MAX) + 'ms');
+        el.classList.remove('reveal-pending');
+        el.classList.add('reveal-in');
+      });
+    });
+    below.forEach(function(el){
+      el.classList.add('reveal-pending');
+      io.observe(el);
+    });
+    // The observer always reports once per element straight away. If that
+    // never happens, show everything rather than risk hidden content.
+    setTimeout(function(){
+      if (heard) return;
+      io.disconnect();
+      below.forEach(function(el){ el.classList.remove('reveal-pending'); });
+    }, 1500);
   }
 
   // ===== FOOTER YEAR =====

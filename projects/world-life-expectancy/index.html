@@ -31,7 +31,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <!-- ?v= is bumped when the stylesheet or script changes, so returning
      visitors don't pair new HTML with a cached old file. -->
-<link rel="stylesheet" href="/css/style.css?v=11">
+<link rel="stylesheet" href="/css/style.css?v=12">
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -57,7 +57,7 @@
 
 <main id="main">
   <div class="container page-head">
-    <p class="breadcrumb"><a href="/projects/">&larr; All projects</a></p>
+    <p class="breadcrumb"><a class="arrow-link" href="/projects/"><span class="arrow arrow-back" aria-hidden="true">&larr;</span> All projects</a></p>
     <p class="meta-label">Data Analysis · SQL</p>
     <h1>World Life Expectancy — SQL Analysis</h1>
     <p class="lede">Cleaning a global health dataset in MySQL, then using it to answer seven questions about how life expectancy changed between 2007 and 2022.</p>
@@ -154,7 +154,7 @@ WHERE Row_ID IN (
       </ul>
       <nav class="case-nav" aria-label="More projects">
         <span></span>
-        <a class="card next" href="/projects/uk-crime/"><small>Next project &rarr;</small>UK Crime — Big Data Analysis</a>
+        <a class="card next" href="/projects/uk-crime/"><small>Next project <span class="arrow" aria-hidden="true">&rarr;</span></small>UK Crime — Big Data Analysis</a>
       </nav>
     </article>
 
@@ -180,6 +180,6 @@ WHERE Row_ID IN (
   </div>
 </footer>
 
-<script src="/js/main.js?v=11" defer></script>
+<script src="/js/main.js?v=12" defer></script>
 </body>
 </html>

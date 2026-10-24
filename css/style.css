@@ -139,7 +139,7 @@ code{font-family:var(--font-mono); font-size:0.88em; background:var(--code-bg); 
 
 /* ===== HERO ===== */
 .hero{padding-block:72px 64px;}
-.hero-grid{display:grid; grid-template-columns:minmax(0,1fr) 220px; gap:56px; align-items:center;}
+.hero-grid{display:grid; grid-template-columns:minmax(0,1fr) auto; gap:64px; align-items:center;}
 .hero h1{font-size:clamp(36px, 6vw, 52px); font-weight:800; letter-spacing:-0.02em;}
 .hero-role{font-size:clamp(19px, 2.4vw, 22px); font-weight:600; color:var(--accent); margin:10px 0 20px;}
 .hero-intro{font-size:18px; max-width:60ch; margin-bottom:20px;}
@@ -147,12 +147,29 @@ code{font-family:var(--font-mono); font-size:0.88em; background:var(--code-bg); 
 .hero-facts li{display:flex; gap:10px; align-items:flex-start;}
 .hero-facts svg{width:18px; height:18px; flex:0 0 auto; margin-top:4px; color:var(--accent);}
 .hero-links{display:flex; flex-wrap:wrap; gap:12px 22px; margin-top:22px; font-size:16px;}
-.hero-photo img{width:220px; height:220px; object-fit:cover; border-radius:50%; border:1px solid var(--border);}
+/* Portrait, 4:5. The source is square, so the frame keeps its full height
+   and trims the sides; 52% keeps the face and folded arms centred. A soft
+   teal panel offset behind it ties the photo to the accent colour. */
+.hero-photo{position:relative; width:260px; margin:0 14px 14px 0;}
+.hero-photo::before{
+  content:''; position:absolute; inset:14px -14px -14px 14px;
+  border-radius:20px; background:var(--accent-soft); border:1px solid #CDEFE6;
+}
+.hero-photo img{
+  position:relative; width:100%; height:auto; aspect-ratio:4 / 5;
+  object-fit:cover; object-position:52% 50%;
+  border-radius:20px; border:1px solid var(--border); background:var(--surface);
+}
+@media (max-width:960px) and (min-width:761px){
+  .hero-grid{gap:48px;}
+  .hero-photo{width:230px;}
+}
 @media (max-width:760px){
   .hero{padding-block:40px 48px;}
-  .hero-grid{grid-template-columns:1fr; gap:24px;}
-  .hero-photo{order:-1;}
-  .hero-photo img{width:112px; height:112px;}
+  .hero-grid{grid-template-columns:1fr; gap:28px;}
+  .hero-photo{order:-1; width:156px; margin:0 10px 10px 0;}
+  .hero-photo::before{inset:10px -10px -10px 10px; border-radius:16px;}
+  .hero-photo img{border-radius:16px;}
 }
 @media (max-width:420px){
   .hero .btn-row .btn{flex:1 1 100%;}
@@ -392,7 +409,7 @@ code{font-family:var(--font-mono); font-size:0.88em; background:var(--code-bg); 
     from{opacity:0; transform:translateY(var(--rise));}
     to{opacity:1; transform:none;}
   }
-  .hero h1, .hero-role, .hero-intro, .hero-facts, .hero .btn-row, .hero-links, .hero-photo,
+  .hero h1, .hero-role, .hero-intro, .hero-facts, .hero .btn-row, .hero-links,
   .page-head > *{
     animation:rise-in var(--dur-reveal) var(--ease-out) backwards;
   }
@@ -402,7 +419,8 @@ code{font-family:var(--font-mono); font-size:0.88em; background:var(--code-bg); 
   .hero-facts, .page-head > :nth-child(4){animation-delay:180ms;}
   .hero .btn-row{animation-delay:240ms;}
   .hero-links{animation-delay:300ms;}
-  .hero-photo{animation-delay:120ms;}
+  @keyframes fade-in{from{opacity:0;} to{opacity:1;}}
+  .hero-photo{animation:fade-in 600ms ease-out 120ms backwards;}
 
   /* --- Scroll reveals (js/main.js adds these classes) ---
      .reveal-pending is only ever set on elements that start below the

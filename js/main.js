@@ -40,6 +40,14 @@
   var STAGGER_MS = 80;   // gap between items that enter together
   var STAGGER_MAX = 240;
 
+  // Skill chips follow their card in, one after another (50ms apart in CSS);
+  // each chip needs to know its position in the list.
+  Array.prototype.forEach.call(document.querySelectorAll('.skill-tags'), function(list){
+    Array.prototype.forEach.call(list.children, function(chip, i){
+      chip.style.setProperty('--i', i);
+    });
+  });
+
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (!reduce && 'IntersectionObserver' in window){
     var below = Array.prototype.filter.call(document.querySelectorAll(REVEAL), function(el){

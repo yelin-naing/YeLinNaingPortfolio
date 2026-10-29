@@ -250,13 +250,46 @@ code{font-family:var(--font-mono); font-size:0.88em; background:var(--code-bg); 
 }
 .skill-icon svg{width:20px; height:20px;}
 .skill-tags{display:flex; flex-wrap:wrap; gap:8px; list-style:none;}
-.skill-tag{
+
+/* Chip: logo (decorative, alt="") + visible name. Brand logos keep their
+   own colours; concept skills use Lucide line icons in the accent. */
+.skill-chip{
+  position:relative; display:inline-flex; align-items:center; gap:8px;
   font-size:14.5px; font-weight:500; line-height:1.3; color:var(--text);
   background:var(--surface); border:1px solid var(--border-strong);
-  border-radius:6px; padding:6px 11px;
+  border-radius:6px; padding:5px 11px 5px 8px;
 }
-/* still being learned: quieter, dashed; the group note says so in words */
-.skill-tag.is-developing{border-style:dashed; color:var(--muted);}
+.chip-logo{width:20px; height:20px; flex:0 0 auto; display:block;}
+/* soft shadow lives on a layer underneath, so hover only animates opacity */
+.skill-chip::before{
+  content:''; position:absolute; inset:0; border-radius:inherit; pointer-events:none;
+  box-shadow:0 6px 14px -8px rgba(15,23,42,0.28); opacity:0;
+}
+
+/* Still being learned: dashed border, quieter text, logo at 60%. */
+.skill-chip.is-developing{border-style:dashed; color:var(--muted); cursor:help;}
+.skill-chip.is-developing .chip-logo{opacity:0.6;}
+/* Accent dashes laid over the grey ones; motion only fades them in and out. */
+.skill-chip.is-developing::after{
+  content:''; position:absolute; inset:-1px; border-radius:inherit; pointer-events:none;
+  border:1px dashed var(--accent); opacity:0;
+}
+
+/* Tooltip for in-progress chips: hover, keyboard focus or tap. Centred
+   above the chip so it never pushes past the screen edge. */
+.chip-tip{
+  position:absolute; left:50%; bottom:calc(100% + 8px); z-index:5;
+  transform:translate(-50%, 4px); opacity:0; pointer-events:none;
+  white-space:nowrap; font-size:12.5px; font-weight:500; line-height:1.3;
+  color:#fff; background:var(--text); border-radius:6px; padding:5px 9px;
+}
+.chip-tip::after{
+  content:''; position:absolute; left:50%; top:100%; transform:translateX(-50%);
+  border:5px solid transparent; border-top-color:var(--text);
+}
+.skill-chip:hover .chip-tip, .skill-chip:focus .chip-tip{opacity:1; transform:translate(-50%, 0);}
+.skill-chip:focus-visible::before{opacity:1;}
+
 .skill-note{
   margin:auto 0 0; padding-top:14px; border-top:1px solid var(--border);
   font-size:14px; line-height:1.55; color:var(--muted);
@@ -275,7 +308,7 @@ code{font-family:var(--font-mono); font-size:0.88em; background:var(--code-bg); 
 .entry .status{margin-top:12px;}
 
 /* ===== CERTIFICATIONS ===== */
-.cert-grid{display:grid; grid-template-columns:repeat(auto-fill, minmax(290px,1fr)); gap:16px; list-style:none;}
+.cert-grid{display:grid; grid-template-columns:repeat(auto-fill, minmax(min(290px, 100%),1fr)); gap:16px; list-style:none;}
 .cert{display:flex; flex-direction:column; gap:6px; padding:20px 22px;}
 .cert h3{font-size:16.5px; font-weight:600; line-height:1.4;}
 .cert-issuer{font-size:14.5px; color:var(--muted); margin:0;}
@@ -421,6 +454,28 @@ code{font-family:var(--font-mono); font-size:0.88em; background:var(--code-bg); 
   .hero-links{animation-delay:300ms;}
   @keyframes fade-in{from{opacity:0;} to{opacity:1;}}
   .hero-photo{animation:fade-in 600ms ease-out 120ms backwards;}
+
+  /* --- Skill chips --- */
+  .skill-chip, .skill-chip::before, .chip-logo, .chip-tip{
+    transition:transform 200ms var(--ease-out), opacity 200ms ease;
+  }
+  @media (hover:hover){
+    .skill-chip:hover{transform:translateY(-2px);}
+    .skill-chip:hover::before{opacity:1;}
+    .skill-chip:hover .chip-logo{transform:scale(1.1);}
+  }
+  @keyframes dash-pulse{from{opacity:0;} to{opacity:0.7;}}
+  .skill-chip.is-developing::after{animation:dash-pulse 2.8s ease-in-out infinite alternate;}
+
+  /* Skill cards rise a little further (20px); as a card reveals, its chips
+     follow 50ms apart. Chips in cards already on screen never animate. */
+  .skill-group{--rise:20px;}
+  @keyframes chip-in{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;}}
+  .skill-group.reveal-in .skill-chip{
+    animation:chip-in 300ms var(--ease-out) calc(var(--reveal-delay, 0ms) + 180ms + var(--i, 0) * 50ms) backwards;
+  }
+  /* the pulse layer keeps its own animation */
+  .skill-group.reveal-in .skill-chip.is-developing::after{animation:dash-pulse 2.8s ease-in-out infinite alternate;}
 
   /* --- Scroll reveals (js/main.js adds these classes) ---
      .reveal-pending is only ever set on elements that start below the

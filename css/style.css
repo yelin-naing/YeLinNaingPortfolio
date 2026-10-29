@@ -15,7 +15,6 @@
   --accent-hover:#115E59;
   --accent-soft:#ECFDF8;
   --code-bg:#F1F5F9;
-  --amber:#D97706;          /* "in progress" marker */
 
   --radius:8px;
   --maxw:1080px;
@@ -237,13 +236,13 @@ code{font-family:var(--font-mono); font-size:0.88em; background:var(--code-bg); 
 .prose p:last-child{margin-bottom:0;}
 
 /* ===== SKILLS & TOOLS: logo grid =====
-   Logos only; each tile is focusable and carries its own tooltip text,
-   so hover, keyboard focus and tap all reveal where the tool was used. */
+   Logos only; each tile is focusable, so hover, keyboard focus and tap
+   all show the tool's name in a tooltip. */
 #skills{overflow-x:clip;}   /* a tooltip near the edge can never cause sideways scroll */
 .skill-logos{
   list-style:none; margin:0 auto; padding:0;
   display:flex; flex-wrap:wrap; justify-content:center; gap:28px 32px;
-  max-width:calc(5 * 104px + 4 * 32px);   /* two rows of five */
+  max-width:calc(6 * 104px + 5 * 32px);   /* rows of six */
 }
 .skill-logo{
   position:relative; flex:0 0 104px; height:76px;
@@ -251,18 +250,6 @@ code{font-family:var(--font-mono); font-size:0.88em; background:var(--code-bg); 
   border-radius:var(--radius); cursor:default; outline-offset:2px;
 }
 .skill-logo img{height:52px; width:auto; max-width:100%; object-fit:contain;}
-.skill-logo.is-developing img{opacity:0.5;}
-
-/* in-progress marker: a small amber dot at the logo's top-right */
-.progress-dot{
-  position:absolute; top:6px; left:calc(50% + 18px);
-  width:9px; height:9px; border-radius:50%; background:var(--amber);
-  box-shadow:0 0 0 2px var(--bg);
-}
-.progress-dot::after{
-  content:''; position:absolute; inset:0; border-radius:50%;
-  background:var(--amber); opacity:0;
-}
 
 .logo-tip{
   position:absolute; left:50%; bottom:calc(100% + 4px); z-index:5;
@@ -273,7 +260,6 @@ code{font-family:var(--font-mono); font-size:0.88em; background:var(--code-bg); 
   /* --tip-shift (set by js/main.js) nudges it back inside the screen edge */
   transform:translate(calc(-50% + var(--tip-shift, 0px)), 4px);
 }
-.logo-tip strong{font-weight:700;}
 .logo-tip::after{
   content:''; position:absolute; top:100%; left:calc(50% - var(--tip-shift, 0px));
   transform:translateX(-50%); border:5px solid transparent; border-top-color:var(--text);
@@ -285,21 +271,14 @@ code{font-family:var(--font-mono); font-size:0.88em; background:var(--code-bg); 
 /* focus on one logo: the rest step back */
 @media (hover:hover){
   .skill-logos:hover .skill-logo:not(:hover) img{opacity:0.55;}
-  .skill-logos:hover .skill-logo.is-developing:not(:hover) img{opacity:0.3;}
 }
 .skill-logos:has(.skill-logo:focus-visible) .skill-logo:not(:focus-visible) img{opacity:0.55;}
-
-.skill-also{
-  margin:28px auto 0; max-width:62ch; text-align:center;
-  font-size:14.5px; color:var(--muted);
-}
 
 /* phones: four per row, last row centred */
 @media (max-width:560px){
   .skill-logos{gap:20px 12px;}
   .skill-logo{flex-basis:calc((100% - 36px) / 4); height:64px;}
   .skill-logo img{height:44px;}
-  .progress-dot{top:4px; left:calc(50% + 14px);}
   .logo-tip{max-width:200px;}
 }
 
@@ -469,12 +448,6 @@ code{font-family:var(--font-mono); font-size:0.88em; background:var(--code-bg); 
     .skill-logo:hover img{transform:translateY(-3px) scale(1.1);}
   }
   .skill-logo:focus-visible img{transform:translateY(-3px) scale(1.1);}
-  /* Power BI: the dot breathes slowly */
-  @keyframes dot-pulse{
-    0%{opacity:0.55; transform:scale(1);}
-    70%,100%{opacity:0; transform:scale(2.6);}
-  }
-  .progress-dot::after{animation:dot-pulse 2.6s ease-out infinite;}
 
   /* Logos pop in one by one when the grid scrolls into view (once). The
      grid itself doesn't move; only its tiles animate. */

@@ -31,7 +31,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <!-- ?v= is bumped when the stylesheet or script changes, so returning
      visitors don't pair new HTML with a cached old file. -->
-<link rel="stylesheet" href="/css/style.css?v=16">
+<link rel="stylesheet" href="/css/style.css?v=17">
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -158,55 +158,79 @@
     <div class="container">
       <div class="section-head">
         <h2 id="skills-title">Skills &amp; Tools</h2>
-        <p>Hover over or tap a logo to see where I've used it.</p>
       </div>
-      <!-- TOOLTIP TEXT: to change where a tool was used, edit the text after
-           "</strong>" in its logo-tip line below. The name before the dash
-           is shown in the tooltip; the img alt carries it for screen readers. -->
+      <!-- One <li> per tool. The tooltip shows the text in logo-tip; the
+           img alt gives screen readers the same name. -->
       <ul class="skill-logos" aria-label="Tools I use">
-        <li class="skill-logo" tabindex="0" aria-describedby="tip-mysql">
+        <li class="skill-logo" tabindex="0">
           <img src="/assets/icons/mysql.svg" alt="MySQL" width="65" height="64" loading="lazy" decoding="async">
-          <span class="logo-tip" role="tooltip" id="tip-mysql"><strong aria-hidden="true">MySQL – </strong>World Life Expectancy, STRACK</span>
+          <span class="logo-tip" aria-hidden="true">MySQL</span>
         </li>
-        <li class="skill-logo" tabindex="0" aria-describedby="tip-excel">
-          <img src="/assets/icons/excel.svg" alt="Excel" width="64" height="64" loading="lazy" decoding="async">
-          <span class="logo-tip" role="tooltip" id="tip-excel"><strong aria-hidden="true">Excel – </strong>Data analysis</span>
+        <li class="skill-logo" tabindex="0">
+          <img src="/assets/icons/sqlserver.svg" alt="SQL Server" width="59" height="64" loading="lazy" decoding="async">
+          <span class="logo-tip" aria-hidden="true">SQL Server</span>
         </li>
-        <li class="skill-logo is-developing" tabindex="0" aria-describedby="tip-powerbi">
+        <li class="skill-logo" tabindex="0">
+          <img src="/assets/icons/postgresql.svg" alt="PostgreSQL" width="62" height="64" loading="lazy" decoding="async">
+          <span class="logo-tip" aria-hidden="true">PostgreSQL</span>
+        </li>
+        <li class="skill-logo" tabindex="0">
+          <img src="/assets/icons/excel.svg" alt="Excel" width="69" height="64" loading="lazy" decoding="async">
+          <span class="logo-tip" aria-hidden="true">Excel</span>
+        </li>
+        <li class="skill-logo" tabindex="0">
           <img src="/assets/icons/powerbi.svg" alt="Power BI" width="49" height="64" loading="lazy" decoding="async">
-          <span class="progress-dot" aria-hidden="true"></span>
-          <span class="logo-tip" role="tooltip" id="tip-powerbi"><strong aria-hidden="true">Power BI – </strong>In progress (PL-300)</span>
+          <span class="logo-tip" aria-hidden="true">Power BI</span>
         </li>
-        <li class="skill-logo" tabindex="0" aria-describedby="tip-python">
+        <li class="skill-logo" tabindex="0">
+          <img src="/assets/icons/looker-studio.svg" alt="Looker Studio" width="64" height="64" loading="lazy" decoding="async">
+          <span class="logo-tip" aria-hidden="true">Looker Studio</span>
+        </li>
+        <li class="skill-logo" tabindex="0">
           <img src="/assets/icons/python.svg" alt="Python" width="58" height="64" loading="lazy" decoding="async">
-          <span class="logo-tip" role="tooltip" id="tip-python"><strong aria-hidden="true">Python – </strong>UK Crime</span>
+          <span class="logo-tip" aria-hidden="true">Python</span>
         </li>
-        <li class="skill-logo" tabindex="0" aria-describedby="tip-pandas">
+        <li class="skill-logo" tabindex="0">
           <img src="/assets/icons/pandas.svg" alt="pandas" width="41" height="64" loading="lazy" decoding="async">
-          <span class="logo-tip" role="tooltip" id="tip-pandas"><strong aria-hidden="true">pandas – </strong>UK Crime</span>
+          <span class="logo-tip" aria-hidden="true">pandas</span>
         </li>
-        <li class="skill-logo" tabindex="0" aria-describedby="tip-numpy">
+        <li class="skill-logo" tabindex="0">
           <img src="/assets/icons/numpy.svg" alt="NumPy" width="60" height="64" loading="lazy" decoding="async">
-          <span class="logo-tip" role="tooltip" id="tip-numpy"><strong aria-hidden="true">NumPy – </strong>UK Crime</span>
+          <span class="logo-tip" aria-hidden="true">NumPy</span>
         </li>
-        <li class="skill-logo" tabindex="0" aria-describedby="tip-apachespark">
+        <li class="skill-logo" tabindex="0">
           <img src="/assets/icons/apachespark.svg" alt="Apache Spark" width="119" height="64" loading="lazy" decoding="async">
-          <span class="logo-tip" role="tooltip" id="tip-apachespark"><strong aria-hidden="true">Apache Spark – </strong>UK Crime (incl. MLlib, 65M records)</span>
+          <span class="logo-tip" aria-hidden="true">Apache Spark</span>
         </li>
-        <li class="skill-logo" tabindex="0" aria-describedby="tip-azure">
+        <li class="skill-logo" tabindex="0">
           <img src="/assets/icons/azure.svg" alt="Microsoft Azure" width="68" height="64" loading="lazy" decoding="async">
-          <span class="logo-tip" role="tooltip" id="tip-azure"><strong aria-hidden="true">Microsoft Azure – </strong>Ran Spark for UK Crime</span>
+          <span class="logo-tip" aria-hidden="true">Microsoft Azure</span>
         </li>
-        <li class="skill-logo" tabindex="0" aria-describedby="tip-git">
+        <li class="skill-logo" tabindex="0">
           <img src="/assets/icons/git.svg" alt="Git" width="64" height="64" loading="lazy" decoding="async">
-          <span class="logo-tip" role="tooltip" id="tip-git"><strong aria-hidden="true">Git – </strong>All my code</span>
+          <span class="logo-tip" aria-hidden="true">Git</span>
         </li>
-        <li class="skill-logo" tabindex="0" aria-describedby="tip-github">
+        <li class="skill-logo" tabindex="0">
           <img src="/assets/icons/github.svg" alt="GitHub" width="66" height="64" loading="lazy" decoding="async">
-          <span class="logo-tip" role="tooltip" id="tip-github"><strong aria-hidden="true">GitHub – </strong>All my code</span>
+          <span class="logo-tip" aria-hidden="true">GitHub</span>
+        </li>
+        <li class="skill-logo" tabindex="0">
+          <img src="/assets/icons/word.svg" alt="Word" width="69" height="64" loading="lazy" decoding="async">
+          <span class="logo-tip" aria-hidden="true">Word</span>
+        </li>
+        <li class="skill-logo" tabindex="0">
+          <img src="/assets/icons/powerpoint.svg" alt="PowerPoint" width="69" height="64" loading="lazy" decoding="async">
+          <span class="logo-tip" aria-hidden="true">PowerPoint</span>
+        </li>
+        <li class="skill-logo" tabindex="0">
+          <img src="/assets/icons/outlook.svg" alt="Outlook" width="69" height="64" loading="lazy" decoding="async">
+          <span class="logo-tip" aria-hidden="true">Outlook</span>
+        </li>
+        <li class="skill-logo" tabindex="0">
+          <img src="/assets/icons/teams.svg" alt="Teams" width="69" height="64" loading="lazy" decoding="async">
+          <span class="logo-tip" aria-hidden="true">Teams</span>
         </li>
       </ul>
-      <p class="skill-also">Also: exploratory data analysis · data cleaning · statistical analysis · data visualisation · reporting</p>
     </div>
   </section>
 

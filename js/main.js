@@ -35,17 +35,30 @@
   // nothing is hidden at all.
   var REVEAL = [
     '.section-head', '.section-foot', '.prose', '.contact-panel',
-    '.project-card', '.skill-group', '.entry', '.cert'
+    '.project-card', '.skill-logos', '.entry', '.cert'
   ].join(',');
   var STAGGER_MS = 80;   // gap between items that enter together
   var STAGGER_MAX = 240;
 
-  // Skill chips follow their card in, one after another (50ms apart in CSS);
-  // each chip needs to know its position in the list.
-  Array.prototype.forEach.call(document.querySelectorAll('.skill-tags'), function(list){
-    Array.prototype.forEach.call(list.children, function(chip, i){
-      chip.style.setProperty('--i', i);
-    });
+  // ===== SKILL LOGOS =====
+  // Each logo needs its position for the one-by-one pop-in (50ms apart, CSS).
+  // A tap focuses the logo so its tooltip opens on touch screens too, and a
+  // tooltip that would run past the screen edge is nudged back inside.
+  Array.prototype.forEach.call(document.querySelectorAll('.skill-logo'), function(logo, i){
+    logo.style.setProperty('--i', i);
+    var tip = logo.querySelector('.logo-tip');
+    function place(){
+      if (!tip) return;
+      tip.style.setProperty('--tip-shift', '0px');
+      var r = tip.getBoundingClientRect(), edge = 8;
+      var vw = document.documentElement.clientWidth, shift = 0;
+      if (r.left < edge) shift = edge - r.left;
+      else if (r.right > vw - edge) shift = (vw - edge) - r.right;
+      tip.style.setProperty('--tip-shift', Math.round(shift) + 'px');
+    }
+    logo.addEventListener('mouseenter', place);
+    logo.addEventListener('focus', place);
+    logo.addEventListener('click', function(){ logo.focus(); });
   });
 
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;

@@ -23,11 +23,12 @@ projects/uk-crime/index.html             case study
 404.html                                 not-found page (GitHub Pages serves it automatically)
 projects.html                            redirect from the old URL to /projects/
 css/style.css                            all styling; colours and spacing are tokens at the top
-js/main.js                               mobile menu and footer year
+js/main.js                               mobile menu, scroll reveals, skill tooltips, footer year
 favicon.svg                              site icon
+assets/icons/                            tool logos for the Skills grid (one SVG per tool)
 img/projects/                            project charts (uk-crime-1…4 come from the analysis notebook)
 certificates/                            certificate PDFs linked from Certifications
-profile.jpg                              hero photo
+profile.png                              hero photo
 YeLinNaing-DataAnalyst-CV.pdf            CV linked from the hero and contact section
 CNAME                                    custom domain for GitHub Pages
 ```

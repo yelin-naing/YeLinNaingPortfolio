@@ -15,6 +15,17 @@
 <meta name="author" content="Ye Lin Naing">
 <meta name="robots" content="noindex">
 <meta name="theme-color" content="#FAFAF7">
+<script>
+  // Apply the saved theme, or the system's, before the page paints so it never flashes.
+  (function(){
+    try{
+      var t = localStorage.getItem('theme');
+      if (t !== 'light' && t !== 'dark') t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', t);
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', t === 'dark' ? '#0B1220' : '#FAFAF7');
+    }catch(e){}
+  })();
+</script>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Ye Lin Naing">
@@ -31,7 +42,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <!-- ?v= is bumped when the stylesheet or script changes, so returning
      visitors don't pair new HTML with a cached old file. -->
-<link rel="stylesheet" href="/css/style.css?v=17">
+<link rel="stylesheet" href="/css/style.css?v=18">
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -52,6 +63,10 @@
         <li><a href="/#certifications">Certifications</a></li>
         <li><a href="/#contact">Contact</a></li>
     </ul>
+    <button class="theme-toggle" type="button" aria-label="Switch to dark theme">
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+    </button>
   </nav>
 </header>
 
@@ -78,6 +93,6 @@
   </div>
 </footer>
 
-<script src="/js/main.js?v=15" defer></script>
+<script src="/js/main.js?v=16" defer></script>
 </body>
 </html>

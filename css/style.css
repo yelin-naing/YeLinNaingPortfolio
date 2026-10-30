@@ -15,6 +15,16 @@
   --accent-hover:#115E59;
   --accent-soft:#ECFDF8;
   --code-bg:#F1F5F9;
+  --accent-line:#99D5CB;   /* borders on accent-soft fills */
+  --on-accent:#FFFFFF;     /* text on accent buttons */
+  --accent-press:#0B4F4A;
+  --header-bg:rgba(250,250,247,0.95);
+  --tip-bg:#0F172A;  --tip-text:#FFFFFF;
+  --code-block-bg:#0F172A;  --code-block-text:#E2E8F0;
+  --bar-alt:#64748B;
+  --shadow:rgba(15,23,42,0.25);
+  --shadow-card:rgba(15,23,42,0.22);
+  color-scheme:light;
 
   --radius:8px;
   --maxw:1080px;
@@ -29,6 +39,31 @@
 
   --font:'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   --font-mono:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+/* Dark theme. The toggle (js/main.js) or the visitor's system setting sets
+   data-theme on <html> before the page paints; only the tokens change. */
+:root[data-theme="dark"]{
+  --bg:#0B1220;
+  --surface:#111A2B;
+  --text:#E2E8F0;
+  --muted:#A3AFC2;
+  --border:#1E293B;
+  --border-strong:#334155;
+  --accent:#2DD4BF;
+  --accent-hover:#5EEAD4;
+  --accent-soft:#0F2A2E;
+  --code-bg:#1A2538;
+  --accent-line:#1F5A54;
+  --on-accent:#042F2E;
+  --accent-press:#14B8A6;
+  --header-bg:rgba(11,18,32,0.9);
+  --tip-bg:#E2E8F0;  --tip-text:#0B1220;
+  --code-block-bg:#020617;  --code-block-text:#E2E8F0;
+  --bar-alt:#64748B;
+  --shadow:rgba(0,0,0,0.5);
+  --shadow-card:rgba(0,0,0,0.5);
+  color-scheme:dark;
 }
 
 *,*::before,*::after{box-sizing:border-box;}
@@ -60,22 +95,22 @@ code{font-family:var(--font-mono); font-size:0.88em; background:var(--code-bg); 
 }
 .skip-link{
   position:absolute; left:16px; top:-48px; z-index:100;
-  background:var(--text); color:#fff; padding:8px 14px; border-radius:var(--radius);
+  background:var(--text); color:var(--bg); padding:8px 14px; border-radius:var(--radius);
 }
-.skip-link:focus{top:12px; color:#fff;}
+.skip-link:focus{top:12px; color:var(--bg);}
 
 /* ===== HEADER / NAV ===== */
 .site-header{
   position:sticky; top:0; z-index:50;
-  background:rgba(250,250,247,0.95); backdrop-filter:blur(8px);
+  background:var(--header-bg); backdrop-filter:blur(8px);
   border-bottom:1px solid var(--border);
 }
 .nav{
   position:relative;
-  display:flex; align-items:center; justify-content:space-between; gap:24px;
+  display:flex; align-items:center; gap:12px;
   min-height:var(--header-h);
 }
-.brand{font-weight:700; font-size:17px; color:var(--text); text-decoration:none; white-space:nowrap;}
+.brand{font-weight:700; font-size:17px; color:var(--text); text-decoration:none; white-space:nowrap; margin-right:auto;}
 .brand:hover{color:var(--accent);}
 .nav-links{display:flex; align-items:center; gap:2px; list-style:none;}
 .nav-links a{
@@ -98,7 +133,7 @@ code{font-family:var(--font-mono); font-size:0.88em; background:var(--code-bg); 
     display:none; position:absolute; top:100%; left:0; right:0;
     flex-direction:column; align-items:stretch; gap:0;
     background:var(--surface); border-bottom:1px solid var(--border);
-    padding:8px var(--gutter) 16px; box-shadow:0 12px 24px -16px rgba(15,23,42,0.25);
+    padding:8px var(--gutter) 16px; box-shadow:0 12px 24px -16px var(--shadow);
   }
   .nav-links.open{display:flex;}
   .nav-links a{padding:12px 4px; border-bottom:1px solid var(--border); border-radius:0;}
@@ -113,8 +148,8 @@ code{font-family:var(--font-mono); font-size:0.88em; background:var(--code-bg); 
   cursor:pointer; white-space:nowrap;
 }
 .btn svg{width:18px; height:18px; flex:0 0 auto;}
-.btn-primary{background:var(--accent); color:#fff;}
-.btn-primary:hover{background:var(--accent-hover); color:#fff;}
+.btn-primary{background:var(--accent); color:var(--on-accent);}
+.btn-primary:hover{background:var(--accent-hover); color:var(--on-accent);}
 .btn-secondary{background:var(--surface); color:var(--text); border-color:var(--border-strong);}
 .btn-secondary:hover{border-color:var(--accent); color:var(--accent);}
 .btn-row{display:flex; flex-wrap:wrap; gap:12px;}
@@ -153,7 +188,7 @@ code{font-family:var(--font-mono); font-size:0.88em; background:var(--code-bg); 
 .hero-photo{position:relative; width:260px; margin:0 14px 14px 0;}
 .hero-photo::before{
   content:''; position:absolute; inset:14px -14px -14px 14px;
-  border-radius:20px; background:var(--accent-soft); border:1px solid #CDEFE6;
+  border-radius:20px; background:var(--accent-soft); border:1px solid var(--accent-line);
 }
 .hero-photo img{
   position:relative; width:100%; height:auto; aspect-ratio:4 / 5;
@@ -192,7 +227,7 @@ code{font-family:var(--font-mono); font-size:0.88em; background:var(--code-bg); 
   display:inline-block; font-size:12.5px; font-weight:600; border-radius:999px; padding:2px 10px;
   border:1px solid var(--border-strong); color:var(--muted); background:var(--surface); white-space:nowrap;
 }
-.status-done{border-color:#99D5CB; color:var(--accent); background:var(--accent-soft);}
+.status-done{border-color:var(--accent-line); color:var(--accent); background:var(--accent-soft);}
 
 /* ===== PROJECT CARDS ===== */
 .project-grid{display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:24px;}
@@ -226,7 +261,7 @@ code{font-family:var(--font-mono); font-size:0.88em; background:var(--code-bg); 
 .bar-label{color:var(--muted);}
 .bar-track{height:12px; background:var(--code-bg); border-radius:3px; overflow:hidden;}
 .bar-fill{display:block; height:100%; width:var(--w); background:var(--accent); border-radius:3px;}
-.bar-fill.alt{background:#64748B;}
+.bar-fill.alt{background:var(--bar-alt);}
 .bar-value{font-weight:600; text-align:right; font-variant-numeric:tabular-nums;}
 .mini-chart-note{font-size:12.5px; color:var(--muted); margin:2px 0 0;}
 @media (max-width:420px){ .bar-row{grid-template-columns:116px minmax(0,1fr) 36px; font-size:12.5px;} .mini-chart{padding:16px 18px;} }
@@ -254,15 +289,15 @@ code{font-family:var(--font-mono); font-size:0.88em; background:var(--code-bg); 
 .logo-tip{
   position:absolute; left:50%; bottom:calc(100% + 4px); z-index:5;
   width:max-content; max-width:220px; text-align:center;
-  font-size:13px; font-weight:500; line-height:1.4; color:#fff;
-  background:var(--text); border-radius:6px; padding:6px 10px;
+  font-size:13px; font-weight:500; line-height:1.4; color:var(--tip-text);
+  background:var(--tip-bg); border-radius:6px; padding:6px 10px;
   opacity:0; pointer-events:none;
   /* --tip-shift (set by js/main.js) nudges it back inside the screen edge */
   transform:translate(calc(-50% + var(--tip-shift, 0px)), 4px);
 }
 .logo-tip::after{
   content:''; position:absolute; top:100%; left:calc(50% - var(--tip-shift, 0px));
-  transform:translateX(-50%); border:5px solid transparent; border-top-color:var(--text);
+  transform:translateX(-50%); border:5px solid transparent; border-top-color:var(--tip-bg);
 }
 .skill-logo:hover .logo-tip, .skill-logo:focus .logo-tip{
   opacity:1; transform:translate(calc(-50% + var(--tip-shift, 0px)), 0);
@@ -353,7 +388,8 @@ code{font-family:var(--font-mono); font-size:0.88em; background:var(--code-bg); 
 .figure .mini-chart{border:1px solid var(--border); border-radius:var(--radius);}
 
 .code-block{
-  background:#0F172A; color:#E2E8F0; border-radius:var(--radius);
+  background:var(--code-block-bg); color:var(--code-block-text); border-radius:var(--radius);
+  border:1px solid var(--border);
   padding:16px 18px; margin:0 0 1em; overflow-x:auto;
   font-family:var(--font-mono); font-size:13.5px; line-height:1.6;
 }
@@ -378,6 +414,39 @@ code{font-family:var(--font-mono); font-size:0.88em; background:var(--code-bg); 
 .not-found h1{font-size:clamp(32px, 5vw, 44px); font-weight:800; margin-bottom:14px;}
 .not-found p{color:var(--muted); max-width:56ch;}
 
+/* ===== THEME TOGGLE ===== */
+.theme-toggle{
+  position:relative; display:inline-flex; align-items:center; justify-content:center;
+  width:38px; height:38px; padding:0; flex:0 0 auto; cursor:pointer;
+  color:var(--text); background:var(--surface);
+  border:1px solid var(--border-strong); border-radius:var(--radius);
+}
+.theme-toggle:hover{border-color:var(--accent); color:var(--accent);}
+.theme-toggle svg{position:absolute; width:18px; height:18px;}
+/* Light theme shows the moon (switch to dark); dark shows the sun. */
+.theme-toggle .icon-sun{opacity:0; transform:rotate(-90deg) scale(0.5);}
+[data-theme="dark"] .theme-toggle .icon-sun{opacity:1; transform:none;}
+[data-theme="dark"] .theme-toggle .icon-moon{opacity:0; transform:rotate(90deg) scale(0.5);}
+@media (max-width:960px){
+  .theme-toggle{order:1;}   /* sits before the Menu button on small screens */
+  .nav-toggle{order:2;}
+}
+
+/* Dark theme: several tool logos are dark ink (GitHub, Spark, pandas,
+   MySQL), so every logo sits on a soft light tile to stay legible. */
+[data-theme="dark"] .skill-logo{background:#E9EEF5;}
+/* Chart screenshots are white; take the glare off without losing detail. */
+[data-theme="dark"] .project-thumb img,
+[data-theme="dark"] .figure img{filter:brightness(0.92);}
+
+/* Switching theme: browsers with View Transitions get a circle that grows
+   from the toggle (js/main.js); the rest get a short colour fade. */
+::view-transition-old(root), ::view-transition-new(root){animation:none; mix-blend-mode:normal;}
+html.theme-fade, html.theme-fade *, html.theme-fade *::before, html.theme-fade *::after{
+  transition:background-color 350ms ease, color 350ms ease, border-color 350ms ease,
+             fill 350ms ease, box-shadow 350ms ease !important;
+}
+
 /* ============================================================
    MOTION
    Entrances use opacity + transform only, so they never move the
@@ -391,7 +460,7 @@ code{font-family:var(--font-mono); font-size:0.88em; background:var(--code-bg); 
              border-color var(--dur-fast) ease, box-shadow var(--dur-fast) ease,
              text-decoration-color var(--dur-fast) ease;
 }
-.btn-primary:active{background:#0B4F4A;}
+.btn-primary:active{background:var(--accent-press);}
 .btn-secondary:active{background:var(--code-bg);}
 .icon-link, .arrow-link{text-decoration-line:underline; text-decoration-color:transparent;}
 .icon-link:hover, .arrow-link:hover{text-decoration-color:currentColor;}
@@ -400,10 +469,10 @@ code{font-family:var(--font-mono); font-size:0.88em; background:var(--code-bg); 
 /* Cards: a lift and a soft shadow on hover, or while a link inside has
    keyboard focus. Touch screens get no sticky hover state. */
 @media (hover:hover){
-  .project-card:hover{border-color:var(--border-strong); box-shadow:0 10px 24px -14px rgba(15,23,42,0.22);}
-  .case-nav a:hover{box-shadow:0 8px 20px -14px rgba(15,23,42,0.22);}
+  .project-card:hover{border-color:var(--border-strong); box-shadow:0 10px 24px -14px var(--shadow-card);}
+  .case-nav a:hover{box-shadow:0 8px 20px -14px var(--shadow-card);}
 }
-.project-card:focus-within{border-color:var(--border-strong); box-shadow:0 10px 24px -14px rgba(15,23,42,0.22);}
+.project-card:focus-within{border-color:var(--border-strong); box-shadow:0 10px 24px -14px var(--shadow-card);}
 
 @media (prefers-reduced-motion: no-preference){
   .btn, .project-card, .case-nav a, .project-thumb img, .arrow{
@@ -442,6 +511,10 @@ code{font-family:var(--font-mono); font-size:0.88em; background:var(--code-bg); 
   @keyframes fade-in{from{opacity:0;} to{opacity:1;}}
   .hero-photo{animation:fade-in 600ms ease-out 120ms backwards;}
 
+  /* --- Theme toggle icons: the outgoing one turns away, the new one turns in --- */
+  .theme-toggle svg{transition:transform 400ms var(--ease-out), opacity 250ms ease;}
+  .theme-toggle:active{transform:scale(0.94);}
+
   /* --- Skill logos --- */
   .skill-logo img, .logo-tip{transition:transform 200ms var(--ease-out), opacity 200ms ease;}
   @media (hover:hover){
@@ -449,7 +522,7 @@ code{font-family:var(--font-mono); font-size:0.88em; background:var(--code-bg); 
   }
   .skill-logo:focus-visible img{transform:translateY(-3px) scale(1.1);}
 
-  /* Logos pop in one by one when the grid scrolls into view (once). The
+  /* Logos pop in one by one each time the grid scrolls into view. The
      grid itself doesn't move; only its tiles animate. */
   @keyframes logo-pop{from{opacity:0; transform:scale(0.8);} to{opacity:1; transform:none;}}
   .skill-logos.reveal-in{animation:none;}

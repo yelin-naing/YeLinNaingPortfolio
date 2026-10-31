@@ -42,7 +42,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <!-- ?v= is bumped when the stylesheet or script changes, so returning
      visitors don't pair new HTML with a cached old file. -->
-<link rel="stylesheet" href="/css/style.css?v=18">
+<link rel="stylesheet" href="/css/style.css?v=19">
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -90,6 +90,7 @@
         <div class="hero-links">
           <a class="icon-link" href="https://github.com/yelin-naing" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>GitHub</a>
           <a class="icon-link" href="https://www.linkedin.com/in/yelinnaing/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>LinkedIn</a>
+          <a class="icon-link" href="mailto:yelinnaing.job@gmail.com"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/></svg>Gmail</a>
         </div>
       </div>
       <div class="hero-photo">
@@ -105,7 +106,7 @@
         <h2 id="projects-title">Featured projects</h2>
         <p>Two data projects, each with its code on GitHub. The case studies explain the question, the method, what the data showed and the limitations.</p>
       </div>
-      <div class="project-grid">
+      <div class="project-grid project-grid-3">
 <article class="card project-card">
   <div class="project-thumb chart-thumb">
   <figure class="mini-chart" aria-label="Bar chart of average life expectancy in years: developed countries 79.2, developing countries 66.8, global average 66.8 in 2007 and 71.6 in 2022.">
@@ -118,13 +119,7 @@
   </figure>
 </div>
   <div class="project-body">
-    <p class="meta-label">Data Analysis · SQL</p>
     <h3><a href="/projects/world-life-expectancy/">World Life Expectancy — SQL Analysis</a></h3>
-    <dl class="project-facts">
-      <div><dt>Question</dt><dd>How has life expectancy changed across 193 countries between 2007 and 2022, and which factors is it linked to?</dd></div>
-      <div><dt>What I did</dt><dd>Cleaned 2,941 rows in MySQL — removed 3 duplicate records, filled 8 missing status labels and estimated 2 missing values — then answered seven questions with SQL.</dd></div>
-      <div><dt>What I found</dt><dd>The global average rose from 66.8 to 71.6 years, with a dip in 2020. Developed countries averaged 79.2 years against 66.8 for developing countries.</dd></div>
-    </dl>
     <ul class="tag-list" aria-label="Tools used"><li class="tag">MySQL</li><li class="tag">Window functions</li><li class="tag">CTEs</li><li class="tag">Self joins</li><li class="tag">Data cleaning</li></ul>
     <div class="project-links">
       <a class="arrow-link" href="/projects/world-life-expectancy/">View case study <span class="arrow" aria-hidden="true">&rarr;</span></a>
@@ -137,17 +132,23 @@
   <img src="/img/projects/uk-crime-1.png" alt="" width="1932" height="656" loading="lazy">
 </a>
   <div class="project-body">
-    <p class="meta-label">Data Analysis · Big Data</p>
     <h3><a href="/projects/uk-crime/">UK Crime — Big Data Analysis</a></h3>
-    <dl class="project-facts">
-      <div><dt>Question</dt><dd>Do three widely repeated claims about UK crime hold up when tested against 65 million police records?</dd></div>
-      <div><dt>What I did</dt><dd>Processed the records with Apache Spark on an Azure virtual machine, joined them with ONS population data, and used time-series forecasting, correlation and regression.</dd></div>
-      <div><dt>What I found</dt><dd>Burglary fell by about half between 2011 and 2021, so the claim that it was rising did not hold. Merseyside ranked 5th, not 1st, on the weapons-offence rate used as a firearms measure.</dd></div>
-    </dl>
     <ul class="tag-list" aria-label="Tools used"><li class="tag">Apache Spark (PySpark)</li><li class="tag">Azure</li><li class="tag">Python</li><li class="tag">Spark MLlib</li><li class="tag">SARIMA</li></ul>
     <div class="project-links">
       <a class="arrow-link" href="/projects/uk-crime/">View case study <span class="arrow" aria-hidden="true">&rarr;</span></a>
       <a class="icon-link" href="https://github.com/yelin-naing/uk-crime-bigdata-analysis" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>GitHub repository</a>
+    </div>
+  </div>
+</article>
+<article class="card project-card project-card-soon">
+  <div class="project-thumb soon-thumb" aria-hidden="true">
+    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="24" cy="24" r="21" stroke-dasharray="4 5"/><path d="M24 16v16M16 24h16"/></svg>
+  </div>
+  <div class="project-body">
+    <h3>More projects coming soon</h3>
+    <p class="soon-text">New data analysis projects are on the way. Follow along on GitHub.</p>
+    <div class="project-links">
+      <a class="icon-link" href="https://github.com/yelin-naing" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>Follow on GitHub</a>
     </div>
   </div>
 </article>

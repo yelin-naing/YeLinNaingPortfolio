@@ -250,6 +250,24 @@ code{font-family:var(--font-mono); font-size:0.88em; background:var(--code-bg); 
 .project-facts dd{margin:2px 0 0; font-size:15.5px; color:var(--muted); line-height:1.6;}
 .project-links{display:flex; flex-wrap:wrap; gap:10px 22px; margin-top:auto; padding-top:6px; font-size:15.5px;}
 
+/* Home page: three cards in a row (two on tablets, one on phones). */
+.project-grid-3{grid-template-columns:repeat(3, minmax(0,1fr));}
+@media (max-width:960px){ .project-grid-3{grid-template-columns:repeat(2, minmax(0,1fr));} }
+@media (max-width:640px){ .project-grid-3{grid-template-columns:1fr;} }
+.project-grid-3 .project-body h3{font-size:19px;}
+/* the life-expectancy chart, tightened to fit a third-width card */
+.project-grid-3 .mini-chart{padding:14px 18px; gap:7px;}
+.project-grid-3 .mini-chart-title{font-size:13px;}
+.project-grid-3 .bar-row{grid-template-columns:122px minmax(0,1fr) 32px; gap:8px; font-size:12px;}
+.project-grid-3 .mini-chart-note{font-size:11.5px;}
+
+/* Placeholder card: dashed, quiet, and it doesn't lift as if clickable. */
+.project-card-soon{border-style:dashed; border-color:var(--border-strong);}
+.soon-thumb{display:flex; align-items:center; justify-content:center; color:var(--accent); background:var(--accent-soft);}
+.soon-thumb svg{width:48px; height:48px;}
+.soon-text{font-size:15.5px; color:var(--muted); margin:0;}
+.project-card.project-card-soon:hover, .project-card.project-card-soon:focus-within{transform:none; box-shadow:none; border-color:var(--border-strong);}
+
 /* Small chart drawn from figures in the project's own output.
    Bars are zero-based so their lengths compare honestly. */
 .mini-chart{

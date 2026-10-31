@@ -2,8 +2,8 @@
 
 Live at [yelinn.com](https://yelinn.com).
 
-A static site: plain HTML, one stylesheet and one small script. No build step
-and no dependencies. Links use root paths (`/projects/`), so preview it through
+A static site: plain HTML, one stylesheet and one small script, plus a local
+copy of Lenis for smooth scrolling. No build step and no package manager. Links use root paths (`/projects/`), so preview it through
 a local server rather than opening the files directly:
 
 ```
@@ -23,7 +23,8 @@ projects/uk-crime/index.html             case study
 404.html                                 not-found page (GitHub Pages serves it automatically)
 projects.html                            redirect from the old URL to /projects/
 css/style.css                            all styling; colours and spacing are tokens at the top
-js/main.js                               light/dark theme, mobile menu, scroll reveals, skill tooltips, footer year
+js/main.js                               light/dark theme, smooth scrolling, header, menu, scroll reveals, skill tooltips, footer year
+js/vendor/lenis.min.js                   Lenis 1.3.27 (MIT), smooth wheel scrolling
 favicon.svg                              site icon
 assets/icons/                            tool logos for the Skills grid (one SVG per tool)
 img/projects/                            project charts (uk-crime-1…4 come from the analysis notebook)

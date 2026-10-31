@@ -1,6 +1,6 @@
-/* Shared by every page: the mobile menu, light/dark theme, scroll reveals,
-   skill tooltips and the footer year. The site is plain HTML and every page
-   works fully without this file. */
+/* Shared by every page: light/dark theme, smooth scrolling, the header,
+   mobile menu, scroll reveals, skill tooltips and the footer year. The site
+   is plain HTML and every page works fully without this file. */
 (function(){
   // ===== LIGHT / DARK THEME =====
   // The inline script in <head> has already set data-theme (saved choice,
@@ -95,7 +95,8 @@
   // Without IntersectionObserver, or with reduced motion, nothing moves.
   var REVEAL = [
     '.section-head', '.section-foot', '.prose', '.contact-panel',
-    '.project-card', '.skill-logos', '.entry', '.cert'
+    '.project-card', '.skill-logos', '.entry', '.cert',
+    '.case-body > h2', '.finding', '.figure', '.data-table-wrap', '.note', '.code-block', '.case-nav a'
   ].join(',');
   // These already animate in on page load (CSS); they replay on re-entry.
   var INTRO = '.hero h1, .hero-role, .hero-intro, .hero-facts, .hero .btn-row, .hero-links, .hero-photo, .page-head > *';
@@ -137,16 +138,24 @@
       }
     });
 
-    // Restart an animation from its first frame. Reading offsetWidth forces
-    // the browser to drop the old run before the new one is applied.
+    // Restart an animation from its first frame: drop the old run, then add
+    // the new one two frames later. Waiting for frames (rather than forcing a
+    // layout) keeps scrolling smooth while things replay.
+    function nextFrames(fn){ requestAnimationFrame(function(){ requestAnimationFrame(fn); }); }
     function replay(el, delay){
       if (isIntro.has(el)){
-        el.style.animation = 'none'; void el.offsetWidth; el.style.animation = '';
+        el.style.animation = 'none';
+        nextFrames(function(){ el.style.animation = ''; });
         return;
       }
       el.style.setProperty('--reveal-delay', delay + 'ms');
-      el.classList.remove('reveal-pending', 'reveal-in'); void el.offsetWidth;
-      el.classList.add('reveal-in');
+      if (el.classList.contains('reveal-in')){
+        el.classList.remove('reveal-in');
+        nextFrames(function(){ el.classList.add('reveal-in'); });
+      } else {
+        el.classList.remove('reveal-pending');
+        el.classList.add('reveal-in');
+      }
     }
 
     var heard = false;
@@ -180,12 +189,44 @@
     }, 1500);
   }
 
-  // ===== ANCHOR LINKS AND SMOOTH SCROLLING =====
+  // ===== SMOOTH SCROLLING =====
+  // Lenis (js/vendor/lenis.min.js) smooths mouse-wheel and trackpad scrolling.
+  // Touch scrolling stays native, code blocks and tables still scroll on
+  // their own, and with reduced motion it isn't started at all.
+  var root = document.documentElement;
+  var header = document.querySelector('.site-header');
+  var lenis = null;
+  if (!reduce && window.Lenis){
+    lenis = new window.Lenis({ lerp:0.1, smoothWheel:true, autoRaf:true, allowNestedScroll:true });
+  }
+  // Lenis honours the page's scroll-padding-top (header height + 16px, set
+  // in the CSS), so targets land just below the header with no extra offset.
+  function scrollToTarget(el){
+    if (lenis) lenis.scrollTo(el, { duration:1.2 });
+    else el.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block:'start' });
+  }
+
+  // In-page links (nav, "View My Projects", the skip link) glide to their
+  // section, update the address bar and move keyboard focus there.
+  document.addEventListener('click', function(e){
+    var a = e.target.closest && e.target.closest('a[href*="#"]');
+    if (!a || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    var url = new URL(a.href, location.href);
+    if (url.origin !== location.origin || url.pathname.replace(/index\.html$/, '') !== location.pathname.replace(/index\.html$/, '')) return;
+    var id = decodeURIComponent(url.hash.slice(1));
+    var el = id && document.getElementById(id);
+    if (!el) return;
+    e.preventDefault();
+    if (history.pushState) history.pushState(null, '', url.hash);
+    scrollToTarget(el);
+    if (!el.hasAttribute('tabindex')) el.setAttribute('tabindex', '-1');
+    el.focus({ preventScroll:true });
+  });
+
   // Arriving at /#skills jumps (not glides) to the section. When the web
   // font swaps in, text above can re-wrap and push the section down, so
   // re-align once, unless the visitor has already started scrolling. Only
-  // then is smooth scrolling switched on for clicks within the page.
-  var root = document.documentElement;
+  // then is smooth scrolling switched on.
   var fontsReady = document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve();
   var target = null;
   try { target = location.hash.length > 1 && document.getElementById(decodeURIComponent(location.hash.slice(1))); }
@@ -195,9 +236,91 @@
     window.addEventListener(type, function(){ userMoved = true; }, {once:true, passive:true});
   });
   fontsReady.then(function(){
-    if (target && !userMoved) target.scrollIntoView({block:'start'});
-    root.classList.add('smooth-scroll');
+    if (target && !userMoved){
+      if (lenis) lenis.scrollTo(target, { immediate:true, force:true });
+      else target.scrollIntoView({block:'start'});
+    }
+    if (!lenis) root.classList.add('smooth-scroll');
   });
+
+  // ===== HEADER, READING PROGRESS, BACK TO TOP =====
+  // One rAF-throttled scroll handler: the header gains a shadow once the
+  // page moves, slides away while scrolling down and returns on the way up;
+  // a thin bar shows how far down the page you are; a back-to-top button
+  // appears after the first screen.
+  var progress = document.createElement('div');
+  progress.className = 'scroll-progress';
+  progress.setAttribute('aria-hidden', 'true');
+  document.body.appendChild(progress);
+
+  var toTop = document.createElement('button');
+  toTop.type = 'button';
+  toTop.className = 'to-top';
+  toTop.setAttribute('aria-label', 'Back to top');
+  toTop.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>';
+  document.body.appendChild(toTop);
+  toTop.addEventListener('click', function(){
+    if (lenis) lenis.scrollTo(0, { duration:1.4 });
+    else window.scrollTo({ top:0, behavior: reduce ? 'auto' : 'smooth' });
+    var brand = document.querySelector('.brand');
+    if (brand) brand.focus({ preventScroll:true });
+  });
+
+  var lastY = window.scrollY, ticking = false;
+  var headerHasFocus = false;
+  if (header){
+    header.addEventListener('focusin', function(){ headerHasFocus = true; header.classList.remove('is-hidden'); });
+    header.addEventListener('focusout', function(){ headerHasFocus = false; });
+  }
+  function onScrollFrame(){
+    ticking = false;
+    var y = window.scrollY;
+    var max = document.documentElement.scrollHeight - window.innerHeight;
+    progress.style.transform = 'scaleX(' + (max > 0 ? Math.min(1, y / max) : 0) + ')';
+    toTop.classList.toggle('is-visible', y > window.innerHeight * 0.8);
+    if (header){
+      header.classList.toggle('is-scrolled', y > 8);
+      var menuOpen = links && links.classList.contains('open');
+      if (!reduce && !menuOpen && !headerHasFocus && Math.abs(y - lastY) > 1){
+        if (y > lastY && y > 160) header.classList.add('is-hidden');
+        else if (y < lastY) header.classList.remove('is-hidden');
+      }
+      if (y <= 160) header.classList.remove('is-hidden');
+    }
+    lastY = y;
+    if (spyAtBottom) spyAtBottom(y >= max - 2);
+  }
+  window.addEventListener('scroll', function(){
+    if (!ticking){ ticking = true; requestAnimationFrame(onScrollFrame); }
+  }, { passive:true });
+
+  // ===== SCROLL SPY (home page) =====
+  // The nav link for the section in the middle of the screen is underlined.
+  var spyAtBottom = null;
+  var navLinks = links ? Array.prototype.slice.call(links.querySelectorAll('a')) : [];
+  var onHome = /^\/(index\.html)?$/.test(location.pathname);
+  if (onHome && navLinks.length && 'IntersectionObserver' in window){
+    links.classList.add('spy');
+    var linkFor = {};
+    navLinks.forEach(function(a){
+      var href = a.getAttribute('href');
+      var id = href === '/' ? 'home' : href === '/projects/' ? 'projects' : (href.indexOf('/#') === 0 ? href.slice(2) : null);
+      if (id) linkFor[id] = a;
+    });
+    function setActive(id){
+      navLinks.forEach(function(a){ a.classList.toggle('is-active', a === linkFor[id]); });
+    }
+    var spy = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if (e.isIntersecting) setActive(e.target.id); });
+    }, { rootMargin:'-45% 0px -50% 0px' });
+    Object.keys(linkFor).forEach(function(id){
+      var sec = document.getElementById(id);
+      if (sec) spy.observe(sec);
+    });
+    // The last section may never reach the middle of the screen.
+    spyAtBottom = function(atBottom){ if (atBottom) setActive('contact'); };
+  }
+  onScrollFrame();
 
   // ===== FOOTER YEAR =====
   // The HTML carries a static year as a fallback; this keeps it current.

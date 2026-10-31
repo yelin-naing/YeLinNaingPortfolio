@@ -32,10 +32,10 @@
   --header-h:64px;
 
   /* motion */
-  --ease-out:cubic-bezier(.2,.7,.2,1);
-  --dur-fast:180ms;      /* hover, press, focus */
-  --dur-reveal:450ms;    /* entrances */
-  --rise:14px;           /* how far entrances travel */
+  --ease-out:cubic-bezier(.16,1,.3,1);   /* ease-out-expo: quick start, long soft landing */
+  --dur-fast:200ms;      /* hover, press, focus */
+  --dur-reveal:700ms;    /* entrances */
+  --rise:24px;           /* how far entrances travel */
 
   --font:'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   --font-mono:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
@@ -67,6 +67,11 @@
 }
 
 *,*::before,*::after{box-sizing:border-box;}
+
+/* Lenis smooth scrolling (js/vendor/lenis.min.js, MIT) */
+html.lenis, html.lenis body{height:auto;}
+.lenis:not(.lenis-autoToggle).lenis-stopped{overflow:clip;}
+.lenis.lenis-smooth iframe{pointer-events:none;}
 html{scroll-padding-top:calc(var(--header-h) + 16px);}
 /* Smooth scrolling for in-page links. js/main.js adds the class once fonts
    have loaded, so arriving at /#skills jumps straight to the section
@@ -105,6 +110,8 @@ code{font-family:var(--font-mono); font-size:0.88em; background:var(--code-bg); 
   background:var(--header-bg); backdrop-filter:blur(8px);
   border-bottom:1px solid var(--border);
 }
+.site-header.is-scrolled{box-shadow:0 8px 24px -18px var(--shadow);}
+.site-header.is-hidden{transform:translateY(-100%);}
 .nav{
   position:relative;
   display:flex; align-items:center; gap:12px;
@@ -119,6 +126,15 @@ code{font-family:var(--font-mono); font-size:0.88em; background:var(--code-bg); 
 }
 .nav-links a:hover{color:var(--text); background:var(--code-bg);}
 .nav-links a[aria-current="page"]{color:var(--accent);}
+.nav-links a{position:relative;}
+.nav-links a::after{
+  content:''; position:absolute; left:10px; right:10px; bottom:3px; height:2px;
+  border-radius:2px; background:var(--accent); transform:scaleX(0); transform-origin:left;
+}
+/* On the home page js/main.js marks the section in view (scroll spy). */
+.nav-links.spy a[aria-current="page"]:not(.is-active){color:var(--muted);}
+.nav-links a.is-active{color:var(--accent);}
+.nav-links a.is-active::after{transform:scaleX(1);}
 .nav-toggle{
   display:none; align-items:center; gap:8px;
   font:inherit; font-size:15px; font-weight:600; color:var(--text);
@@ -130,12 +146,14 @@ code{font-family:var(--font-mono); font-size:0.88em; background:var(--code-bg); 
 @media (max-width:960px){
   .nav-toggle{display:inline-flex;}
   .nav-links{
-    display:none; position:absolute; top:100%; left:0; right:0;
+    display:flex; position:absolute; top:100%; left:0; right:0;
+    opacity:0; transform:translateY(-8px); visibility:hidden; pointer-events:none;
     flex-direction:column; align-items:stretch; gap:0;
     background:var(--surface); border-bottom:1px solid var(--border);
     padding:8px var(--gutter) 16px; box-shadow:0 12px 24px -16px var(--shadow);
   }
-  .nav-links.open{display:flex;}
+  .nav-links.open{opacity:1; transform:none; visibility:visible; pointer-events:auto;}
+  .nav-links a::after{display:none;}
   .nav-links a{padding:12px 4px; border-bottom:1px solid var(--border); border-radius:0;}
   .nav-links li:last-child a{border-bottom:0;}
 }
@@ -166,6 +184,10 @@ code{font-family:var(--font-mono); font-size:0.88em; background:var(--code-bg); 
 .section + .section{border-top:1px solid var(--border);}
 .section-head{margin-bottom:32px; max-width:68ch;}
 .section-head h2{font-size:clamp(26px, 3.4vw, 32px); font-weight:700;}
+.section-head h2::after, .contact-panel h2::after{
+  content:''; display:block; width:44px; height:3px; margin-top:12px;
+  border-radius:2px; background:var(--accent); transform-origin:left;
+}
 .section-head p{color:var(--muted); margin:10px 0 0;}
 .section-foot{margin-top:28px;}
 @media (max-width:640px){
@@ -465,6 +487,25 @@ html.theme-fade, html.theme-fade *, html.theme-fade *::before, html.theme-fade *
              fill 350ms ease, box-shadow 350ms ease !important;
 }
 
+/* ===== READING PROGRESS + BACK TO TOP (added by js/main.js) ===== */
+.scroll-progress{
+  position:fixed; top:0; left:0; right:0; height:3px; z-index:60;
+  background:var(--accent); transform-origin:0 50%; transform:scaleX(0);
+  pointer-events:none;
+}
+.to-top{
+  position:fixed; right:20px; bottom:20px; z-index:40;
+  display:inline-flex; align-items:center; justify-content:center;
+  width:44px; height:44px; padding:0; cursor:pointer;
+  color:var(--text); background:var(--surface);
+  border:1px solid var(--border-strong); border-radius:50%;
+  box-shadow:0 10px 24px -14px var(--shadow-card);
+  opacity:0; visibility:hidden; transform:translateY(14px) scale(0.9);
+}
+.to-top svg{width:20px; height:20px;}
+.to-top.is-visible{opacity:1; visibility:visible; transform:none;}
+.to-top:hover{border-color:var(--accent); color:var(--accent);}
+
 /* ============================================================
    MOTION
    Entrances use opacity + transform only, so they never move the
@@ -529,6 +570,42 @@ html.theme-fade, html.theme-fade *, html.theme-fade *::before, html.theme-fade *
   @keyframes fade-in{from{opacity:0;} to{opacity:1;}}
   .hero-photo{animation:fade-in 600ms ease-out 120ms backwards;}
 
+  /* --- Header, menu, progress, back-to-top --- */
+  .site-header{transition:transform 450ms var(--ease-out), box-shadow 300ms ease;}
+  .nav-links a::after{transition:transform 350ms var(--ease-out);}
+  @media (max-width:960px){
+    .nav-links{transition:opacity 250ms ease, transform 400ms var(--ease-out), visibility 0s linear 400ms;}
+    .nav-links.open{transition:opacity 250ms ease, transform 400ms var(--ease-out), visibility 0s;}
+  }
+  .to-top{transition:opacity 300ms ease, transform 450ms var(--ease-out), visibility 0s linear 450ms, border-color var(--dur-fast) ease, color var(--dur-fast) ease;}
+  .to-top.is-visible{transition:opacity 300ms ease, transform 450ms var(--ease-out), visibility 0s, border-color var(--dur-fast) ease, color var(--dur-fast) ease;}
+  @media (hover:hover){ .to-top:hover{transform:translateY(-3px);} }
+
+  /* --- Gentle lifts and nudges --- */
+  @media (hover:hover){
+    .btn-primary:hover{transform:translateY(-2px); box-shadow:0 10px 20px -12px var(--shadow-card);}
+    .btn-secondary:hover{transform:translateY(-2px);}
+    .cert:hover{transform:translateY(-3px); border-color:var(--border-strong); box-shadow:0 10px 24px -16px var(--shadow-card);}
+    .icon-link:hover svg{transform:translateY(-1px) scale(1.12);}
+  }
+  .cert{transition:transform 300ms var(--ease-out), border-color var(--dur-fast) ease, box-shadow 300ms ease;}
+  .btn.btn:active{transform:translateY(1px); box-shadow:none;}   /* press beats the hover lift */
+  .icon-link svg{transition:transform 250ms var(--ease-out);}
+
+  /* --- Heading accent lines draw in as their section reveals --- */
+  @keyframes draw-line{from{transform:scaleX(0);} to{transform:scaleX(1);}}
+  .section-head.reveal-in h2::after, .contact-panel.reveal-in h2::after{
+    animation:draw-line 800ms var(--ease-out) calc(var(--reveal-delay, 0ms) + 250ms) backwards;
+  }
+
+  /* --- Chart bars grow from zero, one after another --- */
+  @keyframes bar-grow{from{transform:scaleX(0);} to{transform:scaleX(1);}}
+  .bar-fill{transform-origin:left;}
+  .reveal-in .bar-fill{animation:bar-grow 1000ms var(--ease-out) calc(var(--reveal-delay, 0ms) + 200ms) backwards;}
+  .reveal-in .bar-row:nth-of-type(2) .bar-fill{animation-delay:calc(var(--reveal-delay, 0ms) + 300ms);}
+  .reveal-in .bar-row:nth-of-type(3) .bar-fill{animation-delay:calc(var(--reveal-delay, 0ms) + 400ms);}
+  .reveal-in .bar-row:nth-of-type(4) .bar-fill{animation-delay:calc(var(--reveal-delay, 0ms) + 500ms);}
+
   /* --- Theme toggle icons: the outgoing one turns away, the new one turns in --- */
   .theme-toggle svg{transition:transform 400ms var(--ease-out), opacity 250ms ease;}
   .theme-toggle:active{transform:scale(0.94);}
@@ -545,7 +622,7 @@ html.theme-fade, html.theme-fade *, html.theme-fade *::before, html.theme-fade *
   @keyframes logo-pop{from{opacity:0; transform:scale(0.8);} to{opacity:1; transform:none;}}
   .skill-logos.reveal-in{animation:none;}
   .skill-logos.reveal-in .skill-logo{
-    animation:logo-pop 350ms var(--ease-out) calc(var(--reveal-delay, 0ms) + var(--i, 0) * 50ms) backwards;
+    animation:logo-pop 550ms var(--ease-out) calc(var(--reveal-delay, 0ms) + var(--i, 0) * 50ms) backwards;
   }
 
   /* --- Scroll reveals (js/main.js adds these classes) ---
